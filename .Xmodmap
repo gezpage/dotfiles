@@ -1,0 +1,4 @@
+keycode 123 = XF86AudioRaiseVolume
+keycode 122 = XF86AudioLowerVolume
+keycode 124 = XF86PowerOff
+

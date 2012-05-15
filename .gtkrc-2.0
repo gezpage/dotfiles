@@ -1,0 +1,9 @@
+include ".gtk-themes/elementary Dark/gtk-2.0/gtkrc"
+
+style "schrift"
+{
+font_name = "DejaVuSansCondensed 8"
+}
+widget_class "*" style "schrift"
+gtk-font-name = "DejaVuSansCondensed 8"
+

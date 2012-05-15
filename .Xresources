@@ -1,0 +1,37 @@
+URxvt*font: -*-profont-*-*-*-*-11-*-*-*-*-*-*-*
+URxvt*boldFont: -*-profont-*-*-*-*-11-*-*-*-*-*-*-*
+URxvt*termName:screen-256color
+
+URxvt*transparent: true
+URxvt*shading: 5
+
+URxvt.foreground: white
+URxvt.depth: 32
+URxvt.background: rgba:0000/0000/0000/dddd
+URxvt.loginShell: true
+URxvt.fading: 10
+URxvt.fadeColor: [0]black
+URxvt.perl-lib: /usr/lib/urxvt/perl
+URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+URxvt.underlineURLs: true
+URxvt.perl-ext: selection,mark-yank-urls
+URxvt.urlLauncher: /usr/bin/google-chrome
+URxvt.underlineColor: green
+URxvt.saveLines: 65535
+URxvt.scrollBar: false
+
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B
+URxvt.keysym.Control-Left: \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+
+URxvt*perl-ext-common:      default,matcher,clipboard
+
+Xft.dpi: 96
+Xft.lcdfilter: lcddefault
+Xft.antialias: true
+Xft.hinting:true
+Xft.hintstyle: hintfull
+Xft.rgba: rgb
+*customization: -color
+
