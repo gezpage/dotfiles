@@ -1,2 +1,4 @@
-:colorscheme midnight2
-:nnoremap <esc> :noh<return><esc>
+colorscheme desert256
+nnoremap <esc> :noh<return><esc>
+hi clear SpellBad
+hi SpellBad cterm=underline
