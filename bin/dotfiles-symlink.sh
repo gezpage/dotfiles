@@ -11,7 +11,7 @@ else
         mv ~/.aliases $BACKUP/
         mv ~/.bashrc $BACKUP/
         mv ~/.bash_profile $BACKUP/
-        mv ~/.gtkrc $BACKUP/
+        mv ~/.gtkrc-2.0 $BACKUP/
         mv ~/.gtk-themes $BACKUP/
         mv ~/.vimrc.local $BACKUP/
         mv ~/.xinitrc $BACKUP/
@@ -25,7 +25,7 @@ else
         ln -s $SOURCE/.aliases ~
         ln -s $SOURCE/.bashrc ~
         ln -s $SOURCE/.bash_profile ~
-        ln -s $SOURCE/.gtkrc ~
+        ln -s $SOURCE/.gtkrc-2.0 ~
         ln -s $SOURCE/.gtk-themes ~
         ln -s $SOURCE/.vimrc.local ~
         ln -s $SOURCE/.xinitrc ~

@@ -1,1 +1,2 @@
-:colorscheme jellyx
+:colorscheme midnight2
+:nnoremap <esc> :noh<return><esc>
