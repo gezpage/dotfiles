@@ -2,3 +2,4 @@ colorscheme desert256
 nnoremap <esc> :noh<return><esc>
 hi clear SpellBad
 hi SpellBad cterm=underline
+let g:Powerline_symbols = 'fancy'
