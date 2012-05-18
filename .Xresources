@@ -1,5 +1,3 @@
-URxvt*font: -*-profont-*-*-*-*-11-*-*-*-*-*-*-*
-URxvt*boldFont: -*-profont-*-*-*-*-11-*-*-*-*-*-*-*
 URxvt*termName:screen-256color
 
 URxvt*transparent: true
@@ -14,7 +12,6 @@ URxvt.fadeColor: [0]black
 URxvt.perl-lib: /usr/lib/urxvt/perl
 URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
 URxvt.underlineURLs: true
-URxvt.perl-ext: selection,mark-yank-urls
 URxvt.urlLauncher: /usr/bin/google-chrome
 URxvt.underlineColor: green
 URxvt.saveLines: 65535
@@ -25,7 +22,6 @@ URxvt.keysym.Control-Down: \033[1;5B
 URxvt.keysym.Control-Left: \033[1;5D
 URxvt.keysym.Control-Right: \033[1;5C
 
-URxvt*perl-ext-common:      default,matcher,clipboard
 
 Xft.dpi: 96
 Xft.lcdfilter: lcddefault
