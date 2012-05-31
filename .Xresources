@@ -1,7 +1,10 @@
 URxvt*termName:screen-256color
 
 URxvt*transparent: true
-URxvt*shading: 5
+URxvt*shading: 10
+
+URxvt.depth: 32
+URxvt.background: [95]#0000000
 
 URxvt.foreground: white
 URxvt.depth: 32
