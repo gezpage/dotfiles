@@ -1,0 +1,70 @@
+background no
+use_xft yes
+xftfont DejaVu Sans Mono:size=12
+#xftfont Bitstream Vera Sans Mono:size=13
+xftalpha 0.8
+update_interval 5.0
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_colour hotpink
+own_window_hints undecorated,below,skip_taskbar,sticky,skip_pager
+double_buffer yes
+minimum_size 280 5
+draw_shades yes
+draw_outline no
+draw_graph_borders yes
+stippled_borders 8
+border_margin 4
+border_width 6
+maximum_width 155
+default_color darkgrey
+default_shade_color black
+default_outline_color black
+alignment bottom_left
+gap_x 60
+gap_y 60
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale no
+use_spacer yes
+
+TEXT
+${color #5b6dad}${alignc}${nodename} ${uptime_short}
+
+${color #5b6dad}CPU: ${color grey}$cpu%
+${color #5b6dad} ${cpugraph 16,140 000000 7f8ed3}
+${color #5b6dad}RAM: $color$mem/$memmax
+${color #5b6dad} ${membar 6,140}
+${color #5b6dad}Swap:$color$swap/$swapmax
+${color #5b6dad} ${swapbar 6,140}
+
+${color #5b6dad}WLAN0 Down: $color${downspeed wlan0}${alignr} k/s 
+${color #5b6dad} ${downspeedgraph wlan0 16,140 000000 7f8ed3 150}
+${color #5b6dad}WLAN0 Up:   $color${upspeed wlan0}${alignr} k/s 
+${color #5b6dad} ${upspeedgraph wlan0 16,140 000000 7f8ed3 18}
+
+${color #5b6dad}File systems:
+${color #5b6dad}/       $color${fs_free /}
+${color #5b6dad} ${fs_bar 6,140 /}
+${color #5b6dad}Windows $color${fs_free /media/windows}
+${color #5b6dad} ${fs_bar 6,140 /media/windows}
+
+${color #5b6dad}Processes:$color $processes | $running_processes
+${color} Cpu usage    CPU
+${color #ddaa00} ${top name 1}${offset -50} ${top cpu 1}
+${color #5b6dad} ${top name 2}${offset -50} ${top cpu 2}
+${color #5b6dad} ${top name 3}${offset -50} ${top cpu 3}
+${color #5b6dad} ${top name 4}${offset -50} ${top cpu 4}
+
+${color} Mem usage    MEM
+${color #ddaa00} ${top_mem name 1}${offset -50} ${top_mem mem 1}
+${color #5b6dad} ${top_mem name 2}${offset -50} ${top_mem mem 2}
+${color #5b6dad} ${top_mem name 3}${offset -50} ${top_mem mem 3}
+${color #5b6dad} ${top_mem name 4}${offset -50} ${top_mem mem 4}
+
+${color #5b6dad}# Connections   
+$color In: ${tcp_portmon 1 32767 count}  Out: ${tcp_portmon 32768 61000 count}${alignr}
