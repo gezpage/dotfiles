@@ -151,3 +151,4 @@ DIRNAME="\w"
 export PS1="$GREEN\u@\h:$PURPLE\$(shortpath)$RED\$(parse_git_branch)$YELLOW\$$WHITE "
 
 export EDITOR="vim"
+export VMAIL_BROWSER='elinks'
