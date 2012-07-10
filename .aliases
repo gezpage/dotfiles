@@ -6,4 +6,5 @@ alias processtree='ps awwfux | less -S'
 alias mountview='mount | column -t'
 # show bash shortcuts
 alias bash_shortcuts='bind -P'
-
+# git pretty colour log
+alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
