@@ -1,9 +1,6 @@
-include ".gtk-themes/elementary Dark/gtk-2.0/gtkrc"
+# -- THEME AUTO-WRITTEN BY gtk-theme-switch2 DO NOT EDIT
+include "/usr/share/themes/Crux/gtk-2.0/gtkrc"
 
-style "schrift"
-{
-font_name = "DejaVuSansCondensed 8"
-}
-widget_class "*" style "schrift"
-gtk-font-name = "DejaVuSansCondensed 8"
+include "/home/gez/.gtkrc-2.0.mine"
 
+# -- THEME AUTO-WRITTEN BY gtk-theme-switch2 DO NOT EDIT
