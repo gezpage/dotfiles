@@ -158,7 +158,22 @@ BLUE="\[\033[0;34m\]"
 TIME="[\t]"
 DIRNAME="\w"
 
-export PS1="$GREEN\u@\h:$PURPLE\$(shortpath)$RED\$(parse_git_branch)$YELLOW\$$WHITE "
+PROMPTCOL=$WHITE
+
+# Host specific prompt colours :)
+case $(hostname) in
+        cadmium )
+                PROMPTCOL=$GREEN
+                ;;
+        magnesium )
+                PROMPTCOL=$BLUE
+                ;;
+        dds88.wesh.co.uk )
+                PROMPTCOL=$RED
+                ;;
+esac
+
+export PS1="$PROMPTCOL\u@\h:$PURPLE\$(shortpath)$RED\$(parse_git_branch)$YELLOW\$$WHITE "
 
 export EDITOR="vim"
 
