@@ -1,5 +1,5 @@
 # -- THEME AUTO-WRITTEN BY gtk-theme-switch2 DO NOT EDIT
-include "/usr/share/themes/Crux/gtk-2.0/gtkrc"
+include "/usr/share/themes/MurrinaAquaIsh/gtk-2.0/gtkrc"
 
 include "/home/gez/.gtkrc-2.0.mine"
 

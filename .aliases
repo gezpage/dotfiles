@@ -1,1 +1,10 @@
 alias ls='ls --color=auto'
+alias whatismyip='curl icanhazip.com'
+# show a basic process tree
+alias processtree='ps awwfux | less -S'
+# view mount points with a decent layout
+alias mountview='mount | column -t'
+# show bash shortcuts
+alias bash_shortcuts='bind -P'
+# git pretty colour log
+alias gitlog="git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --color"

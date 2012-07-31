@@ -54,14 +54,16 @@ myConfig = defaultConfig { workspaces = workspaces'
 -------------------------------------------------------------------------------
 -- Window Management --
 manageHook' = composeAll [ isFullscreen             --> doFullFloat
+                         , className =? "Chromium"  --> doShift "2:web"
+                         , className =? "Google-chrome"    --> doShift "2:web"
+                         , className =? "Mysql-workbench-bin"    --> doShift "3:sql"
+                         , className =? "Vmplayer"    --> doShift "4:vm"
                          , className =? "MPlayer"   --> doFloat
                          , className =? "Gimp"      --> doFloat
                          , className =? "Vlc"       --> doFloat
 			 , insertPosition Below Newer
 			 , transience'
                          ]
-
-
 -------------------------------------------------------------------------------
 -- Looks --
 -- bar
@@ -81,7 +83,7 @@ urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 -- borders
 borderWidth' = 1
-normalBorderColor'  = "#333333"
+normalBorderColor'  = "#111111"
 focusedBorderColor' = "#AFAF87"
 
 -- tabs
@@ -93,7 +95,7 @@ tabTheme1 = defaultTheme { decoHeight = 16
                          }
 
 -- workspaces
-workspaces' = ["1-main", "2-web", "3-mail", "4", "5", "6", "7", "8", "9"]
+workspaces' = ["1:term", "2:web", "3:sql", "4:vm", "5", "6", "7", "8", "9"]
 
 -- layouts
 layoutHook' = tile ||| mtile ||| tab ||| full
@@ -120,11 +122,29 @@ toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
-    [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf) 
-    , ((modMask,               xK_p     ), spawn "dmenu_run") 
-    , ((modMask .|. shiftMask, xK_p     ), spawn "gmrun")
+    -- [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf) 
+    [ ((modMask,               xK_Return), spawn "gnome-terminal") 
+    , ((modMask,               xK_p     ), spawn "gmrun") 
+    , ((modMask .|. shiftMask, xK_p     ), spawn "dmenu_run")
     , ((modMask .|. shiftMask, xK_m     ), spawn "claws-mail")
     , ((modMask .|. shiftMask, xK_c     ), kill)
+
+    , ((modMask,               xK_i     ), spawn "google-chrome") 
+    , ((modMask,               xK_v     ), spawn "vmplayer") 
+    , ((modMask,               xK_s     ), spawn "mysql-workbench") 
+    , ((modMask,               xK_t     ), spawn "thunar") 
+
+    -- volume controls
+    , ((modMask,               xK_minus ), spawn "amixer -q set Master 3- unmute")
+    , ((modMask,               xK_equal ), spawn "amixer -q set Master 3+ unmute")
+
+    -- mpd controls
+    , ((modMask,               xK_bracketright ), spawn "mpc seek +10")
+    , ((modMask,               xK_bracketleft  ), spawn "mpc seek -10")
+    , ((modMask .|. shiftMask, xK_bracketright ), spawn "mpc next")
+    , ((modMask .|. shiftMask, xK_bracketleft  ), spawn "mpc prev")
+    , ((modMask,               xK_numbersign   ), spawn "mpc random")
+    , ((modMask,               xK_apostrophe   ), spawn "mpc toggle")
 
     -- grid
     , ((modMask,               xK_g     ), goToSelected myGSConfig)

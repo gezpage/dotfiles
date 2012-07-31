@@ -1,6 +1,0 @@
-style "schrift"
-{
-font_name = "DejaVuSansCondensed 8"
-}
-widget_class "*" style "schrift"
-gtk-font-name = "DejaVuSansCondensed 8"

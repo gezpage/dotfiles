@@ -111,8 +111,18 @@ export TERM=xterm-256color
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
+# Create ~/bin if not exists
+if [ ! -d  ~/bin ]; then
+        mkdir ~/bin
+fi
+
 # Macports pathing
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:~/bin:$PATH
+
+# Add ruby bin to path if exists
+if [ -d  ~/.gem/ruby/1.9.1/bin ]; then
+        export PATH=$PATH:~/.gem/ruby/1.9.1/bin
+fi
 
 # Parse my aliases
 source ~/.aliases
@@ -151,4 +161,8 @@ DIRNAME="\w"
 export PS1="$GREEN\u@\h:$PURPLE\$(shortpath)$RED\$(parse_git_branch)$YELLOW\$$WHITE "
 
 export EDITOR="vim"
+
+# Quick reference command 'cmdfu'
+cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$@/$(echo -n $@ | openssl base64)/plaintext"; }
+
 export VMAIL_BROWSER='elinks'
