@@ -1,0 +1,50 @@
+let mapleader = ","
+
+nnoremap <esc> :noh<return><esc>
+hi clear SpellBad
+hi SpellBad cterm=underline
+let g:Powerline_symbols = 'fancy'
+"map <S-Enter> O<Esc>
+"map <CR> o<Esc>
+
+" This line fixes transparent background
+hi Normal ctermbg=NONE
+
+" This is for lusty juggler
+set hidden
+
+" Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+"Define bundles here:
+"
+Bundle 'Lokaltog/vim-powerline.git'
+Bundle 'vim-scripts/SearchComplete.git'
+Bundle 'vim-scripts/vimwiki.git'
+Bundle 'vim-scripts/taglist.vim.git'
+"Bundle 'vim-scripts/PDV-revised.git'
+Bundle 'mileszs/ack.vim.git'
+Bundle 'vim-scripts/CSApprox.git'
+Bundle 'gregsexton/gitv.git'
+Bundle 'gregsexton/VimCalc.git'
+Bundle 'rson/vim-conque.git'
+Bundle 'gezpage/MatchTag.git'
+Bundle 'spf13/PIV.git'
+"Bundle 'Shougo/neocomplcache.git'
+Bundle 'vim-scripts/YankRing.vim.git'
+"Bundle 'joonty/vim-phpunitqf.git'
+"Bundle 'joonty/vim-taggatron.git'
+"Bundle 'joonty/vim-sauce.git'
+Bundle 'jsoriano/vim-dbgp.git'
+Bundle 'sjbach/lusty.git'
+Bundle 'mattn/zencoding-vim.git'
+Bundle 'maxbrunsfeld/vim-yankstack.git'
+Bundle 'tpope/vim-speeddating.git'
+Bundle 'potix2/vim-mysqlrun.git'
+Bundle 'handsomecheung/vim-linemotion.git'
+Bundle 'AndrewRadev/splitjoin.vim.git'
+Bundle 'mileszs/ack.vim.git'
+Bundle 'vim-scripts/Gundo.git'

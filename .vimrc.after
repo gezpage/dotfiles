@@ -1,0 +1,62 @@
+" Tab width = 8
+set shiftwidth=8                " use indents of 8 spaces
+set tabstop=8                   " an indentation every four columns
+set softtabstop=8               " let backspace delete indent
+
+" Map gundo to ,g
+map <leader>g :GundoToggle<CR>
+
+" Map nerdtree to ctrl+e
+map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+
+" Map  yankring show to ,y yankring search to ,,y
+map <leader>y :YRShow<CR>
+map <leader><leader>y :YRSearch<CR>
+
+" Fix ack-grep link
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+" Use tab to cycle tabs
+:map <Tab> gt
+:map <S-Tab> gT
+
+" Colorscheme stuff
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+
+colorscheme solarized
+"colorscheme desert256
+"colorscheme transparent
+
+" Gui font, profont
+if has("gui_running")
+    if has("macunix")
+        set guifont=ProFont:h9
+    elseif has("win32")
+        set guifont=ProFontWindows:h11:b:cANSI,Lucida_Console:h11:b:cANSI
+    elseif has("x11")
+        set guifont=-jmk-neep-bold-r-normal--15-*-*-*-*-*-*-*
+    endif
+endif
+
+" Show horizontal cursor
+set cursorline
+
+" Fix home and end keybindings for screen, particularly on mac
+" - for some reason this fixes the arrow keys too. huh.
+map [F $
+imap [F $
+map [H g0
+imap [H g0
+
+" Prevent gundo from stealing F5 (remap DBGp)
+map <F5> :python debugger_run()<cr>
+
+" Enable neocomplcache
+let g:neocomplcache_enable_at_startup = 1 
+
+" always switch to the current file directory.
+autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
