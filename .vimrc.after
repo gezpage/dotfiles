@@ -7,11 +7,24 @@ set softtabstop=8               " let backspace delete indent
 map <leader>g :GundoToggle<CR>
 
 " Map nerdtree to ctrl+e
-map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+" map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+" Map nerdtreefind to ,e
+map <leader>e :NERDTreeFind<CR>
 
 " Map  yankring show to ,y yankring search to ,,y
-map <leader>y :YRShow<CR>
-map <leader><leader>y :YRSearch<CR>
+"map <leader>y :YRShow<CR>
+"map <leader><leader>y :YRSearch<CR>
+
+" Fix yankstack mappings (ctrlp overwrites)
+nmap <C-p> <Plug>yankstack_substitute_older_paste
+nmap <C-n> <Plug>yankstack_substitute_newer_paste
+map <leader>y :Yanks<CR>
+
+" MySQLRun
+map <leader>my :MySQLRun<CR>
+
+" VimCalc
+map <leader>cl :Calc<CR>
 
 " Fix ack-grep link
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
@@ -60,3 +73,10 @@ let g:neocomplcache_enable_at_startup = 1
 
 " always switch to the current file directory.
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+
+" Speeddating
+nmap  <C-S>     <Plug>SpeedDatingUp
+nmap  <C-X>     <Plug>SpeedDatingDown
+xmap  <C-S>     <Plug>SpeedDatingUp
+xmap  <C-X>     <Plug>SpeedDatingDown
+

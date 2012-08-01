@@ -1,11 +1,19 @@
 let mapleader = ","
 
+set nocompatible
+filetype off
+
+" Escape and CTRL-C clear highlighting
 nnoremap <esc> :noh<return><esc>
+nnoremap <C-c> :noh<return><esc>
+
+" Don't show dumb highlighting on so called spelling mistakes
 hi clear SpellBad
+" Use subtle underline instead
 hi SpellBad cterm=underline
+
+" Powerline fancy patched font goodness
 let g:Powerline_symbols = 'fancy'
-"map <S-Enter> O<Esc>
-"map <CR> o<Esc>
 
 " This line fixes transparent background
 hi Normal ctermbg=NONE
@@ -17,15 +25,14 @@ set hidden
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" Damn useful vundle plugin manager
 Bundle 'gmarik/vundle'
 
-"Define bundles here:
-"
+" Bundles go here:
 Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'vim-scripts/SearchComplete.git'
 Bundle 'vim-scripts/vimwiki.git'
 Bundle 'vim-scripts/taglist.vim.git'
-"Bundle 'vim-scripts/PDV-revised.git'
 Bundle 'mileszs/ack.vim.git'
 Bundle 'vim-scripts/CSApprox.git'
 Bundle 'gregsexton/gitv.git'
@@ -34,7 +41,7 @@ Bundle 'rson/vim-conque.git'
 Bundle 'gezpage/MatchTag.git'
 Bundle 'spf13/PIV.git'
 "Bundle 'Shougo/neocomplcache.git'
-Bundle 'vim-scripts/YankRing.vim.git'
+"Bundle 'vim-scripts/YankRing.vim.git'
 "Bundle 'joonty/vim-phpunitqf.git'
 "Bundle 'joonty/vim-taggatron.git'
 "Bundle 'joonty/vim-sauce.git'
@@ -48,3 +55,8 @@ Bundle 'handsomecheung/vim-linemotion.git'
 Bundle 'AndrewRadev/splitjoin.vim.git'
 Bundle 'mileszs/ack.vim.git'
 Bundle 'vim-scripts/Gundo.git'
+Bundle 'kshenoy/vim-signature.git'
+Bundle 'vim-scripts/smarty-syntax.git'
+Bundle 'gagoar/StripWhiteSpaces.git'
+
+filetype plugin indent on
