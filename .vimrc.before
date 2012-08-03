@@ -58,5 +58,5 @@ Bundle 'vim-scripts/Gundo.git'
 Bundle 'kshenoy/vim-signature.git'
 Bundle 'vim-scripts/smarty-syntax.git'
 Bundle 'gagoar/StripWhiteSpaces.git'
-
+Bundle 'techlivezheng/tagbar-phpctags.git'
 filetype plugin indent on

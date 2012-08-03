@@ -26,6 +26,15 @@ map <leader>my :MySQLRun<CR>
 " VimCalc
 map <leader>cl :Calc<CR>
 
+" ReTab and StripWhiteSpaces
+map <leader>rr :retab<CR> :StripWhiteSpaces<CR>
+
+" New Tab ,ot
+map <leader>ot :tabe<CR>
+
+" Close Tab ,ct
+map <leader>ct :tabclose<CR>
+
 " Fix ack-grep link
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
@@ -69,7 +78,7 @@ imap [H g0
 map <F5> :python debugger_run()<cr>
 
 " Enable neocomplcache
-let g:neocomplcache_enable_at_startup = 1 
+let g:neocomplcache_enable_at_startup = 1
 
 " always switch to the current file directory.
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
@@ -79,4 +88,9 @@ nmap  <C-S>     <Plug>SpeedDatingUp
 nmap  <C-X>     <Plug>SpeedDatingDown
 xmap  <C-S>     <Plug>SpeedDatingUp
 xmap  <C-X>     <Plug>SpeedDatingDown
+
+let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
+
+" ctags
+set tags=~/.ctags/tags
 
