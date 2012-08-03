@@ -162,6 +162,9 @@ PROMPTCOL=$WHITE
 
 # Host specific prompt colours :)
 case $(hostname) in
+        kodama )
+                PROMPTCOL=$GREEN
+                ;;
         cadmium )
                 PROMPTCOL=$GREEN
                 ;;
