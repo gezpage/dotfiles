@@ -60,4 +60,12 @@ Bundle 'vim-scripts/smarty-syntax.git'
 Bundle 'gagoar/StripWhiteSpaces.git'
 Bundle 'techlivezheng/tagbar-phpctags.git'
 Bundle 'vim-scripts/LycosaExplorer.git'
+"Bundle 'spolu/dwm.vim.git'
+Bundle 'jistr/vim-nerdtree-tabs.git'
+Bundle 'leshill/vim-json'
+Bundle 'groenewege/vim-less'
+Bundle 'taxilian/vim-web-indent'
+Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+Bundle 'amirh/HTML-AutoCloseTag'
+
 filetype plugin indent on

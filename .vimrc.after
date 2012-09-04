@@ -3,6 +3,19 @@ set shiftwidth=8                " use indents of 8 spaces
 set tabstop=8                   " an indentation every four columns
 set softtabstop=8               " let backspace delete indent
 
+" Slicker quicker window navigation
+"nmap <silent> <C-h> :wincmd h<CR>
+"nmap <silent> <C-j> :wincmd j<CR>
+"nmap <silent> <C-k> :wincmd k<CR>
+"nmap <silent> <C-l> :wincmd l<CR>
+nmap <C-o> :ZoomWin<CR>
+nmap = 2<C-W>+
+nmap - 2<C-W>-
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-L> <C-W>l<C-W>_
+map <C-H> <C-W>h<C-W>_
+
 " Map gundo to ,g
 map <leader>g :GundoToggle<CR>
 
@@ -44,8 +57,25 @@ map <leader>ct :tabclose<CR>
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 " Use tab to cycle tabs
-:map <Tab> gt
-:map <S-Tab> gT
+map <Tab> gt
+map <S-Tab> gT
+
+" visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" Stupid shift key fixes
+cmap W w
+cmap WQ wq
+cmap wQ wq
+cmap Q q
+cmap Tabe tabe
+
+" Minimum lines to keep above and below cursor
+set scrolloff=3
+
+" Min height for each window - allows stacking when using C-k and C-j
+set winminheight=0
 
 " Colorscheme stuff
 set background=dark
@@ -57,6 +87,17 @@ let g:solarized_visibility="high"
 colorscheme solarized
 "colorscheme desert256
 "colorscheme transparent
+
+" NERDTree
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let nerdtreeshowhidden=1
+let nerdtreekeeptreeinnewtab=1
+
+" HTML Autoclosetag
+au FileType xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
 
 " Gui font, profont
 if has("gui_running")
@@ -99,3 +140,6 @@ let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
 " ctags
 set tags=~/.ctags/tags
 
+" Do not make tabs show as red
+highlight RedundantWhitespace ctermbg=234 guibg=234
+match RedundantWhitespace /\s\+$\|\t/
