@@ -60,4 +60,5 @@ Bundle 'vim-scripts/smarty-syntax.git'
 Bundle 'gagoar/StripWhiteSpaces.git'
 Bundle 'techlivezheng/tagbar-phpctags.git'
 Bundle 'vim-scripts/LycosaExplorer.git'
+Bundle 'mbbill/VimExplorer.git'
 filetype plugin indent on
