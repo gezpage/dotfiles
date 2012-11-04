@@ -7,6 +7,15 @@ filetype off
 nnoremap <esc> :noh<return><esc>
 nnoremap <C-c> :noh<return><esc>
 
+let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "all"                " which level ?
+let g:php_cs_fixer_config = "default"           " configuration
+let g:php_cs_fixer_php_path = "php"             " Path to PHP
+let g:php_cs_fixer_fixers_list = ""             " List of fixers
+let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
+
 " Don't show dumb highlighting on so called spelling mistakes
 hi clear SpellBad
 " Use subtle underline instead
@@ -69,5 +78,8 @@ Bundle 'taxilian/vim-web-indent'
 Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
 Bundle 'amirh/HTML-AutoCloseTag'
 Bundle 'mbbill/VimExplorer.git'
+Bundle 'stephpy/vim-php-cs-fixer.git'
+Bundle 'tpope/vim-repeat.git'
+Bundle 'xolox/vim-session.git'
 
 filetype plugin indent on

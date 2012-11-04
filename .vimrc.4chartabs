@@ -1,0 +1,5 @@
+" Tab width = 4
+set shiftwidth=4                " use indents of 4 spaces
+set tabstop=4                   " an indentation every four columns
+set softtabstop=4               " let backspace delete indent
+

@@ -60,6 +60,9 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 map <Tab> gt
 map <S-Tab> gT
 
+" Set paste toggle
+set pastetoggle=<leader>p
+
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
@@ -130,9 +133,9 @@ let g:neocomplcache_enable_at_startup = 1
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 " Speeddating
-nmap  <C-S>     <Plug>SpeedDatingUp
+nmap  <C-M>     <Plug>SpeedDatingUp
 nmap  <C-X>     <Plug>SpeedDatingDown
-xmap  <C-S>     <Plug>SpeedDatingUp
+xmap  <C-M>     <Plug>SpeedDatingUp
 xmap  <C-X>     <Plug>SpeedDatingDown
 
 let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
