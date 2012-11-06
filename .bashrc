@@ -224,3 +224,4 @@ export EDITOR="vim"
 cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$@/$(echo -n $@ | openssl base64)/plaintext"; }
 
 export VMAIL_BROWSER='elinks'
+export MYSQL_PS1="\u@\h [\d]> "
