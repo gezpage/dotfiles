@@ -60,6 +60,9 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 map <Tab> gt
 map <S-Tab> gT
 
+" Symfony
+map <leader>s :execute ":!"g:symfony_enable_shell_cmd<CR>
+
 " Set paste toggle
 set pastetoggle=<leader>p
 

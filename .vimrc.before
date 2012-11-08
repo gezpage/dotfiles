@@ -34,19 +34,23 @@ set hidden
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" Symfony
+let g:symfony_app_console_caller= "php"
+let g:symfony_app_console_path= "~/Dev/git/bella111/app/console"
+
 " Damn useful vundle plugin manager
 Bundle 'gmarik/vundle'
 
 " Bundles go here:
 Bundle 'Lokaltog/vim-powerline.git'
 "Bundle 'vim-scripts/SearchComplete.git'
-Bundle 'vim-scripts/vimwiki.git'
+"Bundle 'vim-scripts/vimwiki.git'
 Bundle 'vim-scripts/taglist.vim.git'
 Bundle 'mileszs/ack.vim.git'
 "Bundle 'vim-scripts/CSApprox.git'
 Bundle 'gregsexton/gitv.git'
-Bundle 'gregsexton/VimCalc.git'
-Bundle 'rson/vim-conque.git'
+"Bundle 'gregsexton/VimCalc.git'
+"Bundle 'rson/vim-conque.git'
 Bundle 'gezpage/MatchTag.git'
 Bundle 'spf13/PIV.git'
 "Bundle 'Shougo/neocomplcache.git'
@@ -54,22 +58,21 @@ Bundle 'spf13/PIV.git'
 "Bundle 'joonty/vim-phpunitqf.git'
 "Bundle 'joonty/vim-taggatron.git'
 "Bundle 'joonty/vim-sauce.git'
-Bundle 'jsoriano/vim-dbgp.git'
+"Bundle 'jsoriano/vim-dbgp.git'
 "Bundle 'sjbach/lusty.git'
 Bundle 'mattn/zencoding-vim.git'
 Bundle 'maxbrunsfeld/vim-yankstack.git'
 Bundle 'tpope/vim-speeddating.git'
 Bundle 'potix2/vim-mysqlrun.git'
 Bundle 'handsomecheung/vim-linemotion.git'
-Bundle 'AndrewRadev/splitjoin.vim.git'
-Bundle 'mileszs/ack.vim.git'
+"Bundle 'AndrewRadev/splitjoin.vim.git'
 Bundle 'vim-scripts/Gundo.git'
 Bundle 'kshenoy/vim-signature.git'
 Bundle 'vim-scripts/smarty-syntax.git'
 Bundle 'gagoar/StripWhiteSpaces.git'
 Bundle 'techlivezheng/tagbar-phpctags.git'
 Bundle 'vim-scripts/LycosaExplorer.git'
-Bundle 'mbbill/VimExplorer.git'
+"Bundle 'mbbill/VimExplorer.git'
 "Bundle 'spolu/dwm.vim.git'
 Bundle 'jistr/vim-nerdtree-tabs.git'
 Bundle 'leshill/vim-json'
@@ -77,9 +80,9 @@ Bundle 'groenewege/vim-less'
 Bundle 'taxilian/vim-web-indent'
 Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
 Bundle 'amirh/HTML-AutoCloseTag'
-Bundle 'mbbill/VimExplorer.git'
 Bundle 'stephpy/vim-php-cs-fixer.git'
 Bundle 'tpope/vim-repeat.git'
 Bundle 'xolox/vim-session.git'
+Bundle 'docteurklein/vim-symfony.git'
 
 filetype plugin indent on
