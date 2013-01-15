@@ -1,21 +1,28 @@
-" Tab width = 8
-set shiftwidth=8                " use indents of 8 spaces
-set tabstop=8                   " an indentation every four columns
-set softtabstop=8               " let backspace delete indent
+" Tab width = 4
+set shiftwidth=4                " use indents of 4 spaces
+set tabstop=4                   " an indentation every four columns
+set softtabstop=4               " let backspace delete indent
 
 " Slicker quicker window navigation
-"nmap <silent> <C-h> :wincmd h<CR>
-"nmap <silent> <C-j> :wincmd j<CR>
-"nmap <silent> <C-k> :wincmd k<CR>
-"nmap <silent> <C-l> :wincmd l<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
 nmap <C-o> :ZoomWin<CR>
 nmap = 2<C-W>+
 nmap - 2<C-W>-
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-L> <C-W>l<C-W>_
-map <C-H> <C-W>h<C-W>_
 
+" Window navigation with stacking horizontal splits
+"map <C-J> <C-W>j<C-W>_
+"map <C-K> <C-W>k<C-W>_
+"map <C-L> <C-W>l<C-W>_
+"map <C-H> <C-W>h<C-W>_
+
+
+" Min height for each window - allows stacking when using C-k and C-j
+"set winminheight=0
+"
 " Map gundo to ,g
 map <leader>g :GundoToggle<CR>
 
@@ -79,9 +86,6 @@ cmap Tabe tabe
 
 " Minimum lines to keep above and below cursor
 set scrolloff=3
-
-" Min height for each window - allows stacking when using C-k and C-j
-set winminheight=0
 
 " Colorscheme stuff
 set background=dark
@@ -149,3 +153,10 @@ set tags=~/.ctags/tags
 " Do not make tabs show as red
 highlight RedundantWhitespace ctermbg=234 guibg=234
 match RedundantWhitespace /\s\+$\|\t/
+
+" Bufstop
+map <leader>b :Bufstop<CR>             " get a visual on the buffers
+map <leader>a :BufstopModeFast<CR>     " a command for quick switching
+map <C-tab>   :BufstopBack<CR>
+map <S-tab>   :BufstopForward<CR>
+let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers
