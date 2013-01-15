@@ -196,7 +196,7 @@ PROMPTCOL=$WHITE
 
 # Host specific prompt colours :)
 case $(hostname) in
-        kodama )
+        akira )
                 PROMPTCOL=$GREEN
                 ;;
         cadmium )
@@ -212,6 +212,9 @@ case $(hostname) in
                 PROMPTCOL=$YELLOW
                 ;;
         raspberrypi )
+                PROMPTCOL=$txtcyn
+                ;;
+        tetsuo )
                 PROMPTCOL=$txtcyn
                 ;;
 esac
