@@ -97,5 +97,6 @@ Bundle 'szw/vim-tags'
 Bundle 'mihaifm/vimpanel'
 "Bundle 'mbbill/VimExplorer.git'
 Bundle 'gezpage/vimExplorer'
+Bundle 'troydm/asyncfinder.vim'
 
 filetype plugin indent on
