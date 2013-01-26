@@ -26,19 +26,13 @@ nmap - 2<C-W>-
 " Map gundo to ,g
 map <leader>g :GundoToggle<CR>
 
-" Map nerdtree to ctrl+e
-" map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-" Map nerdtreefind to ,e
-map <leader>e :NERDTreeFind<CR>
-" Quit Vim if nerdtree is last window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" Open nerdtree on Vim start if no file specified
-"autocmd vimenter * if !argc() | NERDTree | endif
-" Open nerdtree on Vim start
-autocmd vimenter * NERDTree
-
-" Open Tagbaron Vim start
-autocmd vimenter * TagbarOpen
+" Tagbar
+" Open Tagbar on Vim start
+"autocmd vimenter * TagbarOpen
+autocmd VimEnter * nested :TagbarOpen
+let g:tagbar_width = 30
+let g:tagbar_compact = 1
+let g:tagbar_iconchars = ['▾', '▸']
 
 " Map  yankring show to ,y yankring search to ,,y
 "map <leader>y :YRShow<CR>
@@ -58,10 +52,10 @@ nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
 
 " MySQLRun
-map <leader>my :MySQLRun<CR>
+"map <leader>my :MySQLRun<CR>
 
 " VimCalc
-map <leader>cl :Calc<CR>
+"map <leader>cl :Calc<CR>
 
 " ReTab and StripWhiteSpaces
 map <leader>rr :retab<CR> :StripWhiteSpaces<CR>
@@ -117,6 +111,17 @@ let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=0
 let nerdtreeshowhidden=1
 let nerdtreekeeptreeinnewtab=1
+let NERDTreeMinimalUI=1
+" Map nerdtree to ctrl+e
+" map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+" Map nerdtreefind to ,e
+map <leader>e :NERDTreeFind<CR>
+" Quit Vim if nerdtree is last window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Open nerdtree on Vim start if no file specified
+"autocmd vimenter * if !argc() | NERDTree | endif
+" Open nerdtree on Vim start
+autocmd vimenter * NERDTree
 
 " HTML Autoclosetag
 au FileType xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
