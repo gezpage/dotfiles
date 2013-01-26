@@ -36,7 +36,7 @@ call vundle#rc()
 
 " Symfony
 let g:symfony_app_console_caller= "php"
-let g:symfony_app_console_path= "~/Dev/git/bella111/app/console"
+let g:symfony_app_console_path= "app/console"
 
 " Damn useful vundle plugin manager
 Bundle 'gmarik/vundle'
@@ -54,7 +54,6 @@ Bundle 'gmarik/vundle'
 "Bundle 'joonty/vim-phpunitqf.git'
 "Bundle 'joonty/vim-taggatron.git'
 "Bundle 'joonty/vim-sauce.git'
-"Bundle 'jsoriano/vim-dbgp.git'
 "Bundle 'sjbach/lusty.git'
 "Bundle 'AndrewRadev/splitjoin.vim.git'
 "Bundle 'mbbill/VimExplorer.git'
@@ -62,7 +61,6 @@ Bundle 'gmarik/vundle'
 
 " TEMPORARILY DISABLED
 "Bundle 'vim-scripts/taglist.vim.git'
-"Bundle 'mileszs/ack.vim.git'
 "Bundle 'mattn/zencoding-vim.git'
 "Bundle 'potix2/vim-mysqlrun.git'
 "Bundle 'handsomecheung/vim-linemotion.git'
@@ -90,8 +88,13 @@ Bundle 'kshenoy/vim-signature.git'
 Bundle 'tpope/vim-repeat.git'
 Bundle 'docteurklein/vim-symfony.git'
 Bundle 'amirh/HTML-AutoCloseTag'
+Bundle 'mileszs/ack.vim.git'
+Bundle 'jsoriano/vim-dbgp.git'
 
 " TESTING
 Bundle 'mihaifm/bufstop.git'
+Bundle 'tpope/vim-scriptease'
+Bundle 'szw/vim-tags'
+Bundle 'mihaifm/vimpanel'
 
 filetype plugin indent on

@@ -30,6 +30,10 @@ map <leader>g :GundoToggle<CR>
 " map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 " Map nerdtreefind to ,e
 map <leader>e :NERDTreeFind<CR>
+" Quit Vim if nerdtree is last window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Open nerdtree on Vim start if no file specified
+autocmd vimenter * if !argc() | NERDTree | endif
 
 " Map  yankring show to ,y yankring search to ,,y
 "map <leader>y :YRShow<CR>
@@ -102,7 +106,7 @@ colorscheme solarized
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=0
 let nerdtreeshowhidden=1
 let nerdtreekeeptreeinnewtab=1
 
@@ -155,8 +159,24 @@ highlight RedundantWhitespace ctermbg=234 guibg=234
 match RedundantWhitespace /\s\+$\|\t/
 
 " Bufstop
+map <C-b> :BufstopFast<CR>             " get a visual on the buffers
 map <leader>b :Bufstop<CR>             " get a visual on the buffers
-map <leader>a :BufstopModeFast<CR>     " a command for quick switching
-map <C-tab>   :BufstopBack<CR>
-map <S-tab>   :BufstopForward<CR>
+"map <leader>a :BufstopModeFast<CR>     " a command for quick switching
 let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers
+
+" Disable PHP CodeSniffer
+let g:syntastic_phpcs_disable = 1
+
+" vimtags
+let g:vim_tags_auto_generate = 1
+"let g:vim_tags_project_tags_command = "ctags -R {OPTIONS} {DIRECTORY} 2>/dev/null &"
+let g:vim_tags_project_tags_command = "ctags -R --exclude=.git --tag-relative=yes --PHP-kinds=+cf-v --regex-PHP='/abstract\s+class\s+([^ ]+)/\1/c/' --regex-PHP='/interface\s+([^ ]+)/\1/c/' --regex-PHP='/(public\s+|static\s+|abstract\s+|protected\s+|private\s+)function\s+\&?\s*([^ ()]+)/\2/f/' {OPTIONS} {DIRECTORY} 2>/dev/null &"
+
+" Vimpanel
+map <leader>ss :VimpanelSessionMake<CR>
+map <leader>sl :VimpanelSessionLoad<CR>
+cabbrev vp Vimpanel
+cabbrev vl VimpanelLoad
+cabbrev vc VimpanelCreate
+cabbrev ve VimpanelEdit
+cabbrev vr VimpanelRemove
