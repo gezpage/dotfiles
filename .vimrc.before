@@ -56,7 +56,6 @@ Bundle 'gmarik/vundle'
 "Bundle 'joonty/vim-sauce.git'
 "Bundle 'sjbach/lusty.git'
 "Bundle 'AndrewRadev/splitjoin.vim.git'
-"Bundle 'mbbill/VimExplorer.git'
 "Bundle 'spolu/dwm.vim.git'
 
 " TEMPORARILY DISABLED
@@ -96,5 +95,7 @@ Bundle 'mihaifm/bufstop.git'
 Bundle 'tpope/vim-scriptease'
 Bundle 'szw/vim-tags'
 Bundle 'mihaifm/vimpanel'
+"Bundle 'mbbill/VimExplorer.git'
+Bundle 'gezpage/vimExplorer'
 
 filetype plugin indent on
