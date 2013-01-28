@@ -45,6 +45,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'majutsushi/tagbar'
+Bundle 'vim-scripts/ZoomWin'
 
 " ENABLED
 Bundle 'Lokaltog/vim-powerline.git'

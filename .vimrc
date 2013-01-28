@@ -1,4 +1,4 @@
-execute pathogen#infect()
+"execute pathogen#infect()
 
 let mapleader = ","
 
@@ -115,7 +115,7 @@ nmap <leader>L mQgewvu`Q
 nmap <silent> <leader>cd :lcd %:h<CR>
 
 " Create the directory containing the file in the buffer
-nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
+"nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
@@ -350,7 +350,7 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
-nmap <C-o> :ZoomWin<CR>
+"nmap <C-o> :ZoomWin<CR>
 nmap = 2<C-W>+
 nmap - 2<C-W>-
 
@@ -422,7 +422,9 @@ map <S-Tab> gT
 map <leader>s :execute ":!"g:symfony_enable_shell_cmd<CR>
 
 " Set paste toggle
-set pastetoggle=<leader>p
+"set pastetoggle=<leader>p
+nmap <silent> <leader>pp :set invpaste<CR>:set paste?<CR>
+imap <silent> <leader>pp <ESC>:set invpaste<CR>:set paste?<CR>
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -458,7 +460,8 @@ let nerdtreeshowhidden=1
 let nerdtreekeeptreeinnewtab=1
 let NERDTreeMinimalUI=1
 " Map nerdtree to ,n
-map <leader>n :NERDTreeFind<CR>
+map <leader>n :NERDTreeToggle<CR>
+map <leader>m :NERDTreeFind<CR>
 " Quit Vim if nerdtree is last window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Open nerdtree on Vim start if no file specified
@@ -531,6 +534,10 @@ cabbrev vl VimpanelLoad
 cabbrev vc VimpanelCreate
 cabbrev ve VimpanelEdit
 cabbrev vr VimpanelRemove
+
+" Fugitive
+map <leader>gs :Gstatus<CR>
+map <leader>gc :Gcommit<CR>
 
 " Tagbar
 let g:tagbar_type_markdown = {
