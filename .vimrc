@@ -321,6 +321,12 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
 
+" Disable Symfony cache files
+set wildignore+=*/app/cache/*
+
+" Disable Smarty cache files
+set wildignore+=*/templates_c/*
+
 ""
 "" Backup and swap files
 ""
@@ -383,10 +389,14 @@ let g:tagbar_iconchars = ['▾', '▸']
 "map <leader>y :YRShow<CR>
 "map <leader><leader>y :YRSearch<CR>
 
-" ctrlp remap to mixed mode
-map <C-t> :CtrlPMixed<CR>
+" ctrlp remap mixed mode to CTRL+T
+let g:ctrlp_map = '<C-t>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['.projectroot']
+map <C-b> :CtrlPBuffer<CR>
 
-" Fix yankstack mappings (ctrlp overwrites)
+" Yankstack mappings
 nmap <C-p> <Plug>yankstack_substitute_older_paste
 nmap <C-n> <Plug>yankstack_substitute_newer_paste
 map <leader>y :Yanks<CR>
@@ -422,7 +432,6 @@ map <S-Tab> gT
 map <leader>s :execute ":!"g:symfony_enable_shell_cmd<CR>
 
 " Set paste toggle
-"set pastetoggle=<leader>p
 nmap <silent> <leader>pp :set invpaste<CR>:set paste?<CR>
 imap <silent> <leader>pp <ESC>:set invpaste<CR>:set paste?<CR>
 
@@ -447,11 +456,12 @@ let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 
+" Colour scheme
 colorscheme solarized
-"colorscheme desert256
-"colorscheme transparent
 
 " NERDTree
+map <leader>n :NERDTreeToggle<CR>
+map <leader>m :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeChDirMode=0
@@ -459,18 +469,16 @@ let NERDTreeQuitOnOpen=0
 let nerdtreeshowhidden=1
 let nerdtreekeeptreeinnewtab=1
 let NERDTreeMinimalUI=1
-" Map nerdtree to ,n
-map <leader>n :NERDTreeToggle<CR>
-map <leader>m :NERDTreeFind<CR>
+
 " Quit Vim if nerdtree is last window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Open nerdtree on Vim start if no file specified
-"autocmd vimenter * if !argc() | NERDTree | endif
+autocmd vimenter * if !argc() | NERDTree | endif
 " Open nerdtree on Vim start
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 
 " HTML Autoclosetag
-au FileType xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
+au FileType html.twig,xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
 
 " Gui font, profont
 if has("gui_running")
@@ -497,7 +505,79 @@ imap [H g0
 map <F5> :python debugger_run()<cr>
 
 " Enable neocomplcache
+let g:acp_enableAtStartup = -1
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_enable_auto_delimiter = 1
+let g:neocomplcache_max_list = 15
+let g:neocomplcache_force_overwrite_completefunc = 1
+
+" SuperTab like snippets behavior.
+imap <silent><expr><TAB> neosnippet#expandable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
+            \ "\<C-e>" : "\<TAB>")
+smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+            \ 'default' : '',
+            \ 'vimshell' : $HOME.'/.vimshell_hist',
+            \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns._ = '\h\w*'
+
+" Plugin key-mappings.
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+inoremap <expr><CR> neocomplcache#complete_common_string()
+
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+" <CR>: close popup
+" <s-CR>: close popup and save indent.
+inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplcache#close_popup()
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+" Use honza's snippets.
+let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
+
+" For snippet_complete marker.
+if has('conceal')
+    set conceallevel=2 concealcursor=i
+endif
 
 " always switch to the current file directory.
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
@@ -518,9 +598,8 @@ highlight RedundantWhitespace ctermbg=234 guibg=234
 match RedundantWhitespace /\s\+$\|\t/
 
 " Bufstop
-map <C-b> :BufstopFast<CR>             " get a visual on the buffers
+"map <C-b> :BufstopFast<CR>             " get a visual on the buffers
 map <leader>b :Bufstop<CR>             " get a visual on the buffers
-"map <leader>a :BufstopModeFast<CR>     " a command for quick switching
 let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers
 
 " Disable PHP CodeSniffer
