@@ -377,7 +377,7 @@ map <leader>g :GundoToggle<CR>
 map <leader>u :UndotreeToggle<CR>
 
 " Tagbar
-map <leader>rt :TagbarOpen<CR>
+map <leader>rt :TagbarToggle<CR>
 " Open Tagbar on Vim start
 autocmd vimenter * TagbarOpen
 "autocmd VimEnter * nested :TagbarOpen
