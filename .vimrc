@@ -301,6 +301,7 @@ set hlsearch    " highlight matches
 set incsearch   " incremental searching
 set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
+set magic       " change the way backslashes are used in search patterns
 
 ""
 "" Wild settings
@@ -348,6 +349,9 @@ if has("statusline") && !&cp
   set statusline+=[%b][0x%B]
 endif
 
+" File formats
+set fileformat=unix     " file mode is unix
+set fileformats=unix,dos,mac   " detects unix, dos, mac file formats in that order
 
 
 " Slicker quicker window navigation
@@ -396,10 +400,27 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.projectroot']
 map <C-b> :CtrlPBuffer<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                yankring                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:yankring_history_dir = '$HOME/tmp/vim'
+" this is so that single char deletes don't end up in the yankring
+let g:yankring_min_element_length = 2
+let g:yankring_window_height = 14
+nnoremap <leader>yr :YRShow<CR>
+
+" this makes Y yank from the cursor to the end of the line, which makes more
+" sense than the default of yanking the whole current line (we can use yy for
+" that)
+function! YRRunAfterMaps()
+    nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+endfunction
+
 " Yankstack mappings
-nmap <C-p> <Plug>yankstack_substitute_older_paste
-nmap <C-n> <Plug>yankstack_substitute_newer_paste
-map <leader>y :Yanks<CR>
+"nmap <C-p> <Plug>yankstack_substitute_older_paste
+"nmap <C-n> <Plug>yankstack_substitute_newer_paste
+"map <leader>y :Yanks<CR>
 
 " Gitv
 nmap <leader>gv :Gitv --all<cr>
@@ -432,8 +453,9 @@ map <S-Tab> gT
 map <leader>s :execute ":!"g:symfony_enable_shell_cmd<CR>
 
 " Set paste toggle
-nmap <silent> <leader>pp :set invpaste<CR>:set paste?<CR>
-imap <silent> <leader>pp <ESC>:set invpaste<CR>:set paste?<CR>
+"nmap <silent> <leader>pp :set invpaste<CR>:set paste?<CR>
+"imap <silent> <leader>pp <ESC>:set invpaste<CR>:set paste?<CR>
+set pastetoggle=<F7>
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -459,7 +481,12 @@ let g:solarized_visibility="high"
 " Colour scheme
 colorscheme solarized
 
-" NERDTree
+set showmatch           " show matching bracket (briefly jump)
+set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               NERDTree                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>n :NERDTreeToggle<CR>
 map <leader>m :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
@@ -507,7 +534,9 @@ set foldlevelstart=99
 set foldlevel=99
 let g:DisableAutoPHPFolding = 1
 
-" Prevent gundo from stealing F5 (remap DBGp)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               PHPDebug                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F5> :python debugger_run()<cr>
 
 " For snippet_complete marker.
@@ -518,12 +547,17 @@ endif
 " always switch to the current file directory.
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
-" Speeddating
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              SpeedDating                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap  <C-M>     <Plug>SpeedDatingUp
 nmap  <C-X>     <Plug>SpeedDatingDown
 xmap  <C-M>     <Plug>SpeedDatingUp
 xmap  <C-X>     <Plug>SpeedDatingDown
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                PHPCtags                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
 
 " Navigate back from tags jump
@@ -535,13 +569,15 @@ match RedundantWhitespace /\s\+$\|\t/
 
 " Bufstop
 "map <C-b> :BufstopFast<CR>             " get a visual on the buffers
-map <leader>b :Bufstop<CR>             " get a visual on the buffers
-let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers
+"map <leader>b :Bufstop<CR>             " get a visual on the buffers
+"let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers
 
 " Disable PHP CodeSniffer
 let g:syntastic_phpcs_disable = 1
 
-" Vimpanel
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Vimpanel                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>ss :VimpanelSessionMake<CR>
 map <leader>sl :VimpanelSessionLoad<CR>
 cabbrev vp Vimpanel
@@ -550,11 +586,15 @@ cabbrev vc VimpanelCreate
 cabbrev ve VimpanelEdit
 cabbrev vr VimpanelRemove
 
-" Fugitive
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Fugitive                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>gs :Gstatus<CR>
 map <leader>gc :Gcommit<CR>
 
-" Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Tagbar                                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_type_markdown = {
     \ 'ctagstype' : 'markdown',
     \ 'kinds' : [
@@ -564,9 +604,87 @@ let g:tagbar_type_markdown = {
     \ ]
 \ }
 
-" Indent guides
-hi IndentGuidesOdd  ctermbg=black
-hi IndentGuidesEven ctermbg=darkgrey
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                session                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" you also need to run :SaveSession once to create the default.vim session that
+" will then be autoloaded/saved from then on
 
-" phpDocumentor
+let g:session_autoload        = 'yes'
+let g:session_autosave        = 'yes'
+let g:session_default_to_last = 'yes'
+let g:session_directory       = '~/tmp/vim/sessions'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                phpDoc                                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:pdv_cfg_Author = "Gez Page <gezpage@gmail.com>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            MatchTagAlways                               "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'html.twig' : 1,
+    \}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                bufkill                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use the arrows for something useful
+" :BB switches to the previous buffer shown in the current window, :BF switches
+" to the next one; it's like a buffer history for every window
+noremap <right> :BF<cr>
+noremap <left> :BB<cr>
+
+" tries to avoid those annoying "hit enter to continue" messages
+" if it still doesn't help with certain commands, add a second <cr>
+" at the end of the map command
+set shortmess=a
+
+" none of these should be word dividers, so make them not be
+set iskeyword+=_,$,@,%,#
+
+
+" TODO: split this into separate plugin
+function! VisualSearch(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        execute "Ack " . l:pattern . ' %'
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+"Basically you press * or # to search for the current selection
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+vnoremap <silent> gv :call VisualSearch('gv')<CR>
+
+" These create newlines like o and O but stay in normal mode
+nnoremap <silent> zj o<Esc>k
+nnoremap <silent> zk O<Esc>j
+
+" Keep search matches in the middle of the window.
+" zz centers the screen on the cursor, zv unfolds any fold if the cursor
+" suddenly appears inside a fold.
+nnoremap * *zzzv
+nnoremap # #zzzv
+nnoremap n nzzzv
+nnoremap N Nzzzv
