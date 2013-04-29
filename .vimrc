@@ -400,6 +400,11 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.projectroot']
 map <C-b> :CtrlPBuffer<CR>
 
+" Command-T
+"map <C-t> :CommandT<CR>
+"map <C-b> :CommandTBuffer<CR>
+"let g:CommandTMatchWindowReverse = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                yankring                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

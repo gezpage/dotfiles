@@ -24,6 +24,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'honza/snipmate-snippets'
 " Below conflicts with YCM:
 "Bundle 'vim-scripts/restore_view.vim'
+"Bundle 'wincent/Command-T'
 
 " TEMPORARILY DISABLED
 "Bundle 'vim-scripts/taglist.vim.git'
@@ -96,3 +97,5 @@ Bundle 'vim-scripts/bufkill.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'xolox/vim-session'
 Bundle 'YankRing.vim'
+Bundle 'tpope/vim-unimpaired'
+Bundle "joonty/vim-phpunitqf"
