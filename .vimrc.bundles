@@ -98,4 +98,5 @@ Bundle 'SirVer/ultisnips'
 Bundle 'xolox/vim-session'
 Bundle 'YankRing.vim'
 Bundle 'tpope/vim-unimpaired'
-Bundle "joonty/vim-phpunitqf"
+Bundle 'joonty/vim-phpunitqf'
+Bundle 'zhaocai/GoldenView.Vim'
