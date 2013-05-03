@@ -72,7 +72,7 @@ Bundle 'jsoriano/vim-dbgp.git'
 Bundle 'techlivezheng/tagbar-phpctags.git'
 Bundle 'mihaifm/bufstop.git'
 Bundle 'beyondwords/vim-twig'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 
 " TESTING
 Bundle 'tpope/vim-scriptease'
@@ -99,4 +99,8 @@ Bundle 'xolox/vim-session'
 Bundle 'YankRing.vim'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'joonty/vim-phpunitqf'
+
 Bundle 'zhaocai/GoldenView.Vim'
+"Bundle 'vim-scripts/RepeatLast.vim'
+Bundle 'vim-scripts/Auto-Pairs'
+"Bundle 'vim-scripts/vim-startify'

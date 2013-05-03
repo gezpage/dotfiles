@@ -375,7 +375,7 @@ nmap <silent> <C-l> :wincmd l<CR>
 "set winminheight=0
 "
 " Map gundo to ,g
-map <leader>g :GundoToggle<CR>
+"map <leader>g :GundoToggle<CR>
 
 " Undotree
 map <leader>u :UndotreeToggle<CR>
@@ -492,8 +492,9 @@ set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               NERDTree                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>n :NERDTreeToggle<CR>
+map <leader>n :NERDTreeFocus<CR>
 map <leader>m :NERDTreeFind<CR>
+map <leader>er :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeChDirMode=0
@@ -693,3 +694,18 @@ nnoremap * *zzzv
 nnoremap # #zzzv
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
+" GoldenView
+let g:goldenview__enable_default_mapping = 0
+let g:goldenview__enable_at_startup = 0
+" 1. split to tiled windows
+nmap <silent> <C-G>  <Plug>GoldenViewSplit
+" 2. quickly switch current window with the main pane
+" and toggle back
+nmap <silent> <leader>gg <Plug>GoldenViewSwitchMain
+nmap <silent> <leader>gf <Plug>GoldenViewSwitchToggle
+"nmap <silent> <F8>   <Plug>GoldenViewSwitchMain
+"nmap <silent> <S-F8> <Plug>GoldenViewSwitchToggle
+" 3. jump to next and previous window
+"nmap <silent> <C-N>  <Plug>GoldenViewNext
+"nmap <silent> <C-P>  <Plug>GoldenViewPrevious
