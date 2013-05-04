@@ -622,10 +622,27 @@ let g:session_default_to_last = 'yes'
 let g:session_directory       = '~/tmp/vim/sessions'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                phpDoc                                   "
+"                            phpDoc (pdv)                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:pdv_cfg_Author = "Gez Page <gezpage@gmail.com>"
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+"nnoremap <buffer> <C-p> :call pdv#DocumentCurrentLine()<CR>
+nnoremap <leader>pp :call pdv#DocumentWithSnip()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            php-namespace                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
+noremap <Leader>pn :call PhpInsertUse()<CR>
+"inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
+noremap <Leader>pe :call PhpExpandClass()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            php-qa                                       "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:phpqa_codesniffer_args = "--standard=Symfony2"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            MatchTagAlways                               "
