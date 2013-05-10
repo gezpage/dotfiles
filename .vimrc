@@ -24,6 +24,7 @@ let g:DisableAutoPHPFolding = 1
 
 set showmatch           " show matching bracket (briefly jump)
 set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
+
 " tries to avoid those annoying "hit enter to continue" messages
 " if it still doesn't help with certain commands, add a second <cr>
 " at the end of the map command
@@ -32,10 +33,13 @@ set shortmess=a
 " none of these should be word dividers, so make them not be
 set iskeyword+=_,$,@,%,#
 
-" Set paste toggle
-"nmap <silent> <leader>pp :set invpaste<CR>:set paste?<CR>
-"imap <silent> <leader>pp <ESC>:set invpaste<CR>:set paste?<CR>
-set pastetoggle=<F7>
+" Disable backup and swap files because they are just a PITA!
+set nobackup
+set noswapfile
+
+" Set paste toggle 3x commas
+map <leader>,, :set invpaste<CR>
+set pastetoggle=<F10>
 
 " Minimum lines to keep above and below cursor
 set scrolloff=3
@@ -382,6 +386,10 @@ nmap <silent> <C-l> :wincmd l<CR>
 " Quick close xml/html tag
 imap ,/ </<C-X><C-O>
 
+" Quickfix navigation
+map <c-.> :lnext<CR>
+map <c-,> :lprevious<CR>
+
 ""
 "" Command-Line Mappings
 ""
@@ -502,7 +510,7 @@ set fileformats=unix,dos,mac   " detects unix, dos, mac file formats in that ord
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Undotree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>u :UndotreeToggle<CR>
+map <leader>ut :UndotreeToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Tagbar
@@ -791,3 +799,17 @@ noremap <left> :BB<cr>
 " Tag Jump
 noremap <Leader>tj :YATE<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              UltiSnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsSnippetDirectories=["custom_snippets", "UltiSnips"]
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsListSnippets="<c-u>"
+let g:UltiSnipsDontReverseSearchPath="1"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              Behat
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let feature_filetype='behat'
