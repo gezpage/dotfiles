@@ -1,22 +1,112 @@
-"execute pathogen#infect()
+""
+"" Vim custom config
+""
 
 let mapleader = ","
 
 set nocompatible
 filetype off
 
-" Escape and CTRL-C clear highlighting
-nnoremap <esc> :noh<return><esc>
-nnoremap <C-c> :noh<return><esc>
+" Allow hiding buffers without saving first
+set hidden
 
-let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
-let g:php_cs_fixer_level = "all"                " which level ?
-let g:php_cs_fixer_config = "default"           " configuration
-let g:php_cs_fixer_php_path = "php"             " Path to PHP
-let g:php_cs_fixer_fixers_list = ""             " List of fixers
-let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
+set showmatch           " show matching bracket (briefly jump)
+set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
+
+" Show horizontal cursor
+set cursorline
+
+" disable folding
+set nofoldenable
+set foldlevelstart=99
+set foldlevel=99
+let g:DisableAutoPHPFolding = 1
+
+set showmatch           " show matching bracket (briefly jump)
+set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
+" tries to avoid those annoying "hit enter to continue" messages
+" if it still doesn't help with certain commands, add a second <cr>
+" at the end of the map command
+set shortmess=a
+
+" none of these should be word dividers, so make them not be
+set iskeyword+=_,$,@,%,#
+
+" Set paste toggle
+"nmap <silent> <leader>pp :set invpaste<CR>:set paste?<CR>
+"imap <silent> <leader>pp <ESC>:set invpaste<CR>:set paste?<CR>
+set pastetoggle=<F7>
+
+" Minimum lines to keep above and below cursor
+set scrolloff=3
+
+" Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Include the bundles file
+if filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
+endif
+
+filetype plugin indent on
+
+" For snippet_complete marker.
+if has('conceal')
+    set conceallevel=2 concealcursor=i
+endif
+
+" always switch to the current file directory.
+autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+
+" Allow searching visually selected phrase
+" TODO: split this into separate plugin
+function! VisualSearch(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        execute "Ack " . l:pattern . ' %'
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+""
+"" Colour scheme & display
+""
+
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+
+" Colour scheme
+colorscheme solarized
+
+" Gui font, profont
+if has("gui_running")
+    if has("macunix")
+        set guifont=ProFont:h9
+    elseif has("win32")
+        set guifont=ProFontWindows:h11:b:cANSI,Lucida_Console:h11:b:cANSI
+    elseif has("x11")
+        set guifont=-jmk-neep-bold-r-normal--15-*-*-*-*-*-*-*
+    endif
+endif
+
+" Do not make tabs show as red
+highlight RedundantWhitespace ctermbg=234 guibg=234
+match RedundantWhitespace /\s\+$\|\t/
 
 " Don't show dumb highlighting on so called spelling mistakes
 hi clear SpellBad
@@ -28,27 +118,6 @@ let g:Powerline_symbols = 'fancy'
 
 " This line fixes transparent background
 hi Normal ctermbg=NONE
-
-" This is for lusty juggler
-set hidden
-
-" Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" Symfony
-let g:symfony_app_console_caller= "php"
-let g:symfony_app_console_path= "app/console"
-
-" Include the bundles file
-
-if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
-endif
-
-
-filetype plugin indent on
-
 
 ""
 "" Helpers
@@ -86,7 +155,6 @@ if has("autocmd")
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
 endif
-
 
 ""
 "" General Mappings (Normal, Visual, Operator-pending)
@@ -249,6 +317,71 @@ else
   imap <C-9> <Esc>9gt
 endif
 
+" Escape and CTRL-C clear highlighting
+nnoremap <esc> :noh<return><esc>
+nnoremap <C-c> :noh<return><esc>
+
+"Basically you press * or # to search for the current selection
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+vnoremap <silent> gv :call VisualSearch('gv')<CR>
+
+" These create newlines like o and O but stay in normal mode
+nnoremap <silent> zj o<Esc>k
+nnoremap <silent> zk O<Esc>j
+
+" Keep search matches in the middle of the window.
+" zz centers the screen on the cursor, zv unfolds any fold if the cursor
+" suddenly appears inside a fold.
+nnoremap * *zzzv
+nnoremap # #zzzv
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Fix home and end keybindings for screen, particularly on mac
+" - for some reason this fixes the arrow keys too. huh.
+map [F $
+imap [F $
+map [H g0
+imap [H g0
+
+" Navigate back from tag jump
+nmap <C-[> :pop<CR>
+
+" visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" Stupid shift key fixes
+cmap W w
+cmap WQ wq
+cmap wQ wq
+cmap Q q
+cmap Tabe tabe
+
+" Slicker quicker window navigation
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+"nmap <C-o> :ZoomWin<CR>
+"nmap = 2<C-W>+
+"nmap - 2<C-W>-
+
+" Window navigation with stacking horizontal splits
+"map <C-J> <C-W>j<C-W>_
+"map <C-K> <C-W>k<C-W>_
+"map <C-L> <C-W>l<C-W>_
+"map <C-H> <C-W>h<C-W>_
+
+" Use tab to cycle tabs
+"map <Tab> gt
+"map <S-Tab> gT
+
+" Quick close xml/html tag
+imap ,/ </<C-X><C-O>
+
 ""
 "" Command-Line Mappings
 ""
@@ -338,6 +471,7 @@ set directory=~/.vim/_temp//      " where to put swap files.
 ""
 " statusline
 ""
+
 if has("statusline") && !&cp
   set laststatus=2  " always show the status bar
 
@@ -353,34 +487,36 @@ endif
 set fileformat=unix     " file mode is unix
 set fileformats=unix,dos,mac   " detects unix, dos, mac file formats in that order
 
-
-" Slicker quicker window navigation
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-l> :wincmd l<CR>
-
-"nmap <C-o> :ZoomWin<CR>
-"nmap = 2<C-W>+
-"nmap - 2<C-W>-
-
-" Window navigation with stacking horizontal splits
-"map <C-J> <C-W>j<C-W>_
-"map <C-K> <C-W>k<C-W>_
-"map <C-L> <C-W>l<C-W>_
-"map <C-H> <C-W>h<C-W>_
-
-
 " Min height for each window - allows stacking when using C-k and C-j
 "set winminheight=0
-"
-" Map gundo to ,g
+
+""
+" Plugins
+""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Gundo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "map <leader>g :GundoToggle<CR>
 
-" Undotree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Undotree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>u :UndotreeToggle<CR>
 
-" Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Markdown specific tag settings
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
+
 map <leader>rt :TagbarToggle<CR>
 " Open Tagbar on Vim start
 "autocmd vimenter * TagbarOpen
@@ -389,26 +525,39 @@ let g:tagbar_width = 30
 let g:tagbar_compact = 1
 let g:tagbar_iconchars = ['▾', '▸']
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Yankring
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map  yankring show to ,y yankring search to ,,y
 "map <leader>y :YRShow<CR>
 "map <leader><leader>y :YRSearch<CR>
 
-" ctrlp remap mixed mode to CTRL+T
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = '<C-t>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.projectroot']
 map <C-b> :CtrlPBuffer<CR>
 
-" Command-T
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Command-T
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "map <C-t> :CommandT<CR>
 "map <C-b> :CommandTBuffer<CR>
 "let g:CommandTMatchWindowReverse = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Symfony
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:symfony_app_console_caller= "php"
+"let g:symfony_app_console_path= "app/console"
+let g:symfony_app_console_path= "~/Dev/git/bella/app/console"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                yankring                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:yankring_history_dir = '$HOME/tmp/vim'
 " this is so that single char deletes don't end up in the yankring
 let g:yankring_min_element_length = 2
@@ -422,20 +571,28 @@ function! YRRunAfterMaps()
     nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
 endfunction
 
-" Yankstack mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Yankstack
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "nmap <C-p> <Plug>yankstack_substitute_older_paste
 "nmap <C-n> <Plug>yankstack_substitute_newer_paste
 "map <leader>y :Yanks<CR>
 
-" Gitv
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               Gitv
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>gv :Gitv --all<cr>
 nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
 
-" MySQLRun
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             MySQLRun
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "map <leader>my :MySQLRun<CR>
 
-" VimCalc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             VimCalc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "map <leader>cl :Calc<CR>
 
 " ReTab and StripWhiteSpaces
@@ -447,47 +604,52 @@ map <leader>ot :tabe<CR>
 " Close Tab ,ct
 map <leader>ct :tabclose<CR>
 
-" Fix ack-grep link
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              ack-grep
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-" Use tab to cycle tabs
-map <Tab> gt
-map <S-Tab> gT
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             GoldenView
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:goldenview__enable_default_mapping = 0
+let g:goldenview__enable_at_startup = 0
+" 1. split to tiled windows
+nmap <silent> <C-G>  <Plug>GoldenViewSplit
+" 2. quickly switch current window with the main pane
+" and toggle back
+nmap <silent> <leader>gg <Plug>GoldenViewSwitchMain
+nmap <silent> <leader>gf <Plug>GoldenViewSwitchToggle
+"nmap <silent> <F8>   <Plug>GoldenViewSwitchMain
+"nmap <silent> <S-F8> <Plug>GoldenViewSwitchToggle
+" 3. jump to next and previous window
+"nmap <silent> <C-N>  <Plug>GoldenViewNext
+"nmap <silent> <C-P>  <Plug>GoldenViewPrevious
 
-" Symfony
-map <leader>s :execute ":!"g:symfony_enable_shell_cmd<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Bufstop
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"map <C-b> :BufstopFast<CR>             " get a visual on the buffers
+"map <leader>b :Bufstop<CR>             " get a visual on the buffers
+"let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers
 
-" Set paste toggle
-"nmap <silent> <leader>pp :set invpaste<CR>:set paste?<CR>
-"imap <silent> <leader>pp <ESC>:set invpaste<CR>:set paste?<CR>
-set pastetoggle=<F7>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               PHPDebug                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F5> :python debugger_run()<cr>
 
-" visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              SpeedDating                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap  <C-M>     <Plug>SpeedDatingUp
+nmap  <C-X>     <Plug>SpeedDatingDown
+xmap  <C-M>     <Plug>SpeedDatingUp
+xmap  <C-X>     <Plug>SpeedDatingDown
 
-" Stupid shift key fixes
-cmap W w
-cmap WQ wq
-cmap wQ wq
-cmap Q q
-cmap Tabe tabe
-
-" Minimum lines to keep above and below cursor
-set scrolloff=3
-
-" Colorscheme stuff
-set background=dark
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-
-" Colour scheme
-colorscheme solarized
-
-set showmatch           " show matching bracket (briefly jump)
-set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                PHPCtags                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               NERDTree                                  "
@@ -510,80 +672,29 @@ let NERDTreeMinimalUI=1
 " Open nerdtree on Vim start
 "autocmd vimenter * NERDTree
 
-" HTML Autoclosetag
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           HTML Autoclosetag
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au FileType html.twig,xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
 
-" Gui font, profont
-if has("gui_running")
-    if has("macunix")
-        set guifont=ProFont:h9
-    elseif has("win32")
-        set guifont=ProFontWindows:h11:b:cANSI,Lucida_Console:h11:b:cANSI
-    elseif has("x11")
-        set guifont=-jmk-neep-bold-r-normal--15-*-*-*-*-*-*-*
-    endif
-endif
-
-" Show horizontal cursor
-set cursorline
-
-" Fix home and end keybindings for screen, particularly on mac
-" - for some reason this fixes the arrow keys too. huh.
-map [F $
-imap [F $
-map [H g0
-imap [H g0
-
-" disable folding
-set nofoldenable
-set foldlevelstart=99
-set foldlevel=99
-let g:DisableAutoPHPFolding = 1
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               PHPDebug                                 "
+"                                Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <F5> :python debugger_run()<cr>
-
-" For snippet_complete marker.
-if has('conceal')
-    set conceallevel=2 concealcursor=i
-endif
-
-" always switch to the current file directory.
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              SpeedDating                                "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap  <C-M>     <Plug>SpeedDatingUp
-nmap  <C-X>     <Plug>SpeedDatingDown
-xmap  <C-M>     <Plug>SpeedDatingUp
-xmap  <C-X>     <Plug>SpeedDatingDown
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                PHPCtags                                 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
-
-" Navigate back from tags jump
-nmap <C-[> :pop<CR>
-
-" Do not make tabs show as red
-highlight RedundantWhitespace ctermbg=234 guibg=234
-match RedundantWhitespace /\s\+$\|\t/
-
-" Bufstop
-"map <C-b> :BufstopFast<CR>             " get a visual on the buffers
-"map <leader>b :Bufstop<CR>             " get a visual on the buffers
-"let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers
-
 " Disable PHP CodeSniffer
 let g:syntastic_phpcs_disable = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                PHPUnitqf                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:phpunit_args = "--configuration ../../../../../app/phpunit.vim.xml"
+map <leader>pu :Test %<CR><CR>
+map <leader>po :TestOutput<CR>L<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Vimpanel                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 map <leader>ss :VimpanelSessionMake<CR>
 map <leader>sl :VimpanelSessionLoad<CR>
 cabbrev vp Vimpanel
@@ -599,18 +710,6 @@ map <leader>gs :Gstatus<CR>
 map <leader>gc :Gcommit<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                Tagbar                                   "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:tagbar_type_markdown = {
-    \ 'ctagstype' : 'markdown',
-    \ 'kinds' : [
-        \ 'h:Heading_L1',
-        \ 'i:Heading_L2',
-        \ 'k:Heading_L3'
-    \ ]
-\ }
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                session                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " you also need to run :SaveSession once to create the default.vim session that
@@ -622,32 +721,53 @@ let g:session_default_to_last = 'yes'
 let g:session_directory       = '~/tmp/vim/sessions'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                SuperTab                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SuperTab completion fall-back
+"let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+let g:SuperTabDefaultCompletionType='<c-x><c-i><c-p>'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            phpDoc (pdv)                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+"let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+let g:pdv_template_dir = $HOME ."/.vim_templates/pdv/templates_snip"
 "nnoremap <buffer> <C-p> :call pdv#DocumentCurrentLine()<CR>
 nnoremap <leader>pp :call pdv#DocumentWithSnip()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            php-namespace                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 "inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
 noremap <Leader>pn :call PhpInsertUse()<CR>
 "inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
 noremap <Leader>pe :call PhpExpandClass()<CR>
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            php-cs-fixer                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" If php-cs-fixer is in $PATH, you don't need to define line below
+" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "all"                  " which level ?
+let g:php_cs_fixer_config = "sf21"            " configuration
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
+let g:php_cs_fixer_fixers_list = ""               " List of fixers
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            php-qa                                       "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:phpqa_codesniffer_args = "--standard=Symfony2"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            MatchTagAlways                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:mta_filetypes = {
     \ 'html' : 1,
     \ 'xhtml' : 1,
@@ -659,70 +779,15 @@ let g:mta_filetypes = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                bufkill                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Use the arrows for something useful
 " :BB switches to the previous buffer shown in the current window, :BF switches
 " to the next one; it's like a buffer history for every window
 noremap <right> :BF<cr>
 noremap <left> :BB<cr>
 
-" tries to avoid those annoying "hit enter to continue" messages
-" if it still doesn't help with certain commands, add a second <cr>
-" at the end of the map command
-set shortmess=a
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                YATE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tag Jump
+noremap <Leader>tj :YATE<CR>
 
-" none of these should be word dividers, so make them not be
-set iskeyword+=_,$,@,%,#
-
-
-" TODO: split this into separate plugin
-function! VisualSearch(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        execute "Ack " . l:pattern . ' %'
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-"Basically you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
-vnoremap <silent> gv :call VisualSearch('gv')<CR>
-
-" These create newlines like o and O but stay in normal mode
-nnoremap <silent> zj o<Esc>k
-nnoremap <silent> zk O<Esc>j
-
-" Keep search matches in the middle of the window.
-" zz centers the screen on the cursor, zv unfolds any fold if the cursor
-" suddenly appears inside a fold.
-nnoremap * *zzzv
-nnoremap # #zzzv
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
-" GoldenView
-let g:goldenview__enable_default_mapping = 0
-let g:goldenview__enable_at_startup = 0
-" 1. split to tiled windows
-nmap <silent> <C-G>  <Plug>GoldenViewSplit
-" 2. quickly switch current window with the main pane
-" and toggle back
-nmap <silent> <leader>gg <Plug>GoldenViewSwitchMain
-nmap <silent> <leader>gf <Plug>GoldenViewSwitchToggle
-"nmap <silent> <F8>   <Plug>GoldenViewSwitchMain
-"nmap <silent> <S-F8> <Plug>GoldenViewSwitchToggle
-" 3. jump to next and previous window
-"nmap <silent> <C-N>  <Plug>GoldenViewNext
-"nmap <silent> <C-P>  <Plug>GoldenViewPrevious

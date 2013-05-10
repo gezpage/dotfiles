@@ -1,0 +1,1 @@
+vim +BundleInstall +BundleClean +qall
