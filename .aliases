@@ -8,3 +8,5 @@ alias mountview='mount | column -t'
 alias bash_shortcuts='bind -P'
 # git pretty colour log
 alias gitlog="git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --color"
+# man most pager
+alias man="man -P most"
