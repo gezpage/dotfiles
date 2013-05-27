@@ -18,12 +18,36 @@ set MYSQL_PS1 "\u@\h [\d]> "
 # Aliases
 . ~/.aliases
 
-# turn off greeting
+# Turn off greeting
 set fish_greeting
 
+# Prompt config
 function fish_prompt --description 'Write out the prompt'
+
     # Just calculate these once, to save a few cycles when displaying the prompt
+
     if not set -q __fish_prompt_hostname
+        switch (hostname)
+
+            # Add host colours here
+            case akira
+            set -g __fish_prompt_hostname_colour (set_color green)
+
+            case revo
+            set -g __fish_prompt_hostname_colour (set_color F3C)
+
+            case magnesium
+            set -g __fish_prompt_hostname_colour (set_color blue)
+
+            case cadmium
+            set -g __fish_prompt_hostname_colour (set_color FF3)
+
+            # Default host colour
+            case '*'
+            set -g __fish_prompt_hostname_colour (set_color normal)
+
+        end
+
         set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
     end
 
@@ -55,14 +79,20 @@ function fish_prompt --description 'Write out the prompt'
             set -g __fish_prompt_cwd (set_color F3C)
         end
 
-        printf '%s@%s:%s%s%s%s$ ' (set_color green)$USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
+        printf '%s%s@%s:%s%s%s%s$ ' $__fish_prompt_hostname_colour $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
 
         set_color normal
 
     end
 end
 
+# Show time on right of screen
 function fish_right_prompt -d "Write out the right prompt"
     set_color green
     date "+%d-%b-%y %k:%M:%S"
+end
+
+# Launch byobu
+if [ -f byobu ];
+    [ -n "$DISPLAY" -a -z "$BYOBU_WINDOWS"  ] ; and [ "$TERM" != "dumb"  ] ; and exec byobu-launcher
 end
