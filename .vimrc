@@ -4,6 +4,9 @@
 
 let mapleader = ","
 
+" Force using bash shell - fixes issues when using fish
+set shell=/bin/bash
+
 set nocompatible
 filetype off
 
@@ -95,7 +98,9 @@ let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 
 " Colour scheme
-colorscheme solarized
+"colorscheme solarized
+" Wombat has more pastel soft colours :P
+colorscheme wombat256
 
 " Gui font, profont
 if has("gui_running")
