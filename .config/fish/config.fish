@@ -93,6 +93,4 @@ function fish_right_prompt -d "Write out the right prompt"
 end
 
 # Launch byobu
-if [ -f byobu ];
-    [ -n "$DISPLAY" -a -z "$BYOBU_WINDOWS"  ] ; and [ "$TERM" != "dumb"  ] ; and exec byobu-launcher
-end
+[ -f /usr/bin/byobu-launcher -a -z "$BYOBU_WINDOWS"  ] ; and [ "$TERM" != "dumb"  ] ; and exec byobu-launcher
