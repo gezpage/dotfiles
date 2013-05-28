@@ -1,0 +1,26 @@
+# Only list files to be installed to home dir here
+.aliases
+.bash_profile
+.bashrc
+.conkyrc
+.ctags
+.fonts.conf
+.gtkrc-2.0
+.gtkrc.mine
+.mostrc
+.vimrc
+.vimrc.bundles
+.xinitrc
+.xmobarrc
+.Xmodmap
+.Xresources
+.config/fish/config.fish
+.fonts
+.vim/custom_snippets
+.gtk-themes
+.xmonad
+bin/vim
+bin/vim_update.sh
+bin/vim_update_quick.sh
+bin/install-dotfiles.sh
+bin/install-vim.sh
