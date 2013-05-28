@@ -19,7 +19,6 @@
 .vim/custom_snippets
 .gtk-themes
 .xmonad
-bin/vim
 bin/vim_update.sh
 bin/vim_update_quick.sh
 bin/install-dotfiles.sh
