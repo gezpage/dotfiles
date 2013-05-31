@@ -90,17 +90,16 @@ endfunction
 ""
 "" Colour scheme & display
 ""
+" Colour scheme
+colorscheme solarized
+" Wombat has more pastel soft colours :P
+"colorscheme wombat256
 
 set background=dark
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
-
-" Colour scheme
-"colorscheme solarized
-" Wombat has more pastel soft colours :P
-colorscheme wombat256
 
 " Gui font, profont
 if has("gui_running")
