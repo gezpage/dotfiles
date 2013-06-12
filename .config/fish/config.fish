@@ -21,27 +21,27 @@ set MYSQL_PS1 "\u@\h [\d]> "
 # Turn off greeting
 set fish_greeting
 
-# Hostname specific colours
-switch (hostname)
-    case akira
-    set -g __fish_prompt_hostname_colour (set_color green)
-
-    case revo
-    set -g __fish_prompt_hostname_colour (set_color F3C)
-
-    case magnesium
-    set -g __fish_prompt_hostname_colour (set_color blue)
-
-    case cadmium
-    set -g __fish_prompt_hostname_colour (set_color FF3)
-
-    # Default host colour
-    case '*'
-    set -g __fish_prompt_hostname_colour (set_color normal)
-end
-
 # Prompt config
 function fish_prompt --description 'Write out the prompt'
+
+    # Hostname specific colours
+    switch (hostname)
+        case akira
+        set -g __fish_prompt_hostname_colour (set_color green)
+
+        case revo
+        set -g __fish_prompt_hostname_colour (set_color F3C)
+
+        case magnesium
+        set -g __fish_prompt_hostname_colour (set_color blue)
+
+        case cadmium
+        set -g __fish_prompt_hostname_colour (set_color FF3)
+
+        # Default host colour
+        case '*'
+        set -g __fish_prompt_hostname_colour (set_color normal)
+    end
 
     # Just calculate these once, to save a few cycles when displaying the prompt
 
@@ -91,6 +91,6 @@ function fish_right_prompt -d "Write out the right prompt"
 end
 
 # Launch byobu
-[ -f /usr/bin/byobu-launcher -a -z "$BYOBU_WINDOWS"  ] ; and [ "$TERM" != "dumb"  ] ; and exec byobu-launcher
+#[ -f /usr/bin/byobu-launcher -a -z "$BYOBU_WINDOWS"  ] ; and [ "$TERM" != "dumb"  ] ; and exec byobu-launcher
 
-printf 'You are connected to %s%s ' $__fish_prompt_hostname_colour (hostname)
+#printf 'You are connected to %s%s ' $__fish_prompt_hostname_colour (hostname)
