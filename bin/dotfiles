@@ -1,0 +1,62 @@
+#!/bin/bash
+
+dotfiles_path=/home/gez/Dev/git/dotfiles
+
+function output {
+    message=$*
+    echo -e "\e[01;33m${message}\e[00m"
+}
+
+if [ $# -lt 1 ]
+then
+    ${dotfiles_path}/bin/dotfiles help
+    exit
+fi
+
+case "$1" in
+
+status) output "* Checking dotfiles changes"
+    cd $dotfiles_path
+    git status
+    ;;
+update) output "* Updating dotfiles"
+    ${dotfiles_path}/bin/install-dotfiles.sh
+    ;;
+diff) output "* Dotfiles diff"
+    cd ${dotfiles_path}
+    git diff
+    ;;
+commit) output "* Committing dotfiles"
+    cd ${dotfiles_path}
+    git add -A
+    git commit
+    ;;
+push) output "* Pushing dotfiles"
+    cd ${dotfiles_path}
+    git push origin master
+    ;;
+edit) output "* Editing dotfiles"
+    vim -O ${dotfiles_path}/bin/dotfiles ${dotfiles_path}/dotfiles
+    ;;
+vim-install) output "* Installing Vim"
+    ${dotfiles_path}/bin/install-vim
+    ;;
+vim-update) output "* Updating Vim"
+    ${dotfiles_path}/bin/vim_update.sh
+    ;;
+vim-update-quick) output "* Quick Vim Update (No check for new plugin versions)"
+    ${dotfiles_path}/bin/vim_update_quick.sh
+    ;;
+clean) output "* Removing old files"
+    ${dotfiles_path}/bin/cleanup.sh
+    ;;
+help) output "* Dotfiles Help"
+    echo dotfiles status              - Show status of dotfiles repository
+    echo dotfiles update              - Update dotfiles
+    echo dotfiles edit                - Edit dotfiles scripts in Vim
+    echo dotfiles clean               - Clean up old left over files
+    echo dotfiles vim-install         - Install Vim configuration
+    echo dotfiles vim-update          - Update Vim plugins
+    echo dotfiles vim-update-quick    - Do a quick Vim plugin update - add/remove but not update
+    ;;
+esac

@@ -1,4 +1,5 @@
 # Only list files to be installed to home dir here
+# If you remove something, add it to the cleanup script in bin/cleanup.sh
 .aliases
 .bash_profile
 .bashrc
@@ -20,11 +21,8 @@
 .vim/custom_snippets
 .gtk-themes
 .xmonad
-bin/vim_update.sh
-bin/vim_update_quick.sh
-bin/install-dotfiles.sh
-bin/install-vim.sh
 bin/delete_tilde_backups.sh
 bin/find_tilde_backups.sh
 bin/bella_bundles_checker.sh
 bin/bella_bundles_pusher.sh
+bin/dotfiles
