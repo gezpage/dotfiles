@@ -53,6 +53,9 @@ clean) output "* Removing old files"
 help) output "* Dotfiles Help"
     echo dotfiles status              - Show status of dotfiles repository
     echo dotfiles update              - Update dotfiles
+    echo dotfiles diff                - Show changes to dotfiles
+    echo dotfiles commit              - Commit dotfiles changes to repository
+    echo dotfiles push                - Push dotfiles changes to repository
     echo dotfiles edit                - Edit dotfiles scripts in Vim
     echo dotfiles clean               - Clean up old left over files
     echo dotfiles vim-install         - Install Vim configuration
