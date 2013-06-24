@@ -46,6 +46,9 @@ git clone https://github.com/flazz/vim-colorschemes ${vim_config}/bundle/vim-col
 output "* Running dotfiles install script"
 $dotfiles_script
 
+output "* Creating temporary dir"
+mkdir -p ~/tmp/vim
+
 output "* Installing bundles"
 vim +BundleInstall +qall
 

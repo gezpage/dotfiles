@@ -7,6 +7,13 @@
 # Checks if target files are symlinks and just deletes them first
 
 source=~/Dev/git/dotfiles/
+dotfiles_file=${source}dotfiles
+dotfiles_custom=${source}dotfiles.local
+
+if [ -f ${dotfiles_custom} ]; then
+    dotfiles_file=$dotfiles_custom
+fi
+
 target=~/
 
 function output {
@@ -21,7 +28,7 @@ output "* Doing a git pull on the dotfiles repo"
 git pull
 
 # Create symlinks of dotfiles
-for file in `grep -v \# dotfiles`
+for file in `grep -v \# ${dotfiles_file}`
 do
 
     source_file=$source$file
