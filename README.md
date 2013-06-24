@@ -1,9 +1,14 @@
-## gezpage/dotfiles
+# gezpage/dotfiles
 
 Personal linux dotfiles.
 Helper scripts assume you have cloned the repo to ~/Dev/git/dotfiles
 
-# "Dotfiles" Installation
+## Dotfiles
+
+### Help
+```dotfiles help```
+
+### Installation
 
 Create a ~/Dev/git directory
 
@@ -24,11 +29,13 @@ Now run the install script
 
 ``` ~/Dev/git/dotfiles/bin/install-dotfiles.sh ```
 
-# Update dotfiles
+### Update dotfiles
 Run ``` dotfiles update ``` to pull changes from github and relink to
 your home directory.
 
-# Install Vim config
+## Vim
+
+### Install Vim config
 Your existing vim config will be wiped and the vim config script also
 updates your dotfiles.
 
@@ -46,14 +53,11 @@ Now run the vim config installer:
 If you wish to use a local vimrc, create the file ~/.vimrc.local and it
 will be called at the end of .vimrc
 
-# Update Vim config
+### Update Vim config
 ```dotfiles vim-update```
 
-# Vim quick update (only installs new bundles)
+### Vim quick update (only installs new bundles)
 ```dotfiles vim-update-quick```
-
-# Help
-```dotfiles help```
 
 ## Console shell
 

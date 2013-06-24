@@ -39,7 +39,7 @@ edit) output "* Editing dotfiles"
     vim -O ${dotfiles_path}/bin/dotfiles ${dotfiles_path}/dotfiles
     ;;
 vim-install) output "* Installing Vim"
-    ${dotfiles_path}/bin/install-vim
+    ${dotfiles_path}/bin/install-vim.sh
     ;;
 vim-update) output "* Updating Vim"
     ${dotfiles_path}/bin/vim_update.sh
