@@ -51,8 +51,10 @@ set scrolloff=3
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Include the bundles file
-if filereadable(expand("~/.vimrc.bundles"))
+" Include a bundles config file
+if filereadable(expand("~/.vimrc.bundles.local"))
+    source ~/.vimrc.bundles.local
+elseif filereadable(expand("~/.vimrc.bundles"))
     source ~/.vimrc.bundles
 endif
 
