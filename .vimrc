@@ -822,3 +822,13 @@ map <leader><tab> :Thumbnail<CR>
 "                              Behat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let feature_filetype='behat'
+
+
+""
+"" Final inclusion of local config
+""
+
+" Use local vimrc if available
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
