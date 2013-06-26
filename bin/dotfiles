@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dotfiles_path=/home/gez/Dev/git/dotfiles
+dotfiles_path=~/.dotfiles
 
 function output {
     message=$*

@@ -4,7 +4,7 @@
 
 vim_config=~/.vim
 backup_vim_config=~/.vim~
-dotfiles_script=~/Dev/git/dotfiles/bin/install-dotfiles.sh
+dotfiles_script=~/.dotfiles/bin/install-dotfiles.sh
 
 function output {
     message=$*

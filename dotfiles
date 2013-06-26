@@ -23,6 +23,4 @@
 .xmonad
 bin/delete_tilde_backups.sh
 bin/find_tilde_backups.sh
-bin/bella_bundles_checker.sh
-bin/bella_bundles_pusher.sh
 bin/dotfiles

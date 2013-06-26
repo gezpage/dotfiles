@@ -6,7 +6,7 @@
 # If a backup file already exists it will be replaced
 # Checks if target files are symlinks and just deletes them first
 
-source=~/Dev/git/dotfiles/
+source=~/.dotfiles/
 dotfiles_file=${source}dotfiles
 dotfiles_custom=${source}dotfiles.local
 
