@@ -5,9 +5,6 @@ Helper scripts assume you have cloned the repo to ~/Dev/git/dotfiles
 
 ## Dotfiles
 
-### Help
-```dotfiles help```
-
 ### Installation
 
 Create a ~/Dev/git directory
@@ -29,13 +26,18 @@ Now run the install script
 
 ``` ~/Dev/git/dotfiles/bin/install-dotfiles.sh ```
 
-### Update dotfiles
+### Dotfiles Command
+The install script will make a new command `dotfiles` available in your
+path (assuming you have started a new fish or bash shell). Various
+commands are available, to get help:
+
+```dotfiles help```
+
+### Updating dotfiles
 Run ``` dotfiles update ``` to pull changes from github and relink to
 your home directory.
 
-## Vim
-
-### Install Vim config
+### Installing the Vim config
 Your existing vim config will be wiped and the vim config script also
 updates your dotfiles.
 
@@ -53,14 +55,14 @@ Now run the vim config installer:
 If you wish to use a local vimrc, create the file ~/.vimrc.local and it
 will be called at the end of .vimrc
 
-### Update Vim config
+### Full Vim bundles update
 ```dotfiles vim-update```
 
-### Vim quick update (only installs new bundles)
+### Vim bundles quick update (only removes and installs new as per
+bundles config changes)
 ```dotfiles vim-update-quick```
 
-## Console shell
-
+### Bash / Fish shells
 I have included config files for both Bash and Fish shell, if you want
 to change to one, use the ```chsh``` command and then fully log out and
 back in again.
