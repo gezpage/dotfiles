@@ -52,8 +52,8 @@ will be called at the end of .vimrc
 ### Full Vim bundles update
 ```dotfiles vim-update```
 
-### Vim bundles quick update (only removes and installs new as per
-bundles config changes)
+### Vim bundles quick update
+This only removes and installs new as per bundles config changes
 ```dotfiles vim-update-quick```
 
 ### Bash / Fish shells
