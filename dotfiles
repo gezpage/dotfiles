@@ -22,6 +22,7 @@
 .gtk-themes
 .xmonad
 .gitconfig
+.git_template
 bin/delete_tilde_backups.sh
 bin/find_tilde_backups.sh
 bin/dotfiles
