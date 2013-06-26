@@ -42,6 +42,7 @@ do
         # File already exists - deal with it!
         if test -h "$target_file";
         then
+            echo " - Deleting $target_file"
             # Just delete the  symlink
             rm $target_file
         else
@@ -50,13 +51,16 @@ do
                 rm -rf $backup_file
             fi
             # Backup target file
+            echo " - Backing up $target_file to $backup_file"
             mv $target_file $backup_file
         fi
     fi
 
+    echo " - Symlinking $source_file to $target_file"
     ln -sT $source_file $target_file
 
 done
 
 echo
-echo "dotfiles symlinked!"
+echo "Dotfiles installed!"
+echo
