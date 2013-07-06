@@ -26,6 +26,8 @@ cd $source
 # Freshen files
 output "* Doing a git pull on the dotfiles repo"
 git pull
+git submodule init
+git submodule update --recursive
 
 # Create symlinks of dotfiles
 for file in `grep -v \# ${dotfiles_file}`
