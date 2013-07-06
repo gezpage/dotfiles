@@ -47,6 +47,9 @@ set pastetoggle=<F10>
 " Minimum lines to keep above and below cursor
 set scrolloff=3
 
+" Disable Ex mode Q key mapping
+nnoremap Q <nop>
+
 " Vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
