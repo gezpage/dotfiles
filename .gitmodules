@@ -1,0 +1,3 @@
+[submodule "modules/geeknote"]
+	path = modules/geeknote
+	url = git://github.com/VitaliyRodnenko/geeknote.git
