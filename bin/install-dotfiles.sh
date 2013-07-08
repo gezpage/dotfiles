@@ -44,7 +44,7 @@ do
         # File already exists - deal with it!
         if test -h "$target_file";
         then
-            echo " - Deleting $target_file"
+            #echo " - Deleting $target_file"
             # Just delete the  symlink
             rm $target_file
         else
