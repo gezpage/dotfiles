@@ -23,6 +23,8 @@
 .xmonad
 .gitconfig
 .git_template
+.oh-my-zsh
+.zshrc
 bin/delete_tilde_backups.sh
 bin/find_tilde_backups.sh
 bin/dotfiles
