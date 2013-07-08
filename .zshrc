@@ -46,7 +46,7 @@ DEFAULT_USER=gez
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git capistrano colored-man composer copydir copyfile debian git-flow github node npm screen svn symfony2 vagrant vundle vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
