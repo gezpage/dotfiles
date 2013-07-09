@@ -50,4 +50,22 @@ plugins=(git capistrano colored-man composer copydir copyfile debian git-flow gi
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
+# Create ~/bin if not exists
+if [ ! -d  ~/bin ]; then
+    mkdir ~/bin
+fi
+
+# Add user bin dir to path
+export PATH=~/bin:$PATH
+
+# Aliases
+source ~/.aliases
+
+# Editor variable
+export EDITOR="vim"
+
+# Hi colour terminal support (Vim needs this)
+export TERM=xterm-256color
+
+# Funky MySQL prompt
+export MYSQL_PS1="\u@\h [\d]> "
