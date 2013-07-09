@@ -102,7 +102,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-
 export TERM=xterm-256color
 
 # http://danielmiessler.com/blog/the-ultimate-bash-prompt
@@ -113,15 +112,20 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # Create ~/bin if not exists
 if [ ! -d  ~/bin ]; then
-        mkdir ~/bin
+    mkdir ~/bin
 fi
 
 # Macports pathing
 export PATH=/opt/local/bin:/opt/local/sbin:~/bin:$PATH
 
-# Add ruby bin to path if exists
+# Heroku Toolbelt path
+if [ ! -d  /usr/local/heroku/bin ]; then
+    export PATH=$PATH:/usr/local/heroku/bin
+fi
+
+# Ruby gems path
 if [ -d  ~/.gem/ruby/1.9.1/bin ]; then
-        export PATH=$PATH:~/.gem/ruby/1.9.1/bin
+    export PATH=$PATH:~/.gem/ruby/1.9.1/bin
 fi
 
 # Parse my aliases
