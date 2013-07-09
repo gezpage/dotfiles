@@ -20,7 +20,8 @@ status) output "* Checking dotfiles changes"
     git status
     ;;
 update) output "* Updating dotfiles"
-    ${dotfiles_path}/bin/install-dotfiles.sh
+    ${dotfiles_path}/bin/dotfiles-update.sh
+    ${dotfiles_path}/bin/dotfiles-install.sh
     ;;
 diff) output "* Dotfiles diff"
     cd ${dotfiles_path}
@@ -39,7 +40,7 @@ edit) output "* Editing dotfiles"
     vim -O ${dotfiles_path}/bin/dotfiles ${dotfiles_path}/dotfiles
     ;;
 vim-install) output "* Installing Vim"
-    ${dotfiles_path}/bin/install-vim.sh
+    ${dotfiles_path}/bin/dotfiles-vim-install.sh
     ;;
 vim-update) output "* Updating Vim"
     ${dotfiles_path}/bin/vim_update.sh
