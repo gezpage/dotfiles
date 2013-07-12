@@ -55,8 +55,18 @@ if [ ! -d  ~/bin ]; then
     mkdir ~/bin
 fi
 
-# Add user bin dir to path
+# Add user bin dir to start of path
 export PATH=~/bin:$PATH
+
+# Heroku Toolbelt path
+if [ ! -d  /usr/local/heroku/bin ]; then
+    export PATH=$PATH:/usr/local/heroku/bin
+fi
+
+# Ruby gems path
+if [ -d  ~/.gem/ruby/1.9.1/bin ]; then
+    export PATH=$PATH:~/.gem/ruby/1.9.1/bin
+fi
 
 # Aliases
 source ~/.aliases
