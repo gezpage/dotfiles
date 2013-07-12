@@ -5,8 +5,7 @@
 dotfiles_path=~/.dotfiles
 
 function output {
-    message=$*
-    echo -e "\e[01;33m${message}\e[00m"
+    echo -e "\e[01;33m${*}\e[00m"
 }
 
 cd $dotfiles_path
