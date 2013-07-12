@@ -366,11 +366,11 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Stupid shift key fixes
-cmap W w
-cmap WQ wq
-cmap wQ wq
-cmap Q q
-cmap Tabe tabe
+"cmap W w
+"cmap WQ wq
+"cmap wQ wq
+"cmap Q q
+"cmap Tabe tabe
 
 " Slicker quicker window navigation
 nmap <silent> <C-h> :wincmd h<CR>
@@ -671,9 +671,9 @@ let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               NERDTree                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>n :NERDTreeFocus<CR>
-map <leader>m :NERDTreeFind<CR>
-map <leader>er :NERDTreeToggle<CR>
+map <leader>n :NERDTreeFocus<CR>:SignatureRefreshDisplay<CR>
+map <leader>m :NERDTreeFind<CR>:SignatureRefreshDisplay<CR>
+map <leader>er :NERDTreeToggle<CR>:SignatureRefreshDisplay<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeChDirMode=0
