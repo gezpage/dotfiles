@@ -12,6 +12,6 @@ cd $dotfiles_path
 
 # Freshen files
 output "* Doing a git pull on the dotfiles repo"
-git pull
+git pull --recurse-submodules
 git submodule init
 git submodule update --recursive
