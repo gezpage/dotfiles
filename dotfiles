@@ -6,6 +6,7 @@
 .conkyrc
 .ctags
 .fonts.conf
+.fonts.conf.d
 .gtkrc-2.0
 .gtkrc.mine
 .mostrc
