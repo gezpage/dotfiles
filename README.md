@@ -18,7 +18,7 @@ needed).
 
 Now run the install script
 
-``` ~/.dotfiles/bin/install-dotfiles.sh ```
+``` ~/.dotfiles/install.sh ```
 
 ### Dotfiles Command
 The install script will make a new command `dotfiles` available in your
@@ -56,7 +56,14 @@ will be called at the end of .vimrc
 This only removes and installs new as per bundles config changes
 ```dotfiles vim-update-quick```
 
-### Bash / Fish shells
+### Bash / Fish / Zsh
 I have included config files for both Bash and Fish shell, if you want
 to change to one, use the ```chsh``` command and then fully log out and
 back in again.
+
+### Helper installers
+I've started adding some helper installers which are only advisable to
+use on Debian based Linux:
+
+~/.dotfiles/bin/powerline-install.sh
+~/.dotfiles/bin/tmux-install.sh

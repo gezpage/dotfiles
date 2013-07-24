@@ -20,8 +20,7 @@ status) output "* Checking dotfiles changes"
     git status
     ;;
 update) output "* Updating dotfiles"
-    ${dotfiles_path}/bin/dotfiles-update.sh
-    ${dotfiles_path}/bin/dotfiles-install.sh
+    ${dotfiles_path}/install.sh
     ;;
 diff) output "* Dotfiles diff"
     cd ${dotfiles_path}
