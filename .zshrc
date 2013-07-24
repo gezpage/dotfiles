@@ -56,7 +56,12 @@ if [ ! -d  ~/bin ]; then
 fi
 
 # Add user bin dir to start of path
-export PATH=~/bin:$PATH
+export PATH=~/.local/bin:$PATH
+
+# Local bin
+if [ ! -d  ~/bin ]; then
+    export PATH=$PATH:~/.local/bin
+fi
 
 # Heroku Toolbelt path
 if [ ! -d  /usr/local/heroku/bin ]; then
@@ -98,3 +103,7 @@ bindkey '^X^N' accept-and-infer-next-history
 bindkey '^I' complete-word
 # Fix weird sequence that rxvt produces
 bindkey -s '^[[Z' '\t'
+
+if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh  ]]; then
+    source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+fi
