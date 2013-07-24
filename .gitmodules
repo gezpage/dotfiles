@@ -7,3 +7,6 @@
 [submodule ".git_template"]
 	path = .git_template
 	url = git@github.com:gezpage/git_template.git
+[submodule ".tmux-config"]
+	path = .tmux-config
+	url = https://github.com/tony/tmux-config.git
