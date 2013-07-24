@@ -56,15 +56,15 @@ if [ ! -d  ~/bin ]; then
 fi
 
 # Add user bin dir to start of path
-export PATH=~/.local/bin:$PATH
+export PATH=~/bin:$PATH
 
 # Local bin
-if [ ! -d  ~/bin ]; then
+if [ -d  ~/.local/bin ]; then
     export PATH=$PATH:~/.local/bin
 fi
 
 # Heroku Toolbelt path
-if [ ! -d  /usr/local/heroku/bin ]; then
+if [ -d  /usr/local/heroku/bin ]; then
     export PATH=$PATH:/usr/local/heroku/bin
 fi
 
