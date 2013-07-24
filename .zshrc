@@ -68,6 +68,9 @@ if [ -d  ~/.gem/ruby/1.9.1/bin ]; then
     export PATH=$PATH:~/.gem/ruby/1.9.1/bin
 fi
 
+# Tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator  ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
 # Aliases
 source ~/.aliases
 
