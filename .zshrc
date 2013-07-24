@@ -83,7 +83,8 @@ source ~/.aliases
 export EDITOR="vim"
 
 # Hi colour terminal support (Vim needs this)
-export TERM=xterm-256color
+#export TERM=xterm-256color
+export TERM=screen-256color
 
 # Funky MySQL prompt
 export MYSQL_PS1="\u@\h [\d]> "
