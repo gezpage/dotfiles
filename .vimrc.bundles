@@ -53,7 +53,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/ZoomWin'
 
 " ENABLED
-Bundle 'Lokaltog/vim-powerline.git'
+"Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'gregsexton/gitv.git'
 Bundle 'spf13/PIV.git'
 Bundle 'gezpage/MatchTag.git'

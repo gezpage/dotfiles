@@ -126,9 +126,6 @@ hi clear SpellBad
 " Use subtle underline instead
 hi SpellBad cterm=underline
 
-" Powerline fancy patched font goodness
-let g:Powerline_symbols = 'fancy'
-
 " This line fixes transparent background
 hi Normal ctermbg=NONE
 
@@ -837,3 +834,18 @@ let feature_filetype='behat'
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Powerline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+
+" Always show statusline
+set laststatus=2
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
+" Powerline fancy patched font goodness
+let g:Powerline_symbols = 'fancy'
