@@ -547,15 +547,6 @@ let g:tagbar_iconchars = ['▾', '▸']
 "map <leader><leader>y :YRSearch<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             CtrlP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_map = '<C-t>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_root_markers = ['.projectroot']
-map <C-b> :CtrlPBuffer<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Command-T
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "map <C-t> :CommandT<CR>
@@ -849,3 +840,38 @@ set t_Co=256
 
 " Powerline fancy patched font goodness
 let g:Powerline_symbols = 'fancy'
+
+if ! has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<C-t>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['.projectroot']
+map <C-b> :CtrlPBuffer<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Unite
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"nnoremap <C-t> :Unite -start-insert file<cr>
+"nnoremap <C-t> :<C-u>Unite -start-insert file_rec/async:!<CR>
+"let g:unite_force_overwrite_statusline = 0
+"call unite#custom#source('file,file/new,buffer,file_rec',
+    "\ 'matchers', 'matcher_fuzzy')
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:airline_powerline_fonts = 1
