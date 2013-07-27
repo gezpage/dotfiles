@@ -680,7 +680,7 @@ let NERDTreeMinimalUI=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           HTML Autoclosetag
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType html.twig,xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
+"au FileType html.twig,xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Syntastic
@@ -875,3 +875,10 @@ map <C-b> :CtrlPBuffer<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:airline_powerline_fonts = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Breeze
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd Filetype twig,html,smarty map ]] :BreezeJumpF<cr>
+autocmd Filetype twig,html,smarty map [[ :BreezeJumpB<cr>
