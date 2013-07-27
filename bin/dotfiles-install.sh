@@ -9,6 +9,7 @@
 source=~/.dotfiles/
 dotfiles_file=${source}dotfiles
 dotfiles_custom=${source}dotfiles.local
+required_dirs='bin .config/fish .vim'
 
 if [ -f ${dotfiles_custom} ]; then
     dotfiles_file=$dotfiles_custom
@@ -23,6 +24,8 @@ function notice {
 function success {
     echo -e "\e[0;32m${*}\e[00m"
 }
+
+mkdir -p ${required_dirs}
 
 cd $source
 
