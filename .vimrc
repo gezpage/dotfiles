@@ -10,6 +10,26 @@ set shell=/bin/bash
 set nocompatible
 filetype off
 
+" NeoBundle
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Include a bundles config file
+if filereadable(expand("~/.vimrc.bundles.local"))
+    source ~/.vimrc.bundles.local
+elseif filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
+endif
+
+filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
+
+" Installation check.
+NeoBundleCheck
+
 " Allow hiding buffers without saving first
 set hidden
 
@@ -51,15 +71,8 @@ set scrolloff=3
 nnoremap Q <nop>
 
 " Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" Include a bundles config file
-if filereadable(expand("~/.vimrc.bundles.local"))
-    source ~/.vimrc.bundles.local
-elseif filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
-endif
+"set rtp+=~/.vim/bundle/vundle/
+"call vundle#rc()
 
 filetype plugin indent on
 
@@ -144,8 +157,6 @@ endfunction
 ""
 "" File types
 ""
-
-filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 
 if has("autocmd")
   " In Makefiles, use real tabs, not tabs expanded to spaces
@@ -547,15 +558,6 @@ let g:tagbar_iconchars = ['▾', '▸']
 "map <leader><leader>y :YRSearch<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             CtrlP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_map = '<C-t>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_root_markers = ['.projectroot']
-map <C-b> :CtrlPBuffer<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Command-T
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "map <C-t> :CommandT<CR>
@@ -689,7 +691,7 @@ let NERDTreeMinimalUI=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           HTML Autoclosetag
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType html.twig,xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
+"au FileType html.twig,xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Syntastic
@@ -849,3 +851,45 @@ set t_Co=256
 
 " Powerline fancy patched font goodness
 let g:Powerline_symbols = 'fancy'
+
+if ! has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<C-t>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['.projectroot']
+map <C-b> :CtrlPBuffer<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Unite
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"nnoremap <C-t> :Unite -start-insert file<cr>
+"nnoremap <C-t> :<C-u>Unite -start-insert file_rec/async:!<CR>
+"let g:unite_force_overwrite_statusline = 0
+"call unite#custom#source('file,file/new,buffer,file_rec',
+    "\ 'matchers', 'matcher_fuzzy')
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:airline_powerline_fonts = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Breeze
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd Filetype twig,html,smarty map ]] :BreezeJumpF<cr>
+autocmd Filetype twig,html,smarty map [[ :BreezeJumpB<cr>
