@@ -10,3 +10,6 @@
 [submodule ".tmux-config"]
 	path = .tmux-config
 	url = git@github.com:gezpage/tmux-config.git
+[submodule ".vim/custom_snippets"]
+	path = .vim/custom_snippets
+	url = git@github.com:gezpage/custom_ultisnips.git
