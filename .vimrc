@@ -407,6 +407,15 @@ imap ,/ </<C-X><C-O>
 map <c-.> :lnext<CR>
 map <c-,> :lprevious<CR>
 
+" ReTab and StripWhiteSpaces
+map <leader>rr :retab<CR> :StripWhiteSpaces<CR>
+
+" New Tab ,ot
+map <leader>ot :tabe<CR>
+
+" Close Tab ,ct
+map <leader>ct :tabclose<CR>
+
 ""
 "" Command-Line Mappings
 ""
@@ -551,13 +560,6 @@ let g:tagbar_compact = 1
 let g:tagbar_iconchars = ['▾', '▸']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Yankring
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map  yankring show to ,y yankring search to ,,y
-"map <leader>y :YRShow<CR>
-"map <leader><leader>y :YRSearch<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Command-T
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "map <C-t> :CommandT<CR>
@@ -572,7 +574,7 @@ let g:symfony_app_console_caller= "php"
 let g:symfony_app_console_path= "~/Dev/git/bella/app/console"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                yankring                                 "
+"                             Yankring
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:yankring_history_dir = '$HOME/tmp/vim'
 " this is so that single char deletes don't end up in the yankring
@@ -586,6 +588,10 @@ nnoremap <leader>yr :YRShow<CR>
 function! YRRunAfterMaps()
     nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
 endfunction
+
+" Map  yankring show to ,y yankring search to ,,y
+"map <leader>y :YRShow<CR>
+"map <leader><leader>y :YRSearch<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Yankstack
@@ -610,15 +616,6 @@ vmap <leader>gV :Gitv! --all<cr>
 "                             VimCalc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "map <leader>cl :Calc<CR>
-
-" ReTab and StripWhiteSpaces
-map <leader>rr :retab<CR> :StripWhiteSpaces<CR>
-
-" New Tab ,ot
-map <leader>ot :tabe<CR>
-
-" Close Tab ,ct
-map <leader>ct :tabclose<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              ack-grep
@@ -702,7 +699,6 @@ let g:syntastic_phpcs_disable = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                PHPUnitqf                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:phpunit_args = "--configuration ../../../../../app/phpunit.vim.xml"
 map <leader>pu :Test %<CR><CR>
 map <leader>po :TestOutput<CR>L<CR>
@@ -710,7 +706,6 @@ map <leader>po :TestOutput<CR>L<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Vimpanel                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 map <leader>ss :VimpanelSessionMake<CR>
 map <leader>sl :VimpanelSessionLoad<CR>
 cabbrev vp Vimpanel
@@ -746,7 +741,6 @@ let g:SuperTabDefaultCompletionType='<c-x><c-i><c-p>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            phpDoc (pdv)                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 "let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 let g:pdv_template_dir = $HOME ."/.vim_templates/pdv/templates_snip"
 "nnoremap <buffer> <C-p> :call pdv#DocumentCurrentLine()<CR>
@@ -819,7 +813,6 @@ let g:UltiSnipsDontReverseSearchPath="1"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Thumbnail
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader><tab> :Thumbnail<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -827,20 +820,9 @@ map <leader><tab> :Thumbnail<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let feature_filetype='behat'
 
-
-""
-"" Final inclusion of local config
-""
-
-" Use local vimrc if available
-if filereadable(expand("~/.vimrc.local"))
-    source ~/.vimrc.local
-endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Powerline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 
 " Always show statusline
@@ -860,6 +842,7 @@ if ! has('gui_running')
     au InsertLeave * set timeoutlen=1000
   augroup END
 endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -869,11 +852,9 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.projectroot']
 map <C-b> :CtrlPBuffer<CR>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Unite
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 "nnoremap <C-t> :Unite -start-insert file<cr>
 "nnoremap <C-t> :<C-u>Unite -start-insert file_rec/async:!<CR>
 "let g:unite_force_overwrite_statusline = 0
@@ -884,12 +865,19 @@ map <C-b> :CtrlPBuffer<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:airline_powerline_fonts = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Breeze
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 autocmd Filetype twig,html,smarty map ]] :BreezeJumpF<cr>
 autocmd Filetype twig,html,smarty map [[ :BreezeJumpB<cr>
+
+""
+"" Final inclusion of local config
+""
+
+" Use local vimrc if available
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
