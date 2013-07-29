@@ -1,15 +1,22 @@
 [submodule "modules/geeknote"]
 	path = modules/geeknote
 	url = git://github.com/VitaliyRodnenko/geeknote.git
+    ignore = dirty
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
+    ignore = dirty
 [submodule ".git_template"]
 	path = .git_template
 	url = git@github.com:gezpage/git_template.git
 [submodule ".tmux-config"]
 	path = .tmux-config
 	url = git@github.com:gezpage/tmux-config.git
+    ignore = dirty
 [submodule ".vim/custom_snippets"]
 	path = .vim/custom_snippets
 	url = git@github.com:gezpage/custom_ultisnips.git
+[submodule "modules/oh-my-zsh-powerline-theme"]
+	path = modules/oh-my-zsh-powerline-theme
+	url = https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme
+    ignore = dirty
