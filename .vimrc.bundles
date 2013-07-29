@@ -28,7 +28,6 @@
 "NeoBundle 'vim-scripts/smarty-syntax.git'
 "NeoBundle 'vim-scripts/LycosaExplorer.git'
 "NeoBundle 'jistr/vim-nerdtree-tabs.git'
-"NeoBundle 'leshill/vim-json'
 "NeoBundle 'groenewege/vim-less'
 "NeoBundle 'taxilian/vim-web-indent'
 "NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
@@ -62,7 +61,7 @@ NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'Valloric/MatchTagAlways'
 
 " Language plugins
-NeoBundle 'leshill/vim-json'
+"NeoBundle 'elzr/vim-json'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'scrooloose/syntastic'
