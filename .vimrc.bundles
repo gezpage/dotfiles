@@ -50,6 +50,7 @@
 "NeoBundle 'Shougo/vimproc.vim'
 "NeoBundle 'joeytwiddle/sexy_scroller.vim'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
+"NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
 
 " Display plugins
 NeoBundle 'flazz/vim-colorschemes'
@@ -101,7 +102,6 @@ NeoBundle 'kshenoy/vim-signature.git'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/bufkill.vim'
-NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
 NeoBundle 'itchyny/thumbnail.vim'
 NeoBundle 'mileszs/ack.vim.git'
 NeoBundle 'vim-scripts/yate'

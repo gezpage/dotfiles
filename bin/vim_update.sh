@@ -1,3 +1,3 @@
 #!/bin/bash
 
-vim +BundleInstall! +BundleClean +qall
+vim +NeoBundleUpdate +qall
