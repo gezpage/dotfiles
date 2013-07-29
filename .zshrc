@@ -1,6 +1,11 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+POWERLINE_NO_BLANK_LINE="true"
+POWERLINE_RIGHT_A="mixed"
+POWERLINE_FULL_CURRENT_PATH="true"
+POWERLINE_DETECT_SSH="true"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -10,7 +15,8 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="crunch"
 #ZSH_THEME="bira"
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="gnzh"
+#ZSH_THEME="gnzh"
+ZSH_THEME="powerline"
 
 DEFAULT_USER=gez
 
@@ -84,8 +90,8 @@ source ~/.aliases
 export EDITOR="vim"
 
 # Hi colour terminal support (Vim needs this)
-#export TERM=xterm-256color
-export TERM=screen-256color
+export TERM=xterm-256color
+#export TERM=screen-256color
 
 # Funky MySQL prompt
 export MYSQL_PS1="\u@\h [\d]> "
@@ -109,3 +115,4 @@ bindkey -s '^[[Z' '\t'
 #if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh  ]]; then
     #source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 #fi
+

@@ -63,6 +63,9 @@ do
 
 done
 
+# Call post install script
+${source}/bin/dotfiles-post-install.sh
+
 echo
 echo "Dotfiles installed!"
 echo
