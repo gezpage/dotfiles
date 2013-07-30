@@ -10,10 +10,12 @@ function output {
 
 cd $dotfiles_path
 
-# Freshen files
-output "* Doing a git pull on the dotfiles repo"
-git pull --recurse-submodules
-output "* Initialising Submodules"
+output "* Pulling latest changes to the dotfiles"
+git pull
+
+output "* Initialising dotfiles submodules"
 git submodule init
-output "* Updating Submodules"
+
+output "* Updating submodules"
+git pull --recurse-submodules
 git submodule update --recursive

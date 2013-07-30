@@ -39,14 +39,11 @@ do
     target_file=$target$file
     backup_file=$target$file~
 
-    #output "* $file"
-
     if [ -f $target_file ] || [ -d $target_file ]; then
 
         # File already exists - deal with it!
         if test -h "$target_file";
         then
-            #notice " - Deleting $target_file"
             # Just delete the  symlink
             rm $target_file
         else
