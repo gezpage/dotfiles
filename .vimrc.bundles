@@ -75,6 +75,8 @@ NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'evidens/vim-twig'
 NeoBundle 'briancollins/vim-jst'
+NeoBundle 'gezpage/vim-yaml'
+NeoBundle 'gezpage/vim-json'
 
 " PHP plugins
 NeoBundle 'jsoriano/vim-dbgp.git'
