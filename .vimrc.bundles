@@ -100,12 +100,15 @@ NeoBundle 'kshenoy/vim-signature.git'
 
 " Filesystem / buffer / tag plugins
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/bufkill.vim'
 NeoBundle 'itchyny/thumbnail.vim'
 NeoBundle 'mileszs/ack.vim.git'
 NeoBundle 'vim-scripts/yate'
+NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'ivalkeen/vim-ctrlp-tjump'
+NeoBundle 'tacahiroy/ctrlp-funky'
+NeoBundle 'jasoncodes/ctrlp-modified.vim'
+NeoBundle 'sgur/ctrlp-extensions.vim'
 
 " Utility (other) plugins
 NeoBundle 'tpope/vim-surround'
@@ -121,4 +124,5 @@ NeoBundle 'YankRing.vim'
 NeoBundle 'vim-scripts/Auto-Pairs'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-tbone'
+
 

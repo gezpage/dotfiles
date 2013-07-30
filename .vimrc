@@ -855,6 +855,16 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.projectroot']
 map <C-b> :CtrlPBuffer<CR>
 
+let g:ctrlp_extensions = ['funky']
+map <Leader>tf :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+map <Leader>tF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+map <Leader>tm :CtrlPModified<CR>
+map <Leader>tM :CtrlPBranch<CR>
+map <Leader>tc :CtrlPCmd<CR>
+map <Leader>ty :CtrlPYank<CR>
+map <Leader>tt :CtrlPMenu<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             CtrlP tjump
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
