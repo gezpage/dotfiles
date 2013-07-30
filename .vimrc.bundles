@@ -128,6 +128,8 @@ NeoBundle 'YankRing.vim'
 NeoBundle 'vim-scripts/Auto-Pairs'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-tbone'
+NeoBundle 'hlissner/vim-multiedit'
+NeoBundle 'robmiller/vim-movar'
 
 " Application plugins
 NeoBundle 'aaronbieber/quicktask'
