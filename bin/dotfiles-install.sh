@@ -25,10 +25,12 @@ function success {
     echo -e "\e[0;32m${*}\e[00m"
 }
 
+notice "* Checking required directories already exist"
 mkdir -p ${required_dirs}
 
 cd $source
 
+notice "* Processing dotfiles"
 # Create symlinks of dotfiles
 for file in `grep -v \# ${dotfiles_file}`
 do
