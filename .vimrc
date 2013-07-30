@@ -30,6 +30,9 @@ filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 " Installation check.
 NeoBundleCheck
 
+" Tags file
+set tags+=.git/tags
+
 " Allow hiding buffers without saving first
 set hidden
 
