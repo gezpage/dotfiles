@@ -34,11 +34,7 @@ if [ -d $vim_config ]; then
     exit
 fi
 
-output "* Creating vim config dirs"
-mkdir -p ${vim_config}/{_backup,_temp,_bundle}
-
 output "* Cloning NeoBundle for plugin management"
-#git clone https://github.com/gmarik/vundle.git ${vim_config}/bundle/vundle
 git clone git://github.com/Shougo/neobundle.vim ${vim_config}/bundle/neobundle.vim
 
 output "* Cloning the colour schemes repo to avoid error on first start"
