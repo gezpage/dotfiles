@@ -105,6 +105,7 @@ NeoBundle 'vim-scripts/bufkill.vim'
 NeoBundle 'itchyny/thumbnail.vim'
 NeoBundle 'mileszs/ack.vim.git'
 NeoBundle 'vim-scripts/yate'
+NeoBundle 'ivalkeen/vim-ctrlp-tjump'
 
 " Utility (other) plugins
 NeoBundle 'tpope/vim-surround'
