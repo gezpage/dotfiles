@@ -432,7 +432,8 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/"<CR>
 ""
 
 set nocompatible      " Use vim, no vi defaults
-set number            " Show line numbers
+set relativenumber    " Show relative line numbers"
+"set number            " Show line numbers
 set ruler             " Show line and column number
 syntax enable         " Turn on syntax highlighting allowing local overrides
 set encoding=utf-8    " Set default encoding to UTF-8
@@ -890,6 +891,32 @@ let g:airline_powerline_fonts = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd Filetype twig,html,smarty map ]] :BreezeJumpF<cr>
 autocmd Filetype twig,html,smarty map [[ :BreezeJumpB<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Todo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" todo.vim default highlight groups, feel free to override as wanted
+hi link TodoTitle Title
+hi link TodoTitleMark Normal
+hi link TodoItem Special
+hi link TodoItemAdditionalText Comment
+hi link TodoItemCheckBox Identifier
+hi link TodoItemDone Ignore
+hi link TodoComment Comment " explicit comments must be enabled for this
+
+" define like this to enable explicit comments
+" comments then start with //
+let g:TodoExplicitCommentsEnabled = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Vertigo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Space>j :<C-U>VertigoDown n<CR>
+vnoremap <silent> <Space>j :<C-U>VertigoDown v<CR>
+onoremap <silent> <Space>j :<C-U>VertigoDown o<CR>
+nnoremap <silent> <Space>k :<C-U>VertigoUp n<CR>
+vnoremap <silent> <Space>k :<C-U>VertigoUp v<CR>
+onoremap <silent> <Space>k :<C-U>VertigoUp o<CR>
 
 ""
 "" Final inclusion of local config

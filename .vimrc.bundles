@@ -60,6 +60,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'Valloric/MatchTagAlways'
+NeoBundle 'neochrome/todo.vim'
 
 " Language plugins
 "NeoBundle 'elzr/vim-json'
@@ -99,6 +100,7 @@ NeoBundle 'majutsushi/tagbar'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'gcmt/breeze.vim'
 NeoBundle 'kshenoy/vim-signature.git'
+NeoBundle 'prendradjaja/vim-vertigo'
 
 " Filesystem / buffer / tag plugins
 NeoBundle 'scrooloose/nerdtree'
@@ -127,4 +129,6 @@ NeoBundle 'vim-scripts/Auto-Pairs'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-tbone'
 
+" Application plugins
+NeoBundle 'aaronbieber/quicktask'
 
