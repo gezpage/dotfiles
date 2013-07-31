@@ -131,6 +131,9 @@ NeoBundle 'hlissner/vim-multiedit'
 NeoBundle 'robmiller/vim-movar'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'tpope/vim-obsession'
+NeoBundle 'Lokaltog/TagHighlight'
+NeoBundle 'khorser/vim-qfnotes'
+NeoBundle 'tpope/vim-eunuch'
 
 " Application plugins
 NeoBundle 'aaronbieber/quicktask'
