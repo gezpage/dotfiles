@@ -7,8 +7,7 @@ backup_vim_config=~/.vim~
 dotfiles_script=~/.dotfiles/bin/install-dotfiles.sh
 
 function output {
-    message=$*
-    echo -e "\e[01;33m${message}\e[00m"
+    echo -e "\e[01;33m$*\e[00m"
 }
 
 echo
@@ -43,10 +42,10 @@ git clone https://github.com/flazz/vim-colorschemes ${vim_config}/bundle/vim-col
 output "* Running dotfiles install script"
 $dotfiles_script
 
-output "* Creating temporary dir"
-mkdir -p ~/tmp/vim
+output "* Creating sessions dir"
+mkdir -p ~/.vim/sessions
 
-output "* Installing bundles"
-vim +BundleInstall +qall
+output "* Running Vim"
+vim
 
 output "* Vim config install complete!"

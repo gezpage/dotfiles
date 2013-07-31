@@ -739,8 +739,7 @@ let g:session_directory       = '~/tmp/vim/sessions'
 "                                SuperTab                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SuperTab completion fall-back
-"let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
-let g:SuperTabDefaultCompletionType='<c-x><c-i><c-p>'
+"let g:SuperTabDefaultCompletionType='<c-x><c-i><c-p>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            phpDoc (pdv)                                 "

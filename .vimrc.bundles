@@ -51,6 +51,8 @@
 "NeoBundle 'joeytwiddle/sexy_scroller.vim'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
 "NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
+"NeoBundle 'ervandew/supertab'
+"NeoBundle 'tpope/vim-unimpaired'
 
 " Display plugins
 NeoBundle 'flazz/vim-colorschemes'
@@ -63,7 +65,6 @@ NeoBundle 'Valloric/MatchTagAlways'
 NeoBundle 'neochrome/todo.vim'
 
 " Language plugins
-"NeoBundle 'elzr/vim-json'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'scrooloose/syntastic'
@@ -118,7 +119,6 @@ NeoBundle 'sgur/ctrlp-extensions.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'gagoar/StripWhiteSpaces.git'
-NeoBundle 'ervandew/supertab'
 NeoBundle 'tpope/vim-repeat.git'
 NeoBundle 'tpope/vim-scriptease'
 NeoBundle 'mbbill/undotree'
@@ -126,11 +126,11 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'YankRing.vim'
 NeoBundle 'vim-scripts/Auto-Pairs'
-NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-tbone'
 NeoBundle 'hlissner/vim-multiedit'
 NeoBundle 'robmiller/vim-movar'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'tpope/vim-obsession'
 
 " Application plugins
 NeoBundle 'aaronbieber/quicktask'
-
