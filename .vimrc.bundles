@@ -130,11 +130,11 @@ NeoBundle 'vim-scripts/Auto-Pairs'
 NeoBundle 'tpope/vim-tbone'
 NeoBundle 'hlissner/vim-multiedit'
 NeoBundle 'robmiller/vim-movar'
-NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'tpope/vim-obsession'
 NeoBundle 'Lokaltog/TagHighlight'
 NeoBundle 'khorser/vim-qfnotes'
 NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'Shougo/neocomplcache.vim'
 
 " Application plugins
 NeoBundle 'aaronbieber/quicktask'
