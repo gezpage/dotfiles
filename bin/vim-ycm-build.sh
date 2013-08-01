@@ -8,7 +8,8 @@ output Compiling YouCompleteMe Vim plugin
 output Press enter to continue
 read
 
-~/.vim/bundles/YouCompleteMe/build.sh
+cd ~/.vim/bundle/YouCompleteMe
+./install.sh
 
 output Done!
 
