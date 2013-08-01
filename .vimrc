@@ -671,23 +671,33 @@ let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               NERDTree                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>n :NERDTreeFocus<CR>:SignatureRefreshDisplay<CR>
-map <leader>m :NERDTreeFind<CR>:SignatureRefreshDisplay<CR>
-map <leader>er :NERDTreeToggle<CR>:SignatureRefreshDisplay<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=0
-let nerdtreeshowhidden=1
-let nerdtreekeeptreeinnewtab=1
-let NERDTreeMinimalUI=1
+"map <leader>n :NERDTreeFocus<CR>:SignatureRefreshDisplay<CR>
+"map <leader>m :NERDTreeFind<CR>:SignatureRefreshDisplay<CR>
+"map <leader>er :NERDTreeToggle<CR>:SignatureRefreshDisplay<CR>
+"let NERDTreeShowBookmarks=1
+"let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+"let NERDTreeChDirMode=0
+"let NERDTreeQuitOnOpen=0
+"let nerdtreeshowhidden=1
+"let nerdtreekeeptreeinnewtab=1
+"let NERDTreeMinimalUI=1
 
-" Quit Vim if nerdtree is last window open
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" Open nerdtree on Vim start if no file specified
-"autocmd vimenter * if !argc() | NERDTree | endif
-" Open nerdtree on Vim start
-"autocmd vimenter * NERDTree
+"" Close NERDTree when leaving Vim - this prevents breaking session loading
+"autocmd VimLeave * NERDTreeClose
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               Netrw
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+map <leader>n :Explore<CR>
+
+let g:netrw_altv          = 1
+let g:netrw_fastbrowse    = 2
+let g:netrw_keepdir       = 0
+let g:netrw_liststyle     = 3
+let g:netrw_retmap        = 1
+let g:netrw_silent        = 1
+let g:netrw_special_syntax= 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           HTML Autoclosetag
