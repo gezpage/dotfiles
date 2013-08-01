@@ -671,32 +671,32 @@ let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               NERDTree                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"map <leader>n :NERDTreeFocus<CR>:SignatureRefreshDisplay<CR>
-"map <leader>m :NERDTreeFind<CR>:SignatureRefreshDisplay<CR>
-"map <leader>er :NERDTreeToggle<CR>:SignatureRefreshDisplay<CR>
-"let NERDTreeShowBookmarks=1
-"let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-"let NERDTreeChDirMode=0
-"let NERDTreeQuitOnOpen=0
-"let nerdtreeshowhidden=1
-"let nerdtreekeeptreeinnewtab=1
-"let NERDTreeMinimalUI=1
+map <leader>n :NERDTreeFocus<CR>:SignatureRefreshDisplay<CR>
+map <leader>m :NERDTreeFind<CR>:SignatureRefreshDisplay<CR>
+map <leader>er :NERDTreeToggle<CR>:SignatureRefreshDisplay<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=0
+let nerdtreeshowhidden=1
+let nerdtreekeeptreeinnewtab=1
+let NERDTreeMinimalUI=1
 
-"" Close NERDTree when leaving Vim - this prevents breaking session loading
-"autocmd VimLeave * NERDTreeClose
+" Close NERDTree when leaving Vim - this prevents breaking session loading
+autocmd VimLeave * NERDTreeClose
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Netrw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-map <leader>n :Explore<CR>
+"map <leader>n :Explore<CR>
 
-let g:netrw_altv          = 1
-let g:netrw_fastbrowse    = 2
-let g:netrw_keepdir       = 0
+"let g:netrw_altv          = 1
+"let g:netrw_fastbrowse    = 2
+"let g:netrw_keepdir       = 0
 let g:netrw_liststyle     = 3
-let g:netrw_retmap        = 1
-let g:netrw_silent        = 1
+"let g:netrw_retmap        = 1
+"let g:netrw_silent        = 1
 let g:netrw_special_syntax= 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -818,11 +818,15 @@ noremap <Leader>tj :YATE<CR>
 "                              UltiSnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsSnippetDirectories=["custom_snippets"]
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsListSnippets="<c-u>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsListSnippets="<c-u>"
 let g:UltiSnipsDontReverseSearchPath="1"
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Thumbnail
@@ -863,6 +867,7 @@ let g:ctrlp_map = '<C-t>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.projectroot']
+let g:ctrlp_match_window = 'bottom,order:ttb,min:8,max:20'
 map <C-b> :CtrlPBuffer<CR>
 
 let g:ctrlp_extensions = ['funky']
@@ -916,6 +921,12 @@ hi link TodoComment Comment " explicit comments must be enabled for this
 " define like this to enable explicit comments
 " comments then start with //
 let g:TodoExplicitCommentsEnabled = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           YouCompleteMe
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_cache_omnifunc = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Vertigo

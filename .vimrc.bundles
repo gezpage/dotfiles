@@ -104,7 +104,7 @@ NeoBundle 'kshenoy/vim-signature.git'
 NeoBundle 'prendradjaja/vim-vertigo'
 
 " Filesystem / buffer / tag plugins
-"NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-scripts/bufkill.vim'
 NeoBundle 'itchyny/thumbnail.vim'
 NeoBundle 'mileszs/ack.vim.git'
