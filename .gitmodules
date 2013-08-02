@@ -19,4 +19,4 @@
     ignore = dirty
 [submodule ".git_template"]
 	path = .git_template
-	url = https://github.com/greg0ire/git_template
+	url = git@github.com:greg0ire/git_template.git
