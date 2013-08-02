@@ -6,9 +6,6 @@
 	path = .oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
     ignore = dirty
-[submodule ".git_template"]
-	path = .git_template
-	url = git@github.com:gezpage/git_template.git
 [submodule ".tmux-config"]
 	path = .tmux-config
 	url = git@github.com:gezpage/tmux-config.git
