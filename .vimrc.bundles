@@ -68,7 +68,9 @@ NeoBundle 'neochrome/todo.vim'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'tristen/vim-sparkup'
+" Disabled because it clobbers <C-n>
+" https://github.com/tristen/vim-sparkup/issues/6
+"NeoBundle 'tristen/vim-sparkup'
 NeoBundle 'tpope/vim-cucumber'
 NeoBundle 'veloce/vim-behat'
 NeoBundle 'tobyS/vmustache'
@@ -83,12 +85,14 @@ NeoBundle 'gezpage/vim-json'
 " PHP plugins
 NeoBundle 'jsoriano/vim-dbgp.git'
 NeoBundle 'techlivezheng/tagbar-phpctags.git'
-NeoBundle 'spf13/PIV.git'
+"NeoBundle 'spf13/PIV.git'
 NeoBundle 'stephpy/vim-php-cs-fixer.git'
 NeoBundle 'joonty/vim-phpqa.git'
 NeoBundle 'tobyS/pdv'
 NeoBundle 'joonty/vim-phpunitqf'
 NeoBundle 'arnaud-lb/vim-php-namespace'
+"NeoBundle 'shawncplus/phpcomplete.vim'
+NeoBundle '2072/PHP-Indenting-for-VIm'
 
 " VCS plugins
 NeoBundle 'gregsexton/gitv.git'

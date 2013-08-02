@@ -31,3 +31,5 @@
 bin/delete_tilde_backups.sh
 bin/find_tilde_backups.sh
 bin/dotfiles
+bin/vim
+bin/ctags

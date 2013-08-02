@@ -73,12 +73,6 @@ set scrolloff=3
 " Disable Ex mode Q key mapping
 nnoremap Q <nop>
 
-" Vundle
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
-
-filetype plugin indent on
-
 " For snippet_complete marker.
 if has('conceal')
     set conceallevel=2 concealcursor=i
@@ -925,8 +919,8 @@ let g:TodoExplicitCommentsEnabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_cache_omnifunc = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_cache_omnifunc = 0
+"let g:ycm_collect_identifiers_from_tags_files = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Vertigo
@@ -977,6 +971,11 @@ nmap <silent> <leader>md :MultieditClear<CR>
 
 " Unset all regions
 nmap <silent> <leader>mr :MultieditReset<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           PHPComplete
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:phpcomplete_complete_for_unknown_classes = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Neocomplecache
@@ -1073,6 +1072,15 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+
+""
+"" Final inclusion of local config
+""
+
+" Use local vimrc if available
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
 
 ""
 "" Final inclusion of local config
