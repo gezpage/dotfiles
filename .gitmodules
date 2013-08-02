@@ -17,3 +17,6 @@
 	path = modules/oh-my-zsh-powerline-theme
 	url = https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme
     ignore = dirty
+[submodule ".git_template"]
+	path = .git_template
+	url = https://github.com/greg0ire/git_template
