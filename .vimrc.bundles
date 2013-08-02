@@ -91,7 +91,7 @@ NeoBundle 'joonty/vim-phpqa.git'
 NeoBundle 'tobyS/pdv'
 NeoBundle 'joonty/vim-phpunitqf'
 NeoBundle 'arnaud-lb/vim-php-namespace'
-"NeoBundle 'shawncplus/phpcomplete.vim'
+NeoBundle 'shawncplus/phpcomplete.vim'
 NeoBundle '2072/PHP-Indenting-for-VIm'
 
 " VCS plugins
@@ -109,7 +109,7 @@ NeoBundle 'prendradjaja/vim-vertigo'
 
 " Filesystem / buffer / tag plugins
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'vim-scripts/bufkill.vim'
+"NeoBundle 'vim-scripts/bufkill.vim'
 NeoBundle 'itchyny/thumbnail.vim'
 NeoBundle 'mileszs/ack.vim.git'
 NeoBundle 'vim-scripts/yate'

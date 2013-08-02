@@ -103,43 +103,6 @@ function! VisualSearch(direction) range
 endfunction
 
 ""
-"" Colour scheme & display
-""
-" Colour scheme
-colorscheme solarized
-" Wombat has more pastel soft colours :P
-"colorscheme wombat256
-
-set background=dark
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-
-" Gui font, profont
-if has("gui_running")
-    if has("macunix")
-        set guifont=ProFont:h9
-    elseif has("win32")
-        set guifont=ProFontWindows:h11:b:cANSI,Lucida_Console:h11:b:cANSI
-    elseif has("x11")
-        set guifont=-jmk-neep-bold-r-normal--15-*-*-*-*-*-*-*
-    endif
-endif
-
-" Do not make tabs show as red
-highlight RedundantWhitespace ctermbg=234 guibg=234
-match RedundantWhitespace /\s\+$\|\t/
-
-" Don't show dumb highlighting on so called spelling mistakes
-hi clear SpellBad
-" Use subtle underline instead
-hi SpellBad cterm=underline
-
-" This line fixes transparent background
-hi Normal ctermbg=NONE
-
-""
 "" Helpers
 ""
 
@@ -523,6 +486,53 @@ set fileformats=unix,dos,mac   " detects unix, dos, mac file formats in that ord
 "set winminheight=0
 
 ""
+"" Colour scheme & display
+""
+
+set background=dark
+
+" Solarized specific settings
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+"colorscheme desert256
+"colorscheme jellybeans
+"colorscheme badwolf
+"colorscheme herald
+"colorscheme Tomorrow-Night
+colorscheme solarized
+
+" Force transparent backgrounds
+hi Normal         ctermbg=none
+hi NonText        ctermbg=none
+hi Comment        ctermbg=none
+hi Constant       ctermbg=none
+hi String         ctermbg=none
+hi Error          ctermbg=none
+hi Identifier     ctermbg=none
+hi Function       ctermbg=none
+hi Ignore         ctermbg=none
+hi PreProc        ctermbg=none
+hi Special        ctermbg=none
+hi Todo           ctermbg=none
+hi Underlined     ctermbg=none
+hi Statement      ctermbg=none
+hi Operator       ctermbg=none
+hi Delimiter      ctermbg=none
+hi Type           ctermbg=none
+hi Exception      ctermbg=none
+
+" Do not make tabs show as red
+hi RedundantWhitespace ctermbg=none
+match RedundantWhitespace /\s\+$\|\t/
+
+" Don't show dumb highlighting on so called spelling mistakes
+hi clear SpellBad
+" Use subtle underline instead
+hi SpellBad cterm=underline
+
+""
 " Plugins
 ""
 
@@ -665,9 +675,9 @@ let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               NERDTree                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>n :NERDTreeFocus<CR>:SignatureRefreshDisplay<CR>
-map <leader>m :NERDTreeFind<CR>:SignatureRefreshDisplay<CR>
-map <leader>er :NERDTreeToggle<CR>:SignatureRefreshDisplay<CR>
+map <leader>n :NERDTreeFocus<CR>:SignatureRefresh<CR>
+map <leader>m :NERDTreeFind<CR>:SignatureRefresh<CR>
+map <leader>er :NERDTreeToggle<CR>:SignatureRefresh<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeChDirMode=0
@@ -862,7 +872,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.projectroot']
 let g:ctrlp_match_window = 'bottom,order:ttb,min:8,max:20'
-map <C-b> :CtrlPBuffer<CR>
+map <C-b> ::CtrlPMRUFiles<CR>
 
 let g:ctrlp_extensions = ['funky']
 map <Leader>tf :CtrlPFunky<Cr>
@@ -976,6 +986,7 @@ nmap <silent> <leader>mr :MultieditReset<CR>
 "                           PHPComplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:phpcomplete_complete_for_unknown_classes = 0
+let g:phpcomplete_parse_docblock_comments = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Neocomplecache
