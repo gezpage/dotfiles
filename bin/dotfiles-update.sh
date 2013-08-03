@@ -17,5 +17,7 @@ output "* Initialising dotfiles submodules"
 git submodule init
 
 output "* Updating submodules"
-git pull --recurse-submodules
-git submodule update --recursive
+git submodule foreach --recursive git checkout master
+git submodule foreach --recursive git pull origin master
+#git pull --recurse-submodules
+#git submodule update --recursive
