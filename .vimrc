@@ -114,6 +114,10 @@ function! s:setupWrapping()
   set nolist
 endfunction
 
+" When switching buffers, preserve window view.
+autocmd BufLeave * if !&diff | let b:winview = winsaveview() | endif
+autocmd BufWinEnter * if exists('b:winview') && !&diff | call winrestview(b:winview) | endif
+
 ""
 "" File types
 ""
@@ -755,6 +759,8 @@ let g:session_directory       = '~/tmp/vim/sessions'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SuperTab completion fall-back
 "let g:SuperTabDefaultCompletionType='<c-x><c-i><c-p>'
+let g:SuperTabDefaultCompletionType='context'
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            phpDoc (pdv)                                 "
@@ -823,18 +829,19 @@ noremap <Leader>tj :YATE<CR>
 "                              UltiSnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsSnippetDirectories=["custom_snippets"]
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"let g:UltiSnipsListSnippets="<c-u>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsListSnippets="<c-u>"
 let g:UltiSnipsDontReverseSearchPath="1"
 
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+"let g:UltiSnipsExpandTrigger="<c-j>"
+"let g:UltiSnipsJumpForwardTrigger="<c-j>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Thumbnail
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader><tab> :Thumbnail<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -884,6 +891,12 @@ map <Leader>tM :CtrlPBranch<CR>
 map <Leader>tc :CtrlPCmd<CR>
 map <Leader>ty :CtrlPYank<CR>
 map <Leader>tt :CtrlPMenu<CR>
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             CtrlP tjump
@@ -986,18 +999,32 @@ nmap <silent> <leader>mr :MultieditReset<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           PHPComplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:phpcomplete_complete_for_unknown_classes = 0
-let g:phpcomplete_parse_docblock_comments = 1
+let g:phpcomplete_complete_for_unknown_classes = 1
+let g:phpcomplete_parse_docblock_comments = 0
+" Disable preview window
+set completeopt-=preview
+"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            Butane
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <leader>bd :Bclose<CR>      " Close the buffer.
+noremap <leader>bl :EasyBufferToggle<CR>          " List buffers.
+noremap <leader>bn :bn<CR>          " Next buffer.
+noremap <leader>bp :bp<CR>          " Previous buffer.
+noremap <leader>bt :b#<CR>          " Toggle to most recently used buffer.
+noremap <leader>bx :Bclose!<CR>     " Close the buffer & discard changes.
 
-""
-"" Final inclusion of local config
-""
-
-" Use local vimrc if available
-if filereadable(expand("~/.vimrc.local"))
-    source ~/.vimrc.local
-endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           Zencoding
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:zen_html_tab()
+  let line = getline('.')
+  if match(line, '<.*>') >= 0
+    return "\<c-y>n"
+  endif
+  return "\<c-y>,"
+endfunction
 
 ""
 "" Final inclusion of local config
