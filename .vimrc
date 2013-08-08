@@ -79,7 +79,8 @@ if has('conceal')
 endif
 
 " always switch to the current file directory.
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+" Disabled to get Symfony2 bundle working!
+"autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 " Allow searching visually selected phrase
 " TODO: split this into separate plugin
@@ -583,8 +584,8 @@ let g:tagbar_show_visibility = 0
 "                             Symfony
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:symfony_app_console_caller= "php"
-"let g:symfony_app_console_path= "app/console"
-let g:symfony_app_console_path= "~/Dev/git/bella/app/console"
+let g:symfony_app_console_path= "app/console"
+map <leader>sf :execute ":!"g:symfony_enable_shell_cmd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Yankring
@@ -880,6 +881,8 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.projectroot']
 let g:ctrlp_match_window = 'bottom,order:ttb,min:8,max:20'
+let g:ctrlp_cache_dir = $HOME.'/.vim/ctrlp_cache'
+let g:ctrlp_by_filename = 1
 map <C-b> ::CtrlPMRUFiles<CR>
 
 let g:ctrlp_extensions = ['funky']
@@ -1025,6 +1028,11 @@ function! s:zen_html_tab()
   endif
   return "\<c-y>,"
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           Matchmaker
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd VimEnter * Matchmaker
 
 ""
 "" Final inclusion of local config

@@ -43,6 +43,7 @@ NeoBundle 'arnaud-lb/vim-php-namespace'
 NeoBundle 'rgroli/phpcomplete.vim'
 NeoBundle '2072/PHP-Indenting-for-VIm'
 NeoBundle 'StanAngeloff/php.vim'
+NeoBundle 'gezpage/vim-symfony'
 
 " VCS plugins
 NeoBundle 'gregsexton/gitv.git'
