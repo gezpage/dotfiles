@@ -882,7 +882,6 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.projectroot']
 let g:ctrlp_match_window = 'bottom,order:ttb,min:8,max:20'
 let g:ctrlp_cache_dir = $HOME.'/.vim/ctrlp_cache'
-let g:ctrlp_by_filename = 1
 map <C-b> ::CtrlPMRUFiles<CR>
 
 let g:ctrlp_extensions = ['funky']
