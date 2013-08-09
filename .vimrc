@@ -42,11 +42,15 @@ set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
 " Show horizontal cursor
 set cursorline
 
-" disable folding
-set nofoldenable
-set foldlevelstart=99
-set foldlevel=99
-let g:DisableAutoPHPFolding = 1
+" folding
+"set nofoldenable
+"set foldlevelstart=99
+"set foldlevel=99
+"let g:DisableAutoPHPFolding = 1
+
+set fdm=indent
+set fdc=4
+set fdl=1
 
 set showmatch           " show matching bracket (briefly jump)
 set matchtime=2         " reduces matching paren blink time from the 5[00]ms def

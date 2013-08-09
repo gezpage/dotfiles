@@ -96,4 +96,3 @@ NeoBundle 'mattn/zencoding-vim'
 
 " Application plugins
 NeoBundle 'aaronbieber/quicktask'
-NeoBundle 'jceb/vim-orgmode'
