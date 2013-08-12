@@ -43,14 +43,14 @@ set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
 set cursorline
 
 " folding
-"set nofoldenable
+set nofoldenable
 "set foldlevelstart=99
 "set foldlevel=99
 "let g:DisableAutoPHPFolding = 1
 
-set fdm=indent
-set fdc=4
-set fdl=1
+"set fdm=indent
+"set fdc=4
+"set fdl=1
 
 set showmatch           " show matching bracket (briefly jump)
 set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
@@ -1036,6 +1036,15 @@ endfunction
 "                           Matchmaker
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd VimEnter * Matchmaker
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Ctags
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+fun! UpdateCtags()
+    let ctags_cmd = ".git/hooks/php/ctags-develop/update-ctags"
+    let output = system(ctags_cmd)
+endfun
+map <leader>uc :call UpdateCtags()<cr>
 
 ""
 "" Final inclusion of local config
