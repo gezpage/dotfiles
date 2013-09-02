@@ -74,6 +74,10 @@ set pastetoggle=<F10>
 " Minimum lines to keep above and below cursor
 set scrolloff=3
 
+" Allow project specific settings
+set exrc
+set secure
+
 " Disable Ex mode Q key mapping
 nnoremap Q <nop>
 
@@ -336,7 +340,7 @@ map [H g0
 imap [H g0
 
 " Navigate back from tag jump
-nmap <C-[[> :pop<CR>
+nmap \\ :pop<CR>
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -594,18 +598,18 @@ map <leader>sf :execute ":!"g:symfony_enable_shell_cmd<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Yankring
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:yankring_history_dir = '$HOME/tmp/vim'
-" this is so that single char deletes don't end up in the yankring
-let g:yankring_min_element_length = 2
-let g:yankring_window_height = 14
-nnoremap <leader>yr :YRShow<CR>
+"let g:yankring_history_dir = '$HOME/tmp/vim'
+"" this is so that single char deletes don't end up in the yankring
+"let g:yankring_min_element_length = 2
+"let g:yankring_window_height = 14
+"nnoremap <leader>yr :YRShow<CR>
 
-" this makes Y yank from the cursor to the end of the line, which makes more
-" sense than the default of yanking the whole current line (we can use yy for
-" that)
-function! YRRunAfterMaps()
-    nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-endfunction
+"" this makes Y yank from the cursor to the end of the line, which makes more
+"" sense than the default of yanking the whole current line (we can use yy for
+"" that)
+"function! YRRunAfterMaps()
+    "nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+"endfunction
 
 " Map  yankring show to ,y yankring search to ,,y
 "map <leader>y :YRShow<CR>
@@ -614,9 +618,9 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Yankstack
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"nmap <C-p> <Plug>yankstack_substitute_older_paste
-"nmap <C-n> <Plug>yankstack_substitute_newer_paste
-"map <leader>y :Yanks<CR>
+map <C-p> <Plug>yankstack_substitute_older_paste
+nmap <C-n> <Plug>yankstack_substitute_newer_paste
+map <leader>y :Yanks<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Gitv
@@ -835,14 +839,13 @@ noremap <Leader>tj :YATE<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsSnippetDirectories=["custom_snippets"]
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsListSnippets="<c-u>"
 let g:UltiSnipsDontReverseSearchPath="1"
 
-"let g:UltiSnipsExpandTrigger="<c-j>"
-"let g:UltiSnipsJumpForwardTrigger="<c-j>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s-p>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Thumbnail
@@ -1045,6 +1048,66 @@ fun! UpdateCtags()
     let output = system(ctags_cmd)
 endfun
 map <leader>uc :call UpdateCtags()<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            Lightline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:lightline = {
+      \ 'colorscheme': 'landscape',
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'MyModified',
+      \   'readonly': 'MyReadonly',
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '⭤' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
+        \ '' != expand('%t') ? expand('%t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  return &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head') && strlen(fugitive#head()) ? '⭠ '.fugitive#head() : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth('.') > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth('.') > 60 ? lightline#mode() : ''
+endfunction
 
 ""
 "" Final inclusion of local config
