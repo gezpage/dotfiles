@@ -4,8 +4,8 @@
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'spf13/vim-preview'
 NeoBundle 'zhaocai/GoldenView.Vim'
-"NeoBundle 'bling/vim-airline'
-NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'bling/vim-airline'
+"NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'Valloric/MatchTagAlways'
@@ -50,7 +50,7 @@ NeoBundle 'docteurklein/vim-symfony'
 NeoBundle 'gregsexton/gitv.git'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'kablamo/vim-git-log'
-NeoBundle 'airblade/vim-gitgutter'
+"NeoBundle 'airblade/vim-gitgutter'
 
 " Navigation plugins
 NeoBundle 'majutsushi/tagbar'
@@ -61,7 +61,7 @@ NeoBundle 'prendradjaja/vim-vertigo'
 
 " Filesystem / buffer / tag plugins
 NeoBundle 'scrooloose/nerdtree'
-"NeoBundle 'vim-scripts/bufkill.vim'
+NeoBundle 'vim-scripts/bufkill.vim'
 NeoBundle 'itchyny/thumbnail.vim'
 NeoBundle 'mileszs/ack.vim.git'
 NeoBundle 'vim-scripts/yate'
