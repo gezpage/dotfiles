@@ -618,6 +618,8 @@ map <leader>sf :execute ":!"g:symfony_enable_shell_cmd<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Yankstack
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fix for clobbering vS key when using surround.vim
+call yankstack#setup()
 map <C-p> <Plug>yankstack_substitute_older_paste
 nmap <C-n> <Plug>yankstack_substitute_newer_paste
 map <leader>y :Yanks<CR>
