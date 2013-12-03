@@ -1,14 +1,21 @@
+# ls in COLOUR!
 alias ls='ls --color=auto'
+
+# what is my ip!
 alias whatismyip='curl icanhazip.com'
+
 # show a basic process tree
 alias processtree='ps awwfux | less -S'
+
 # view mount points with a decent layout
 alias mountview='mount | column -t'
+
 # show bash shortcuts
 alias bash_shortcuts='bind -P'
-# git pretty colour log
-alias gitlog="git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --color"
-# man most pager
-#alias man="man -P most"
 
+# git shortcuts
+alias gitlog="git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --color"
+alias gittag="git tag -l |sort -V"
+
+# geeknote
 alias geeknote="python /home/gez/.dotfiles/modules/geeknote/geeknote.py"
