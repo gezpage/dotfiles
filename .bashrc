@@ -124,8 +124,8 @@ if [ ! -d  /usr/local/heroku/bin ]; then
 fi
 
 # Ruby gems path
-if [ -d  ~/.gem/ruby/1.9.1/bin ]; then
-    export PATH=$PATH:~/.gem/ruby/1.9.1/bin
+if [ -d  ~/.gem ]; then
+    export PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
 # Parse my aliases
