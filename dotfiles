@@ -12,6 +12,9 @@
 .mostrc
 .vimrc
 .vimrc.bundles
+.vimrc.settings
+.vimrc.mappings
+.vimrc.display
 .xinitrc
 .xmobarrc
 .Xmodmap

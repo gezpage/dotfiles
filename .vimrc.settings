@@ -1,0 +1,165 @@
+""
+"" Basic Setup
+""
+
+" When switching buffers, preserve window view.
+autocmd BufLeave * if !&diff | let b:winview = winsaveview() | endif
+autocmd BufWinEnter * if exists('b:winview') && !&diff | call winrestview(b:winview) | endif
+
+set nocompatible      " Use vim, no vi defaults
+set relativenumber    " Show relative line numbers"
+"set number            " Show line numbers
+set ruler             " Show line and column number
+syntax enable         " Turn on syntax highlighting allowing local overrides
+set encoding=utf-8    " Set default encoding to UTF-8
+
+""
+"" Whitespace
+""
+
+set nowrap                        " don't wrap lines
+set expandtab                     " use spaces, not tabs
+set list                          " Show invisible characters
+set backspace=indent,eol,start    " backspace through everything in insert mode
+
+set shiftwidth=4                " use indents of 4 spaces
+set tabstop=4                   " an indentation every four columns
+set softtabstop=4               " let backspace delete indent
+
+if exists("g:enable_mvim_shift_arrow")
+  let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
+endif
+
+" List chars
+set listchars=""                  " Reset the listchars
+set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
+set listchars+=trail:.            " show trailing spaces as dots
+set listchars+=extends:>          " The character to show in the last column when wrap is
+                                  " off and the line continues beyond the right of the screen
+set listchars+=precedes:<         " The character to show in the last column when wrap is
+                                  " off and the line continues beyond the right of the screen
+
+""
+"" Searching
+""
+
+set hlsearch    " highlight matches
+set incsearch   " incremental searching
+set ignorecase  " searches are case insensitive...
+set smartcase   " ... unless they contain at least one capital letter
+set magic       " change the way backslashes are used in search patterns
+
+""
+"" Wild settings
+""
+
+" TODO: Investigate the precise meaning of these settings
+" set wildmode=list:longest,list:full
+
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+
+" Disable Symfony cache files
+set wildignore+=*/app/cache/*
+
+" Disable Smarty cache files
+set wildignore+=*/templates_c/*
+
+""
+"" Backup and swap files
+""
+
+"set backupdir=~/.vim/_backup//    " where to put backup files.
+"set directory=~/.vim/_temp//      " where to put swap files.
+
+""
+" statusline
+""
+
+if has("statusline") && !&cp
+  set laststatus=2  " always show the status bar
+
+  " Start the status line
+  set statusline=%f\ %m\ %r
+  set statusline+=Line:%l/%L[%p%%]
+  set statusline+=Col:%v
+  set statusline+=Buf:#%n
+  set statusline+=[%b][0x%B]
+endif
+
+" File formats
+set fileformat=unix     " file mode is unix
+set fileformats=unix,dos,mac   " detects unix, dos, mac file formats in that order
+
+" Min height for each window - allows stacking when using C-k and C-j
+"set winminheight=0
+
+
+" Tags file
+set tags+=.git/tags
+
+" Allow hiding buffers without saving first
+set hidden
+
+set showmatch           " show matching bracket (briefly jump)
+set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
+
+" Show horizontal cursor
+set cursorline
+
+" folding
+set nofoldenable
+"set foldlevelstart=99
+"set foldlevel=99
+"let g:DisableAutoPHPFolding = 1
+
+"set fdm=indent
+"set fdc=4
+"set fdl=1
+
+set showmatch           " show matching bracket (briefly jump)
+set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
+
+" tries to avoid those annoying "hit enter to continue" messages
+" if it still doesn't help with certain commands, add a second <cr>
+" at the end of the map command
+set shortmess=a
+
+" none of these should be word dividers, so make them not be
+set iskeyword+=_,$,@,%,#
+
+" Disable backup and swap files because they are just a PITA!
+set nobackup
+set noswapfile
+
+" Set paste toggle 3x commas
+map <leader>,, :set invpaste<CR>
+set pastetoggle=<F10>
+
+" Minimum lines to keep above and below cursor
+set scrolloff=3
+
+" Allow project specific settings
+set exrc
+set secure
+
+" Disable Ex mode Q key mapping
+nnoremap Q <nop>
+
+" For snippet_complete marker.
+if has('conceal')
+    set conceallevel=2 concealcursor=i
+endif
+
+" always switch to the current file directory.
+" Disabled to get Symfony2 bundle working!
+"autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif

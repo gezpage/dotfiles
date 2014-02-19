@@ -1,0 +1,48 @@
+""
+"" Colour scheme & display
+""
+
+NeoBundle 'flazz/vim-colorschemes'
+
+set background=dark
+
+" Solarized specific settings
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+"colorscheme desert256
+"colorscheme jellybeans
+"colorscheme badwolf
+"colorscheme herald
+"colorscheme Tomorrow-Night
+colorscheme solarized
+
+" Force transparent backgrounds
+hi Normal         ctermbg=none
+hi NonText        ctermbg=none
+hi Comment        ctermbg=none
+hi Constant       ctermbg=none
+hi String         ctermbg=none
+hi Error          ctermbg=none
+hi Identifier     ctermbg=none
+hi Function       ctermbg=none
+hi Ignore         ctermbg=none
+hi PreProc        ctermbg=none
+hi Special        ctermbg=none
+hi Todo           ctermbg=none
+hi Underlined     ctermbg=none
+hi Statement      ctermbg=none
+hi Operator       ctermbg=none
+hi Delimiter      ctermbg=none
+hi Type           ctermbg=none
+hi Exception      ctermbg=none
+
+" Do not make tabs show as red
+hi RedundantWhitespace ctermbg=none
+match RedundantWhitespace /\s\+$\|\t/
+
+" Don't show dumb highlighting on so called spelling mistakes
+hi clear SpellBad
+" Use subtle underline instead
+hi SpellBad cterm=underline

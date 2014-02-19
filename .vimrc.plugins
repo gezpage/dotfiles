@@ -1,0 +1,563 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Gundo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"map <leader>g :GundoToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Undotree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>ut :UndotreeToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Markdown specific tag settings
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
+
+map <leader>rt :TagbarToggle<CR>
+
+let g:tagbar_width = 30
+let g:tagbar_compact = 1
+let g:tagbar_iconchars = ['▸', '▾']
+let g:tagbar_foldlevel = 99
+let g:tagbar_indent = 2
+let g:tagbar_show_visibility = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Command-T
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"map <C-t> :CommandT<CR>
+"map <C-b> :CommandTBuffer<CR>
+"let g:CommandTMatchWindowReverse = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Symfony
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:symfony_app_console_caller= "php"
+let g:symfony_app_console_path= "app/console"
+map <leader>sf :execute ":!"g:symfony_enable_shell_cmd<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Yankring
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:yankring_history_dir = '$HOME/tmp/vim'
+"" this is so that single char deletes don't end up in the yankring
+"let g:yankring_min_element_length = 2
+"let g:yankring_window_height = 14
+"nnoremap <leader>yr :YRShow<CR>
+
+"" this makes Y yank from the cursor to the end of the line, which makes more
+"" sense than the default of yanking the whole current line (we can use yy for
+"" that)
+"function! YRRunAfterMaps()
+    "nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+"endfunction
+
+" Map  yankring show to ,y yankring search to ,,y
+"map <leader>y :YRShow<CR>
+"map <leader><leader>y :YRSearch<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Yankstack
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fix for clobbering vS key when using surround.vim
+"call yankstack#setup()
+
+map <C-p> <Plug>yankstack_substitute_older_paste
+nmap <C-n> <Plug>yankstack_substitute_newer_paste
+map <leader>y :Yanks<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               Gitv
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>gv :Gitv --all<cr>
+nmap <leader>gV :Gitv! --all<cr>
+vmap <leader>gV :Gitv! --all<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             MySQLRun
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"map <leader>my :MySQLRun<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             VimCalc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"map <leader>cl :Calc<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              ack-grep
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ackprg="ack-grep -H --nocolor --nogroup --column --type-set=twig=.twig"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             GoldenView
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:goldenview__enable_default_mapping = 0
+let g:goldenview__enable_at_startup = 0
+" 1. split to tiled windows
+nmap <silent> <C-G>  <Plug>GoldenViewSplit
+" 2. quickly switch current window with the main pane
+" and toggle back
+nmap <silent> <leader>gg <Plug>GoldenViewSwitchMain
+nmap <silent> <leader>gf <Plug>GoldenViewSwitchToggle
+"nmap <silent> <F8>   <Plug>GoldenViewSwitchMain
+"nmap <silent> <S-F8> <Plug>GoldenViewSwitchToggle
+" 3. jump to next and previous window
+"nmap <silent> <C-N>  <Plug>GoldenViewNext
+"nmap <silent> <C-P>  <Plug>GoldenViewPrevious
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Bufstop
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"map <C-b> :BufstopFast<CR>             " get a visual on the buffers
+"map <leader>b :Bufstop<CR>             " get a visual on the buffers
+"let g:BufstopAutoSpeedToggle = 1       " now I can press ,3,3,3 to cycle the last 3 buffers
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               PHPDebug                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F5> :python debugger_run()<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              SpeedDating                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap  <C-M>     <Plug>SpeedDatingUp
+nmap  <C-X>     <Plug>SpeedDatingDown
+xmap  <C-M>     <Plug>SpeedDatingUp
+xmap  <C-X>     <Plug>SpeedDatingDown
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                PHPCtags                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tagbar_phpctags_bin='/home/gez/bin/phpctags'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               NERDTree                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>n :NERDTreeFocus<CR>:SignatureRefresh<CR>
+map <leader>m :NERDTreeFind<CR>:SignatureRefresh<CR>
+map <leader>er :NERDTreeToggle<CR>:SignatureRefresh<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=0
+let nerdtreeshowhidden=1
+let nerdtreekeeptreeinnewtab=1
+let NERDTreeMinimalUI=1
+
+" Close NERDTree when leaving Vim - this prevents breaking session loading
+autocmd VimLeave * NERDTreeClose
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               Netrw
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"map <leader>n :Explore<CR>
+
+"let g:netrw_altv          = 1
+"let g:netrw_fastbrowse    = 2
+"let g:netrw_keepdir       = 0
+let g:netrw_liststyle     = 3
+"let g:netrw_retmap        = 1
+"let g:netrw_silent        = 1
+let g:netrw_special_syntax= 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           HTML Autoclosetag
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"au FileType html.twig,xhtml,xml,smarty so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Disable PHP CodeSniffer
+let g:syntastic_phpcs_disable = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                PHPUnitqf                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:phpunit_args = "--configuration ../../../../../app/phpunit.vim.xml"
+map <leader>pu :Test %<CR><CR>
+map <leader>po :TestOutput<CR>L<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Vimpanel                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>ss :VimpanelSessionMake<CR>
+map <leader>sl :VimpanelSessionLoad<CR>
+cabbrev vp Vimpanel
+cabbrev vl VimpanelLoad
+cabbrev vc VimpanelCreate
+cabbrev ve VimpanelEdit
+cabbrev vr VimpanelRemove
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Fugitive                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>gs :Gstatus<CR>
+map <leader>gc :Gcommit<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                session                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" you also need to run :SaveSession once to create the default.vim session that
+" will then be autoloaded/saved from then on
+
+let g:session_autoload        = 'yes'
+let g:session_autosave        = 'yes'
+let g:session_default_to_last = 'yes'
+let g:session_directory       = '~/tmp/vim/sessions'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                SuperTab                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SuperTab completion fall-back
+"let g:SuperTabDefaultCompletionType='<c-x><c-i><c-p>'
+let g:SuperTabDefaultCompletionType='context'
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            phpDoc (pdv)                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+let g:pdv_template_dir = $HOME ."/.vim_templates/pdv/templates_snip"
+"nnoremap <buffer> <C-p> :call pdv#DocumentCurrentLine()<CR>
+nnoremap <leader>pp :call pdv#DocumentWithSnip()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            php-namespace                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
+noremap <Leader>pn :call PhpInsertUse()<CR>
+"inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
+noremap <Leader>pe :call PhpExpandClass()<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            php-cs-fixer                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" If php-cs-fixer is in $PATH, you don't need to define line below
+" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "all"                  " which level ?
+let g:php_cs_fixer_config = "sf21"            " configuration
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
+let g:php_cs_fixer_fixers_list = ""               " List of fixers
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            php-qa                                       "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:phpqa_codesniffer_args = "--standard=Symfony2"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            MatchTagAlways                               "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'html.twig' : 1,
+    \}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                bufkill                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use the arrows for something useful
+" :BB switches to the previous buffer shown in the current window, :BF switches
+" to the next one; it's like a buffer history for every window
+noremap <right> :BF<cr>
+noremap <left> :BB<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                YATE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tag Jump
+noremap <Leader>tj :YATE<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              UltiSnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsSnippetDirectories=["custom_snippets"]
+let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsListSnippets="<c-u>"
+let g:UltiSnipsDontReverseSearchPath="1"
+
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s-p>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Thumbnail
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader><tab> :Thumbnail<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              Behat
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let feature_filetype='behat'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Powerline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+
+" Always show statusline
+set laststatus=2
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
+" Powerline fancy patched font goodness
+let g:Powerline_symbols = 'fancy'
+
+if ! has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<C-t>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['.projectroot']
+let g:ctrlp_match_window = 'bottom,order:ttb,min:8,max:20'
+let g:ctrlp_cache_dir = $HOME.'/.vim/ctrlp_cache'
+map <C-b> ::CtrlPMRUFiles<CR>
+
+let g:ctrlp_extensions = ['funky']
+map <Leader>tf :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+map <Leader>tF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+map <Leader>tm :CtrlPModified<CR>
+map <Leader>tM :CtrlPBranch<CR>
+map <Leader>tc :CtrlPCmd<CR>
+map <Leader>ty :CtrlPYank<CR>
+map <Leader>tt :CtrlPMenu<CR>
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             CtrlP tjump
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <c-]> :CtrlPtjump<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Unite
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nnoremap <C-t> :Unite -start-insert file<cr>
+"nnoremap <C-t> :<C-u>Unite -start-insert file_rec/async:!<CR>
+"let g:unite_force_overwrite_statusline = 0
+"call unite#custom#source('file,file/new,buffer,file_rec',
+    "\ 'matchers', 'matcher_fuzzy')
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_powerline_fonts = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Breeze
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd Filetype twig,html,smarty map ]] :BreezeJumpF<cr>
+autocmd Filetype twig,html,smarty map [[ :BreezeJumpB<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Todo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" todo.vim default highlight groups, feel free to override as wanted
+hi link TodoTitle Title
+hi link TodoTitleMark Normal
+hi link TodoItem Special
+hi link TodoItemAdditionalText Comment
+hi link TodoItemCheckBox Identifier
+hi link TodoItemDone Ignore
+hi link TodoComment Comment " explicit comments must be enabled for this
+
+" define like this to enable explicit comments
+" comments then start with //
+let g:TodoExplicitCommentsEnabled = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           YouCompleteMe
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:ycm_cache_omnifunc = 0
+"let g:ycm_collect_identifiers_from_tags_files = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Vertigo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Space>j :<C-U>VertigoDown n<CR>
+vnoremap <silent> <Space>j :<C-U>VertigoDown v<CR>
+onoremap <silent> <Space>j :<C-U>VertigoDown o<CR>
+nnoremap <silent> <Space>k :<C-U>VertigoUp n<CR>
+vnoremap <silent> <Space>k :<C-U>VertigoUp v<CR>
+onoremap <silent> <Space>k :<C-U>VertigoUp o<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Multiedit
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Insert a disposable marker after the cursor
+nmap <leader>ma :MultieditAddMark a<CR>
+
+" Insert a disposable marker before the cursor
+nmap <leader>mi :MultieditAddMark i<CR>
+
+" Make a new line and insert a marker
+nmap <leader>mo o<Esc>:MultieditAddMark i<CR>
+nmap <leader>mO O<Esc>:MultieditAddMark i<CR>
+
+" Insert a marker at the end/start of a line
+nmap <leader>mA $:MultieditAddMark a<CR>
+nmap <leader>mI ^:MultieditAddMark i<CR>
+
+" Make the current selection/word an edit region
+vmap <leader>m :MultieditAddRegion<CR>
+nmap <leader>mm viw:MultieditAddRegion<CR>
+
+" Restore the regions from a previous edit session
+nmap <leader>mu :MultieditRestore<CR>
+
+" Move cursor between regions n times
+map ]m :MultieditHop 1<CR>
+map [m :MultieditHop -1<CR>
+
+" Start editing!
+nmap <leader>M :Multiedit<CR>
+
+" Clear the word and start editing
+nmap <leader>C :Multiedit!<CR>
+
+" Unset the region under the cursor
+nmap <silent> <leader>md :MultieditClear<CR>
+
+" Unset all regions
+nmap <silent> <leader>mr :MultieditReset<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           PHPComplete
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:phpcomplete_complete_for_unknown_classes = 1
+let g:phpcomplete_parse_docblock_comments = 0
+" Disable preview window
+set completeopt-=preview
+"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            Butane
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <leader>bd :Bclose<CR>      " Close the buffer.
+noremap <leader>bl :EasyBufferToggle<CR>          " List buffers.
+noremap <leader>bn :bn<CR>          " Next buffer.
+noremap <leader>bp :bp<CR>          " Previous buffer.
+noremap <leader>bt :b#<CR>          " Toggle to most recently used buffer.
+noremap <leader>bx :Bclose!<CR>     " Close the buffer & discard changes.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           Zencoding
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:zen_html_tab()
+  let line = getline('.')
+  if match(line, '<.*>') >= 0
+    return "\<c-y>n"
+  endif
+  return "\<c-y>,"
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           Matchmaker
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"autocmd VimEnter * Matchmaker
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Ctags
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+fun! UpdateCtags()
+    let ctags_cmd = ".git/hooks/php/ctags-develop/update-ctags"
+    let output = system(ctags_cmd)
+endfun
+map <leader>uc :call UpdateCtags()<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            Lightline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:lightline = {
+      \ 'colorscheme': 'landscape',
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'MyModified',
+      \   'readonly': 'MyReadonly',
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '⭤' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
+        \ '' != expand('%t') ? expand('%t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  return &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head') && strlen(fugitive#head()) ? '⭠ '.fugitive#head() : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth('.') > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth('.') > 60 ? lightline#mode() : ''
+endfunction
+

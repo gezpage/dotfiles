@@ -1,7 +1,6 @@
 " NeoBundle bundles go here
 
 " Display plugins
-NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'spf13/vim-preview'
 NeoBundle 'zhaocai/GoldenView.Vim'
 NeoBundle 'bling/vim-airline'
@@ -99,3 +98,7 @@ NeoBundle 'mattn/zencoding-vim'
 
 " Application plugins
 NeoBundle 'aaronbieber/quicktask'
+
+if filereadable(expand("~/.vimrc.plugins"))
+    source ~/.vimrc.plugins
+endif
