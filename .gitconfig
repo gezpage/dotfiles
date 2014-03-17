@@ -22,3 +22,5 @@
     untracked = cyan
 [init]
 	templatedir = ~/.git_template
+[push]
+	default = matching
