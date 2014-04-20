@@ -21,6 +21,6 @@
     changed = green
     untracked = cyan
 [init]
-	templatedir = ~/.git_template
+    templatedir = ~/.git_template
 [push]
-	default = matching
+    default = simple
