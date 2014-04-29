@@ -116,3 +116,5 @@ bindkey -s '^[[Z' '\t'
     #source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 #fi
 
+# Enable tmux window title as hostname
+printf "\033k`hostname -s`\033\\"
