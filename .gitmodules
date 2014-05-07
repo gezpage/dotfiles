@@ -20,3 +20,6 @@
 [submodule ".git_template"]
 	path = .git_template
 	url = git@github.com:greg0ire/git_template.git
+[submodule "modules/spark"]
+	path = modules/spark
+	url = git@github.com:holman/spark.git
