@@ -1,6 +1,28 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+#------------------------------------------////
+# Colors:
+#------------------------------------------////
+black='\e[0;30m'
+blue='\e[0;34m'
+green='\e[0;32m'
+cyan='\e[0;36m'
+red='\e[0;31m'
+purple='\e[0;35m'
+brown='\e[0;33m'
+lightgray='\e[0;37m'
+darkgray='\e[1;30m'
+lightblue='\e[1;34m'
+lightgreen='\e[1;32m'
+lightcyan='\e[1;36m'
+lightred='\e[1;31m'
+lightpurple='\e[1;35m'
+yellow='\e[1;33m'
+white='\e[1;37m'
+nc='\e[0m'
+
+
 POWERLINE_NO_BLANK_LINE="true"
 POWERLINE_RIGHT_A="mixed"
 POWERLINE_FULL_CURRENT_PATH="true"
@@ -118,3 +140,13 @@ bindkey -s '^[[Z' '\t'
 
 # Enable tmux window title as hostname
 printf "\033k`hostname -s`\033\\"
+
+# Print info on new connection
+
+echo -e "${blue}"`date`; echo ""
+if hash lsb_release 2>/dev/null; then
+    echo -e "${yellow}" Distro `lsb_release -d`;
+fi
+echo -e "${yellow}`uptime`"; echo ""
+
+echo -e "${blue}Connected to ${white}`hostname -s`"; echo ""
