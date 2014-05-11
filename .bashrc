@@ -196,34 +196,9 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
-PROMPTCOL=$WHITE
+PROMPTCOL=$RED
 
-# Host specific prompt colours :)
-case $(hostname) in
-        akira )
-                PROMPTCOL=$GREEN
-                ;;
-        cadmium )
-                PROMPTCOL=$GREEN
-                ;;
-        magnesium )
-                PROMPTCOL=$BLUE
-                ;;
-        dds88.wesh.co.uk )
-                PROMPTCOL=$RED
-                ;;
-        ppdev2 )
-                PROMPTCOL=$YELLOW
-                ;;
-        raspberrypi )
-                PROMPTCOL=$txtcyn
-                ;;
-        tetsuo )
-                PROMPTCOL=$txtcyn
-                ;;
-esac
-
-export PS1="$PROMPTCOL\u@\h:$PURPLE\$(shortpath)$RED\$(parse_git_branch)$YELLOW\$$WHITE "
+export PS1="$PROMPTCOL\u@\h:$BLUE\$(shortpath)$RED\$(parse_git_branch)$YELLOW\$$WHITE "
 
 export EDITOR="vim"
 
@@ -232,3 +207,12 @@ cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$@/$(echo -n $@ | 
 
 export VMAIL_BROWSER='elinks'
 export MYSQL_PS1="\u@\h [\d]> "
+
+# Print info on new connection
+echo -e "${txtblu}"`date`; echo ""
+if hash lsb_release 2>/dev/null; then
+    echo -e "${txtylw}" Distro `lsb_release -d`;
+fi
+echo -e "${txtylw}`uptime`"; echo ""
+
+echo -e "${txtblu}Connected to ${bldwht}`hostname -s`"; echo ""
