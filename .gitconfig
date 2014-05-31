@@ -24,3 +24,25 @@
     templatedir = ~/.git_template
 [push]
     default = simple
+[alias]
+    ci = commit
+    co = checkout
+    st = status -sb
+    # add --update stages modifications of tracked files,
+    # as well as removes files from the index if their
+    # corresponding files from the working tree have been
+    # erased.
+    au = add --update
+    # add --all does the same as add --update, but also
+    # with files on the working tree. If a file is added/
+    # modified/removed in the working tree and wasn't in
+    # the index, it will be added/modified/removed after
+    # running this command.
+    aa = add --all
+    # add --all --patch does the prior command, but
+    # letting you interactively choose hunks of patches
+    # between the index and the working tree. It's great
+    # for splitting your current work into multiple commits.
+    hunk = add --all --patch
+    # To checkout a feature branch
+    feature = !sh -c 'git checkout -b feature/$1' -
