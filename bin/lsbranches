@@ -1,17 +1,42 @@
 #!/bin/bash
 
-function output {
-    message=$*
-    echo -e "\e[01;33m${message}\e[00m"
+function yellow {
+    echo -ne "\e[01;33m${*}\e[00m"
 }
+function red {
+    echo -ne "\e[01;31m${*}\e[00m"
+}
+function parse_git_branch {
+    yellow $(git rev-parse --abbrev-ref HEAD)
+}
+function parse_git_dirty {
+    red $(git diff --quiet || echo -n "[*]")
+}
+function parse_git_change_count {
+    changes=`git diff --numstat |wc -l`
+    if [ $changes -eq 1 ]; then
+        echo -n " ($changes file changed)"
+    elif [ $changes -gt 0 ]; then
+        echo -n " ($changes files changed)"
+    fi
+}
+
+yellow "\nListing Git repositories inside this directory:\n\n"
+
+echo -n "Directory "
+yellow "Branch "
+red [Dirty]
+echo ""
 
 for D in *;
 do
-    if [ -d $D ]; then
+    if [ -d "$D" ]; then
         cd $D;
         if [ -d .git ]; then
-            ( echo -n "$D: " && output `git rev-parse --abbrev-ref HEAD` )
-        fi;
+            ( echo -n "$D " && parse_git_branch && parse_git_dirty && parse_git_change_count && echo "" )
+        elif [ ! -z $1 ] && [ $1 = "--all" ]; then
+            echo $D;
+        fi
         cd ..;
     fi;
 done
