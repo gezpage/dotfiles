@@ -97,6 +97,12 @@ if [ -d  /usr/local/heroku/bin ]; then
     export PATH=$PATH:/usr/local/heroku/bin
 fi
 
+# Composer path
+if [ -d  ~/.composer/vendor/bin ]; then
+    export PATH=$PATH:~/.composer/vendor/bin
+fi
+
+
 # Ruby gems path
 if [ -d  ~/.gem ]; then
     export PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
@@ -150,3 +156,6 @@ fi
 echo -e "${yellow}`uptime`"; echo ""
 
 echo -e "${blue}Connected to ${white}`hostname -s`"; echo ""
+
+export NVM_DIR="/home/gez/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

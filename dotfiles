@@ -36,3 +36,4 @@ bin/find_tilde_backups.sh
 bin/dotfiles
 bin/ctags
 bin/mux
+bin/lsbranches
