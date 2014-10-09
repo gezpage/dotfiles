@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [ ! -z $1 ] && [ $1 = "--git-only" ]; then
+    showfiles=0
+    showdirs=0
+else
+    showfiles=1
+    showdirs=1
+fi
+
 function yellow {
     echo -ne "\e[01;33m${*}\e[00m"
 }
@@ -31,12 +39,14 @@ echo ""
 for D in *;
 do
     if [ -d "$D" ]; then
-        cd $D;
+        cd "$D";
         if [ -d .git ]; then
             ( echo -n "$D " && parse_git_branch && parse_git_dirty && parse_git_change_count && echo "" )
-        elif [ ! -z $1 ] && [ $1 = "--all" ]; then
+        elif [ $showdirs = 1 ]; then
             echo $D;
         fi
         cd ..;
+    elif [ $showfiles = 1 ]; then
+        echo $D;
     fi;
 done
