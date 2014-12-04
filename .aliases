@@ -15,7 +15,7 @@ alias bash_shortcuts='bind -P'
 
 # git shortcuts
 alias gitlog="git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --color"
-alias gittag="git tag -l |sort -V"
+alias gittag="git tag -n |sort -V"
 
 # geeknote
 alias geeknote="python /home/gez/.dotfiles/modules/geeknote/geeknote.py"
