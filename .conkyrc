@@ -1,8 +1,3 @@
-# Swap Usage:$color $swapperc%${color lightgrey}
-
-# the ${template x x x} command uses /sys/bus/platform/devices
-# for this to work you need both lm-sensors and hddtemp get both from main repos
-
 # set to yes if you want Conky to be forked in the background
 background yes
 
@@ -12,15 +7,15 @@ own_window_transparent yes
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 out_to_console no
 use_xft yes
-xftfont monospace:size=9
-update_interval 2
+xftfont Ubuntu mono:size=11:antialias=true
+update_interval 3
 
 # Create own window instead of using desktop (required in nautilus)
 own_window yes
 
 # Use double buffering (reduces flicker, may not work for everyone)
 double_buffer yes
-maximum_width 300
+maximum_width 320
 
 draw_shades no
 
@@ -33,11 +28,8 @@ draw_borders no
 # Stippled borders?
 stippled_borders 1
 
-# border margins
-border_margin 20
-
 # border width
-border_width 100
+border_width 20
 
 # Default colors and also border colors
 default_color white
@@ -46,14 +38,11 @@ default_outline_color white
 
 # Text alignment, other possible values are commented
 alignment top_left
-#minimum_size 10 10
-#alignment top_right
-#alignment bottom_left
-#alignment bottom_right
 
 # Gap between borders of screen and text
 gap_x 20
-gap_y 30
+gap_y 50
+
 # Add spaces to keep things from moving about?  This only affects certain objects.
 use_spacer left
 
@@ -64,7 +53,8 @@ no_buffers yes
 uppercase no
 
 TEXT
-${color #55aaff}${alignc}$nodename
+$alignc${color #55aaff}${font Openlogos:size=30}a$font
+$alignc${color #55aaff}${font Audiowide:size=20}$nodename$font
 
 ${alignc}$color $kernel on $machine
 
@@ -79,48 +69,33 @@ ${color #656565}$stippled_hr$color
 
 ${color #6495ed}${alignc}${color lightgrey}Intel Xeon X3360 @ $color${freq_g} GHz${color lightgrey}
 
-${color #6495ed}core 0: ${alignr}${cpubar cpu1 6,200}$color  ${cpu cpu1}%
-${color #6495ed}core 1: ${alignr}${cpubar cpu2 6,200}$color  ${cpu cpu2}%
-${color #6495ed}core 2: ${alignr}${cpubar cpu3 6,200}$color  ${cpu cpu3}%
-${color #6495ed}core 3: ${alignr}${cpubar cpu4 6,200}$color  ${cpu cpu4}%
-${color #6495ed}core 4: ${alignr}${cpubar cpu5 6,200}$color  ${cpu cpu5}%
-${color #6495ed}core 5: ${alignr}${cpubar cpu6 6,200}$color  ${cpu cpu6}%
-${color #6495ed}core 6: ${alignr}${cpubar cpu7 6,200}$color  ${cpu cpu7}%
-${color #6495ed}core 7: ${alignr}${cpubar cpu8 6,200}$color  ${cpu cpu8}%
-${color black}${cpugraph 35,300 5000a0 6495ed}${color white}   
-${color #656565}$stippled_hr$color
+${color lightgrey}1 ${color #6495ed}${cpubar cpu1 6,130}$color $alignr ${color lightgrey}5 ${color #6495ed}${cpubar cpu5 6,130}$color $alignr 
+${color lightgrey}2 ${color #6495ed}${cpubar cpu2 6,130}$color $alignr ${color lightgrey}6 ${color #6495ed}${cpubar cpu6 6,130}$color $alignr 
+${color lightgrey}3 ${color #6495ed}${cpubar cpu3 6,130}$color $alignr ${color lightgrey}7 ${color #6495ed}${cpubar cpu7 6,130}$color $alignr 
+${color lightgrey}4 ${color #6495ed}${cpubar cpu4 6,130}$color $alignr ${color lightgrey}8 ${color #6495ed}${cpubar cpu8 6,130}$color $alignr 
+${color black}${cpugraph 35,320 5000a0 6495ed}${color white}   
 
-${color #6495ed}mem: ${alignr}$color$memfree free
-${color #6495ed}${membar 5,260}${alignr}${color lightgrey}$memperc%
-${color #6495ed}swap: ${alignr}$color$swapfree free
-${color #6495ed}${swapbar 5,260}${alignr}${color lightgrey}$swapperc%
+${color #6495ed}ram   ${membar 5,160} ${alignr}$color$memfree free
+${color #6495ed}swap  ${swapbar 5,160} ${alignr}$color$swapfree free
 
-${color #656565}$stippled_hr$color
-
-${color #6495ed}home: ${alignr}$color${fs_free /home} free
-${color #6495ed}${fs_bar 5,260 /home}${alignr}${color grey}${fs_used_perc /home}%
-${color #6495ed}root: ${alignr}$color${fs_free /} free
-${color #6495ed}${fs_bar 5,260 /}${alignr}${color grey}${fs_used_perc /}%
+${color #6495ed}/     ${fs_bar 5,160 /} ${alignr}$color${fs_free /} free
+${color #6495ed}/home ${fs_bar 5,160 /home} ${alignr}$color${fs_free /home} free
 
 ${color #656565}$stippled_hr$color
 
 ${alignc}$color$processes ${color lightgrey}processes $color$running_processes${color lightgrey} running
 
-${color}by mem usage              mem   cpu%  user
-${color #55aaff} ${top name 1}     ${top mem_res 1} ${top cpu 1} $alignr${top user 1} 
-${color lightgrey} ${top name 2}     ${top mem_res 2} ${top cpu 2} $alignr${top user 2} 
-${color lightgrey} ${top name 3}     ${top mem_res 3} ${top cpu 3} $alignr${top user 3} 
-${color lightgrey} ${top name 4}     ${top mem_res 4} ${top cpu 4} $alignr${top user 4} 
-#${color lightgrey} ${top name 5}     ${top mem_res 5} ${top cpu 5} $alignr${top user 5} 
-#${color lightgrey} ${top name 6}     ${top mem_res 6} ${top cpu 6} $alignr${top user 6} 
+${color}by mem usage           mem   cpu% ${alignr}user
+${color #55aaff} ${top name 1}  ${top mem_res 1} ${top cpu 1} $alignr ${top user 1}
+${color lightgrey} ${top name 2}  ${top mem_res 2} ${top cpu 2} $alignr ${top user 2}
+${color lightgrey} ${top name 3}  ${top mem_res 3} ${top cpu 3} $alignr ${top user 3}
+${color lightgrey} ${top name 4}  ${top mem_res 4} ${top cpu 4} $alignr ${top user 4}
 
-${color}by mem usage              mem   cpu%  user
-${color #55aaff} ${top_mem name 1}     ${top_mem mem_res 1} ${top_mem cpu 1} $alignr${top_mem user 1} 
-${color lightgrey} ${top_mem name 2}     ${top_mem mem_res 2} ${top_mem cpu 2} $alignr${top_mem user 2} 
-${color lightgrey} ${top_mem name 3}     ${top_mem mem_res 3} ${top_mem cpu 3} $alignr${top_mem user 3} 
-${color lightgrey} ${top_mem name 4}     ${top_mem mem_res 4} ${top_mem cpu 4} $alignr${top_mem user 4} 
-#${color lightgrey} ${top_mem name 5}     ${top_mem mem_res 5} ${top_mem cpu 5} $alignr${top_mem user 5} 
-#${color lightgrey} ${top_mem name 6}     ${top_mem mem_res 6} ${top_mem cpu 6} $alignr${top_mem user 6} 
+${color}by mem usage           mem   cpu% ${alignr}user
+${color #55aaff} ${top_mem name 1}  ${top_mem mem_res 1} ${top_mem cpu 1} $alignr ${top_mem user 1}
+${color lightgrey} ${top_mem name 2}  ${top_mem mem_res 2} ${top_mem cpu 2} $alignr ${top_mem user 2}
+${color lightgrey} ${top_mem name 3}  ${top_mem mem_res 3} ${top_mem cpu 3} $alignr ${top_mem user 3}
+${color lightgrey} ${top_mem name 4}  ${top_mem mem_res 4} ${top_mem cpu 4} $alignr ${top_mem user 4}
 
 ${color #656565}$stippled_hr$color
 
