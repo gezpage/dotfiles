@@ -70,10 +70,12 @@ ${alignc}$color $kernel on $machine
 
 ${color #6495ed}$color$alignc$uptime ${color lightgrey}uptime | $color$loadavg${color lightgrey}
 
-$color$stippled_hr${color lightgrey}
+${color #656565}$stippled_hr$color
 
-${alignc}loc:$color${addr wlp6s0} ${color lightgrey}pub:$color${curl http://icanhazip.com 60}
-$color$stippled_hr${color lightgrey}
+$color${alignc}${addr wlp6s0} | $color${curl http://icanhazip.com 60}
+${color lightgrey}${alignc}down:$color${totaldown wlp6s0} | ${color lightgrey}up:$color${totalup wlp6s0}
+
+${color #656565}$stippled_hr$color
 
 ${color #6495ed}${alignc}${color lightgrey}Intel Xeon X3360 @ $color${freq_g} GHz${color lightgrey}
 
@@ -86,41 +88,41 @@ ${color #6495ed}core 5: ${alignr}${cpubar cpu6 6,200}$color  ${cpu cpu6}%
 ${color #6495ed}core 6: ${alignr}${cpubar cpu7 6,200}$color  ${cpu cpu7}%
 ${color #6495ed}core 7: ${alignr}${cpubar cpu8 6,200}$color  ${cpu cpu8}%
 ${color black}${cpugraph 35,300 5000a0 6495ed}${color white}   
-$color$stippled_hr${color lightgrey}
+${color #656565}$stippled_hr$color
 
-${color #6495ed}mem: ${alignr}$color$mem free
+${color #6495ed}mem: ${alignr}$color$memfree free
 ${color #6495ed}${membar 5,260}${alignr}${color lightgrey}$memperc%
-${color #6495ed}swap: ${alignr}$color$swap free
+${color #6495ed}swap: ${alignr}$color$swapfree free
 ${color #6495ed}${swapbar 5,260}${alignr}${color lightgrey}$swapperc%
 
-$color$stippled_hr${color lightgrey}
+${color #656565}$stippled_hr$color
 
 ${color #6495ed}home: ${alignr}$color${fs_free /home} free
 ${color #6495ed}${fs_bar 5,260 /home}${alignr}${color grey}${fs_used_perc /home}%
 ${color #6495ed}root: ${alignr}$color${fs_free /} free
 ${color #6495ed}${fs_bar 5,260 /}${alignr}${color grey}${fs_used_perc /}%
 
-$color$stippled_hr${color lightgrey}
+${color #656565}$stippled_hr$color
 
 ${alignc}$color$processes ${color lightgrey}processes $color$running_processes${color lightgrey} running
 
-${color}by cpu usage        pid    cpu%   mem%
-${color #55aaff} ${top name 1}  ${top pid 1} ${top cpu 1} ${top mem 1}
-${color lightgrey} ${top name 2}  ${top pid 2} ${top cpu 2} ${top mem 2}
-${color lightgrey} ${top name 3}  ${top pid 3} ${top cpu 3} ${top mem 3}
-${color lightgrey} ${top name 4}  ${top pid 4} ${top cpu 4} ${top mem 4}
-#${color lightgrey} ${top name 5}  ${top pid 5} ${top cpu 5} ${top mem 5}
-#${color lightgrey} ${top name 6}  ${top pid 6} ${top cpu 6} ${top mem 6}
+${color}by mem usage              mem   cpu%  user
+${color #55aaff} ${top name 1}     ${top mem_res 1} ${top cpu 1} $alignr${top user 1} 
+${color lightgrey} ${top name 2}     ${top mem_res 2} ${top cpu 2} $alignr${top user 2} 
+${color lightgrey} ${top name 3}     ${top mem_res 3} ${top cpu 3} $alignr${top user 3} 
+${color lightgrey} ${top name 4}     ${top mem_res 4} ${top cpu 4} $alignr${top user 4} 
+#${color lightgrey} ${top name 5}     ${top mem_res 5} ${top cpu 5} $alignr${top user 5} 
+#${color lightgrey} ${top name 6}     ${top mem_res 6} ${top cpu 6} $alignr${top user 6} 
 
-${color}by mem usage        pid    cpu%   mem%
-${color #55aaff} ${top_mem name 1}  ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
-${color lightgrey} ${top_mem name 2}  ${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
-${color lightgrey} ${top_mem name 3}  ${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
-${color lightgrey} ${top_mem name 4}  ${top_mem pid 4} ${top_mem cpu 4} ${top_mem mem 4}
-#${color lightgrey} ${top_mem name 5}  ${top_mem pid 5} ${top_mem cpu 5} ${top_mem mem 5}
-#${color lightgrey} ${top_mem name 6}  ${top_mem pid 6} ${top_mem cpu 6} ${top_mem mem 6}
+${color}by mem usage              mem   cpu%  user
+${color #55aaff} ${top_mem name 1}     ${top_mem mem_res 1} ${top_mem cpu 1} $alignr${top_mem user 1} 
+${color lightgrey} ${top_mem name 2}     ${top_mem mem_res 2} ${top_mem cpu 2} $alignr${top_mem user 2} 
+${color lightgrey} ${top_mem name 3}     ${top_mem mem_res 3} ${top_mem cpu 3} $alignr${top_mem user 3} 
+${color lightgrey} ${top_mem name 4}     ${top_mem mem_res 4} ${top_mem cpu 4} $alignr${top_mem user 4} 
+#${color lightgrey} ${top_mem name 5}     ${top_mem mem_res 5} ${top_mem cpu 5} $alignr${top_mem user 5} 
+#${color lightgrey} ${top_mem name 6}     ${top_mem mem_res 6} ${top_mem cpu 6} $alignr${top_mem user 6} 
 
-$color$stippled_hr${color lightgrey}
+${color #656565}$stippled_hr$color
 
 ${color #6495ed}bbc news
 $color${rss http://feeds.bbci.co.uk/news/rss.xml?edition=uk 15 item_titles 6 1}
