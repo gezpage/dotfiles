@@ -7,8 +7,8 @@ own_window_transparent yes
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 out_to_console no
 use_xft yes
-xftfont Ubuntu mono:size=11:antialias=true
-update_interval 3
+xftfont Ubuntu:size=10:antialias=true
+update_interval 1
 
 # Create own window instead of using desktop (required in nautilus)
 own_window yes
@@ -53,50 +53,54 @@ no_buffers yes
 uppercase no
 
 TEXT
-$alignc${color #55aaff}${font Openlogos:size=30}a$font
-$alignc${color #55aaff}${font Audiowide:size=20}$nodename$font
+${alignc}${color #55aaff}${font ConkySymbols:size=30}t$font
+${alignc}${color #55aaff}${font Audiowide:size=20}$nodename$font
 
-${alignc}$color $kernel on $machine
+${alignc}${color #FFFFFF}$kernel on $machine
 
-${color #6495ed}$color$alignc$uptime ${color lightgrey}uptime | $color$loadavg${color lightgrey}
+${alignc}${color #BBBBBB}$uptime uptime | $loadavg
 
 ${color #656565}$stippled_hr$color
 
-$color${alignc}${addr wlp6s0} | $color${curl http://icanhazip.com 60}
-${color lightgrey}${alignc}down:$color${totaldown wlp6s0} | ${color lightgrey}up:$color${totalup wlp6s0}
+${addr wlp6s0}${alignr} ${totalup wlp6s0} ${font Varta}${voffset -3}▲${font}
+${execi 360 curl http://icanhazip.com 60 | xargs} ${alignr} ${totaldown wlp6s0} ${font Varta}${voffset -3}▼${font}
 
 ${color #656565}$stippled_hr$color
 
 ${color #6495ed}${alignc}${color lightgrey}Intel Xeon X3360 @ $color${freq_g} GHz${color lightgrey}
 
-${color lightgrey}1 ${color #6495ed}${cpubar cpu1 6,130}$color $alignr ${color lightgrey}5 ${color #6495ed}${cpubar cpu5 6,130}$color $alignr 
-${color lightgrey}2 ${color #6495ed}${cpubar cpu2 6,130}$color $alignr ${color lightgrey}6 ${color #6495ed}${cpubar cpu6 6,130}$color $alignr 
-${color lightgrey}3 ${color #6495ed}${cpubar cpu3 6,130}$color $alignr ${color lightgrey}7 ${color #6495ed}${cpubar cpu7 6,130}$color $alignr 
-${color lightgrey}4 ${color #6495ed}${cpubar cpu4 6,130}$color $alignr ${color lightgrey}8 ${color #6495ed}${cpubar cpu8 6,130}$color $alignr 
-${color black}${cpugraph 35,320 5000a0 6495ed}${color white}   
+$alignc${color lightgrey}1 ${color #6495ed}${cpubar cpu1 4,50}$color ${color lightgrey}3 ${color #6495ed}${cpubar cpu3 4,50}$color ${color lightgrey}5 ${color #6495ed}${cpubar cpu5 4,50}$color ${color lightgrey}7 ${color #6495ed}${cpubar cpu4 4,50}$color
+$alignc${color lightgrey}2 ${color #6495ed}${cpubar cpu2 4,50}$color ${color lightgrey}4 ${color #6495ed}${cpubar cpu4 4,50}$color ${color lightgrey}6 ${color #6495ed}${cpubar cpu6 4,50}$color ${color lightgrey}8 ${color #6495ed}${cpubar cpu8 4,50}$color
 
-${color #6495ed}ram   ${membar 5,160} ${alignr}$color$memfree free
-${color #6495ed}swap  ${swapbar 5,160} ${alignr}$color$swapfree free
+${color #777777} ${font ConkySymbols:size=18}f
+${voffset -45}${alignr}$font ${color #111111}${cpugraph 25,265 000000 6495ed}${color white}
 
-${color #6495ed}/     ${fs_bar 5,160 /} ${alignr}$color${fs_free /} free
-${color #6495ed}/home ${fs_bar 5,160 /home} ${alignr}$color${fs_free /home} free
+${color #FFFFFF}${top name 1} $alignr ${top mem_res 1} ${top cpu 1}
+${color #BBBBBB}${top name 2} $alignr ${top mem_res 2} ${top cpu 2}
+${color #888888}${top name 3} $alignr ${top mem_res 3} ${top cpu 3}
+${color #666666}${top name 4} $alignr ${top mem_res 4} ${top cpu 4}
+${color #444444}${top name 5} $alignr ${top mem_res 5} ${top cpu 5}
 
 ${color #656565}$stippled_hr$color
 
-${alignc}$color$processes ${color lightgrey}processes $color$running_processes${color lightgrey} running
+${font Ubuntu mono:size=11}${color #6495ed}ram   ${membar 4,160} ${alignr}$color$memeasyfree free${font}
+${font Ubuntu mono:size=11}${color #6495ed}swap  ${swapbar 4,160} ${alignr}$color$swapfree free${font}
 
-${color}by mem usage           mem   cpu% ${alignr}user
-${color #55aaff} ${top name 1}  ${top mem_res 1} ${top cpu 1} $alignr ${top user 1}
-${color lightgrey} ${top name 2}  ${top mem_res 2} ${top cpu 2} $alignr ${top user 2}
-${color lightgrey} ${top name 3}  ${top mem_res 3} ${top cpu 3} $alignr ${top user 3}
-${color lightgrey} ${top name 4}  ${top mem_res 4} ${top cpu 4} $alignr ${top user 4}
+${color #777777} ${font ConkySymbols:size=18}J
+${voffset -45}${alignr}$font ${color #111111}${memgraph 25,265 000000 6495ed}${color white}
+${color #FFFFFF}${top_mem name 1} $alignr ${top_mem mem_res 1} ${top_mem cpu 1}
+${color #BBBBBB}${top_mem name 2} $alignr ${top_mem mem_res 2} ${top_mem cpu 2}
+${color #888888}${top_mem name 3} $alignr ${top_mem mem_res 3} ${top_mem cpu 3}
+${color #666666}${top_mem name 4} $alignr ${top_mem mem_res 4} ${top_mem cpu 4}
+${color #444444}${top_mem name 5} $alignr ${top_mem mem_res 5} ${top_mem cpu 5}
 
-${color}by mem usage           mem   cpu% ${alignr}user
-${color #55aaff} ${top_mem name 1}  ${top_mem mem_res 1} ${top_mem cpu 1} $alignr ${top_mem user 1}
-${color lightgrey} ${top_mem name 2}  ${top_mem mem_res 2} ${top_mem cpu 2} $alignr ${top_mem user 2}
-${color lightgrey} ${top_mem name 3}  ${top_mem mem_res 3} ${top_mem cpu 3} $alignr ${top_mem user 3}
-${color lightgrey} ${top_mem name 4}  ${top_mem mem_res 4} ${top_mem cpu 4} $alignr ${top_mem user 4}
+${color #656565}$stippled_hr$color
 
+${font Ubuntu mono:size=11}${color #6495ed}/     ${fs_bar 4,160 /} ${alignr}$color${fs_free /} free${font}
+${font Ubuntu mono:size=11}${color #6495ed}/home ${fs_bar 4,160 /home} ${alignr}$color${fs_free /home} free${font}
+
+${color #777777} ${font ConkySymbols:size=18}k
+${voffset -45}${alignr}$font ${color #111111}${diskiograph 25,265 000000 6495ed}${color white}
 ${color #656565}$stippled_hr$color
 
 ${color #6495ed}bbc news
@@ -105,3 +109,5 @@ $color${rss http://feeds.bbci.co.uk/news/rss.xml?edition=uk 15 item_titles 6 1}
 ${color #6495ed}arch
 $color${rss https://www.archlinux.org/feeds/news/ 15 item_titles 4 1}
 
+#${color #6495ed}pacman
+#$color ${execi 600 checkupdates | wc -l} packages to update
