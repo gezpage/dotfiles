@@ -2,22 +2,22 @@
 background yes
 
 own_window yes
-own_window_type desktop
+own_window_type normal
+own_window_argb_visual yes
+own_window_argb_value 0
 own_window_transparent yes
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-out_to_console no
-use_xft yes
-xftfont Ubuntu:size=10:antialias=true
-update_interval 1
 
-# Create own window instead of using desktop (required in nautilus)
-own_window yes
+out_to_console yes
+use_xft yes
+xftfont Ubuntu:size=10
+update_interval 3
 
 # Use double buffering (reduces flicker, may not work for everyone)
 double_buffer yes
 maximum_width 320
 
-draw_shades no
+draw_shades yes
 
 # Draw outlines?
 draw_outline no
@@ -33,8 +33,8 @@ border_width 20
 
 # Default colors and also border colors
 default_color white
-default_shade_color white
-default_outline_color white
+default_shade_color black
+default_outline_color grey
 
 # Text alignment, other possible values are commented
 alignment top_left
@@ -59,7 +59,7 @@ ${alignc}${color #55aaff}${font Audiowide:size=20}$nodename$font
 ${alignc}${color #FFFFFF}$kernel on $machine
 
 ${alignc}${color #BBBBBB}$uptime uptime | $loadavg
-
+${alignc}$font ${color #111111}${loadgraph 25,265 000000 6495ed}${color white}
 ${color #656565}$stippled_hr$color
 
 ${addr wlp6s0}${alignr} ${totalup wlp6s0} ${font Varta}${voffset -3}▲${font}
@@ -110,4 +110,4 @@ ${color #6495ed}arch
 $color${rss https://www.archlinux.org/feeds/news/ 15 item_titles 4 1}
 
 #${color #6495ed}pacman
-#$color ${execi 600 checkupdates | wc -l} packages to update
+#$color ${execi 600 checkjpdates | wc -l} packages to update
