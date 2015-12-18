@@ -23,3 +23,6 @@
 [submodule "modules/spark"]
 	path = modules/spark
 	url = git@github.com:holman/spark.git
+[submodule "modules/tpm"]
+	path = modules/tpm
+	url = git@github.com:tmux-plugins/tpm.git
