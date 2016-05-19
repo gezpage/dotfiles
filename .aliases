@@ -19,3 +19,18 @@ alias gittag="git tag -n |sort -V"
 
 # geeknote
 alias geeknote="python /home/gez/.dotfiles/modules/geeknote/geeknote.py"
+
+# Git push master, develop & tags
+alias pushall="git push origin develop:develop && git push origin master:master && git push --tags"
+
+alias vim="nvim"
+
+alias revo="ssh -t -p 5000 home.gezpage.com"
+alias cammy="ssh -t -p 5001 home.gezpage.com"
+alias ryu="ssh -t 192.168.0.12"
+alias kitchen="ryu"
+alias ken="ssh -t 192.168.0.13"
+alias retropie="ssh -t 192.168.0.14"
+alias balrog="ssh -t -p 22 balrog.gezpage.com"
+
+alias notes="vim ~/Docs/notes.md"

@@ -1,5 +1,5 @@
 [user]
-    name = Gez Page
+    name = Gez
     email = gezpage@gmail.com
 [web]
     browser = google-chrome
@@ -20,8 +20,6 @@
     added = yellow
     changed = green
     untracked = cyan
-[init]
-    templatedir = ~/.git_template
 [push]
     default = simple
 [alias]
