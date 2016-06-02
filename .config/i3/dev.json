@@ -1,0 +1,78 @@
+{
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "percent": null,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1041,
+               "width": 1916,
+               "x": 12,
+               "y": 28
+            },
+            "name": "Management Training and Leadership Training - Online - Google Chrome",
+            "percent": 0.333333333333333,
+            "swallows": [
+               {
+               "class": "^google\\-chrome$",
+               "instance": "^google\\-chrome$",
+               "title": "^Management\\ Training\\ and\\ Leadership\\ Training\\ \\-\\ Online\\ \\-\\ Google\\ Chrome$",
+               "transient_for": "^$",
+               "window_role": "^browser$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 338,
+               "width": 562,
+               "x": 0,
+               "y": 0
+            },
+            "name": "Terminal",
+            "percent": 0.333333333333333,
+            "swallows": [
+               {
+               "class": "^Gnome\\-terminal$",
+               "instance": "^gnome\\-terminal\\-server$",
+               "title": "^Terminal$",
+               "transient_for": "^$",
+               "window_role": "^gnome\\-terminal\\-window\\-585d326a\\-dbed\\-4fa9\\-a3ef\\-5a9ea323e88d$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1041,
+               "width": 1916,
+               "x": 0,
+               "y": 18
+            },
+            "name": "MySQL Workbench",
+            "percent": 0.333333333333333,
+            "swallows": [
+               {
+               "class": "^Mysql\\-workbench\\-bin$",
+               "instance": "^mysql\\-workbench\\-bin$",
+               "title": "^MySQL\\ Workbench$",
+               "transient_for": "^$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

@@ -1,14 +1,14 @@
 # set to yes if you want Conky to be forked in the background
-background yes
+background no
 
-own_window yes
-own_window_type normal
-own_window_argb_visual yes
-own_window_argb_value 0
-own_window_transparent yes
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#own_window yes
+#own_window_type normal
+#own_window_argb_visual yes
+#own_window_argb_value 0
+#own_window_transparent no
+#own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 
-out_to_console yes
+out_to_console no
 use_xft yes
 xftfont Ubuntu:size=10
 update_interval 3

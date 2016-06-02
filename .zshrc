@@ -35,10 +35,10 @@ POWERLINE_DETECT_SSH="true"
 #ZSH_THEME="tjkirch"
 #ZSH_THEME="lambda"
 #ZSH_THEME="crunch"
-#ZSH_THEME="bira"
+ZSH_THEME="simple"
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="gnzh"
-ZSH_THEME="powerline"
+#ZSH_THEME="powerline"
 
 DEFAULT_USER=gez
 
@@ -75,7 +75,7 @@ DISABLE_CORRECTION="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git colored-man composer copydir copyfile debian git-flow github svn symfony2 tmux vagrant ruby gem)
+plugins=(git colored-man composer copydir copyfile git-flow github svn tmux vagrant ruby gem)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,8 +98,8 @@ if [ -d  /usr/local/heroku/bin ]; then
 fi
 
 # Composer path
-if [ -d  ~/.composer/vendor/bin ]; then
-    export PATH=$PATH:~/.composer/vendor/bin
+if [ -d  ~/.config/composer/bin ]; then
+    export PATH=$PATH:~/.config/composer/bin
 fi
 
 
@@ -144,9 +144,6 @@ bindkey -s '^[[Z' '\t'
     #source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 #fi
 
-# Enable tmux window title as hostname
-printf "\033k`hostname -s`\033\\"
-
 # Print info on new connection
 
 echo -e "${blue}"`date`; echo ""
@@ -162,5 +159,19 @@ export NVM_DIR="/home/gez/.nvm"
 
 if [ -d  ~/.rvm ]; then
     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-    source /home/gez/.rvm/scripts/rvm 
+    source /home/gez/.rvm/scripts/rvm
 fi
+
+PATH="/home/gez/.gem/ruby/2.3.0/bin/sass:/home/gez/perl5/bin${PATH+:}${PATH}"; export PATH;
+PERL5LIB="/home/gez/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/gez/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/gez/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/gez/perl5"; export PERL_MM_OPT;
+
+# Fix for annoying GREP_OPTIONS deprecated warnings
+alias grep="/usr/bin/grep $GREP_OPTIONS"
+unset GREP_OPTIONS
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export ANDROID_HOME=/home/gez/Dev/android-sdk-linux

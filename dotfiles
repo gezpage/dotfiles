@@ -19,9 +19,11 @@
 .xmobarrc
 .Xmodmap
 .Xresources
+.Xdefaults
 .config/fish/config.fish
 .config/fish/functions
 .config/powerline
+.config/i3
 .fonts
 .vim/custom_snippets
 .gtk-themes
